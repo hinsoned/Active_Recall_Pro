@@ -24,3 +24,6 @@ The immediate goal is to create a flash card application that allows users to lo
 
 ## RELEVANT LINKS:
 1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c
+
+## NOTES
+- __init__.py :What is this? It tells python that the directory this file is in is a package. You can import modules from files in this package to other files using import statments and more. It facilitates the reuse of components within the package. https://www.youtube.com/watch?v=mWaMSGwiSB0
