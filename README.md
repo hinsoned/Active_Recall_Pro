@@ -5,6 +5,7 @@ The immediate goal is to create a flash card application that allows users to lo
 
 ## TODO:
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
+    - Figure out pyache issue. What is it?
 2. Convert Notes to flashcards
 3. Enable Images in flashcards
 4. Enable flashcards to be organized in to decks
@@ -19,6 +20,7 @@ The immediate goal is to create a flash card application that allows users to lo
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
 2. For installation of python, PIP, and general Flask,https://www.youtube.com/watch?v=Z1RJmh_OqeA
+3. Blueprints in flask https://www.youtube.com/watch?v=WteIH6J9v64
 3. Bootstrap tutorial long: https://www.youtube.com/watch?v=-qfEOE4vtxE
 4. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
 
