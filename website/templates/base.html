@@ -1,0 +1,32 @@
+<!-- base.html
+The idea here is to create a base html template then overide parts of it when 
+creating other pages.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--This line is metadata about html in the viewport. In this case it sets the
+    width of the page to the device screen size and sets no zoom.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <!--This is jinja2 templating language-->
+    <title>{% block title %}Home{% endblock %}</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+

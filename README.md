@@ -3,6 +3,8 @@
 ## GOAL:
 The immediate goal is to create a flash card application that allows users to log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. The long term plan is to add a social feature that would allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). I also hope to add a version control feature similar to Git for flashcard decks. This would allow users to copy a public deck to their profile and modify it, or to collaborate on decks using a Git-like branch structure. Tracking stats on who creates popular decks (meaning decks that are studied, copied, and branched often) could allow a ranking or reward system to benefit power-users. Features such as a heat map for studying similar to anki or GitHub, and time view (a view of a deck arranged for studying based on the week of a class one is in) are also possible. Most importantly, users own their cards and they will be saved to the user’s machine to be synced to the site later.
 
+Not that this code will be HEAVILY commented as I am using it as a learning tool and hop too colaborate on later features.
+
 ## TODO:
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
     - Figure out pyache issue. What is it?
@@ -29,3 +31,7 @@ The immediate goal is to create a flash card application that allows users to lo
 
 ## NOTES
 - __init__.py :What is this? It tells python that the directory this file is in is a package. You can import modules from files in this package to other files using import statments and more. It facilitates the reuse of components within the package. https://www.youtube.com/watch?v=mWaMSGwiSB0
+
+Blueprints: What are these? Effectively this allows you to create url routes that return different things that can then be used in a different file using the .register_blueprint( ) function. https://www.youtube.com/watch?v=_LMiUOYDxzE&t=24s
+
+Jinja2: This is a templating language that allows you to put some python in html files. It makes use of {%%} to create blocks that can be overwritten in a base file by elements of other files. This isincluded with the flask install. https://www.youtube.com/watch?v=4yaG-jFfePc For documentation see: https://jinja.palletsprojects.com/en/3.1.x/
