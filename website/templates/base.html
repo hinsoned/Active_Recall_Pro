@@ -25,13 +25,30 @@ creating other pages.
     <title>{% block title %}Home{% endblock %}</title>
 </head>
 <body>
-    <!--These are bootstrap classes.-->
+    <!--THis is the navbar. These are bootstrap classes.-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" 
+      <!--This creates a collapsable nav menu from the nav bar.-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" 
         data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="collapse navbar-collapse" id="navbar">
+          <div class="navbar-nav">
+            <!--These are navbar links-->
+            <a class="nav-item nav-link" id="login" href="/login">Login</a>
+            <a class="nav-item nav-link" id="singUp" href="/sign-up">Sign Up</a>
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+            <a class="nav-item nav-link" id="home" href="/">Home</a>
+          </div>
+        </div>
     </nav>
+    <!--This will be content beneath the navbar. Notice the container block can
+    be overridden by information in template files. "container" is a bootstrap class-->
+    <div class="container">
+      {% block content %}
+      
+      {% endblock %}
+    </div>
 
     <!--This loads in bootstrap to simplify UI development.-->
     <script
@@ -39,7 +56,7 @@ creating other pages.
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
-    <!--This is a javascript library ofr poppers like dropdowns, tips, etc. Most Bootstrap 
+    <!--This is a javascript library of poppers like dropdowns, tips, etc. Most Bootstrap 
     poppers use this.-->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

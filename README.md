@@ -19,6 +19,7 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 10. Add Deck copy feature: Cards will be visible before copy and download.
 11. Add deck branch feature
 12. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+13. Create mobile app
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
@@ -38,3 +39,5 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 - Blueprints: Effectively this allows you to create url routes that return different things that can then be used in a different file using the .register_blueprint( ) function. https://www.youtube.com/watch?v=_LMiUOYDxzE&t=24s
 
 - Jinja2: This is a templating language that allows you to put some python in html files. It makes use of {%%} to create blocks that can be overwritten in a base file by elements of other files. This isincluded with the flask install. https://www.youtube.com/watch?v=4yaG-jFfePc For documentation see: https://jinja.palletsprojects.com/en/3.1.x/
+
+- render_template: When you call render_template('home.html'), Flask looks for the home.html file in the templates directory. By default Flask expects the templates to be located in a directory named templates within your application's directory structure.
