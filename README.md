@@ -8,6 +8,8 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 ## TODO:
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
     - Figure out pyache issue. What is it?
+    - Understand secret key from __init__.py
+    - Understand @ symbol in relation to routes.
 2. Convert Notes to flashcards
 3. Enable Images in flashcards
 4. Enable flashcards to be organized in to decks
@@ -41,3 +43,7 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 - Jinja2: This is a templating language that allows you to put some python in html files. It makes use of {%%} to create blocks that can be overwritten in a base file by elements of other files. This isincluded with the flask install. https://www.youtube.com/watch?v=4yaG-jFfePc For documentation see: https://jinja.palletsprojects.com/en/3.1.x/
 
 - render_template: When you call render_template('home.html'), Flask looks for the home.html file in the templates directory. By default Flask expects the templates to be located in a directory named templates within your application's directory structure.
+
+- request (the flask object): The request object is used to handle incoming request data. It provides access to the request data sent by the client, such as form data, query parameters, and more. https://www.youtube.com/watch?v=9MHYHgh4jYc
+
+- flash (the flask object): After importing the flash object, you can flash messages on the screen for the user too see. The categories are not necessary but chages the css associated with the messages. https://www.youtube.com/watch?v=qbnqNWXf_tU
