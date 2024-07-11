@@ -35,6 +35,6 @@ def sign_up():
             flash('The password must have more than 6 characters.', category='error')
         else:
             # add the user to the database
-            flash('Accoound created!', category='success')
+            flash('Account created!', category='success')
             
     return render_template("/sign_up.html")

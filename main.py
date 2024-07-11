@@ -11,5 +11,5 @@ app = create_app()
 # This is determined by checking if __name__ is equal to '__main__'.
 if __name__ == '__main__':
     #Change this to false when website is live!!!
-    app.run(debug=True) # The app.run(debug=True) line starts the Flask development server.
+    app.run(debug=True, use_reloader=False) # The app.run(debug=True) line starts the Flask development server.
                         # This will also re run the server when code changes are made.

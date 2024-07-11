@@ -21,7 +21,8 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 10. Add Deck copy feature: Cards will be visible before copy and download.
 11. Add deck branch feature
 12. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-13. Create mobile app
+13. Create desktop app (99designs??)
+14. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
@@ -30,6 +31,7 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 3. Bootstrap tutorial long: https://www.youtube.com/watch?v=-qfEOE4vtxE
 4. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
 5. Admin area https://www.youtube.com/watch?v=WqHtmz8Ibn8
+6. Tkinter https://www.youtube.com/watch?v=Pd3XoLSQ5wg
 
 ## RELEVANT LINKS:
 1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c Home page: https://getbootstrap.com/
@@ -47,3 +49,30 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 - request (the flask object): The request object is used to handle incoming request data. It provides access to the request data sent by the client, such as form data, query parameters, and more. https://www.youtube.com/watch?v=9MHYHgh4jYc
 
 - flash (the flask object): After importing the flash object, you can flash messages on the screen for the user too see. The categories are not necessary but chages the css associated with the messages. https://www.youtube.com/watch?v=qbnqNWXf_tU
+
+- SQLAlchemy: This is a ORM (Object-Relational Mapping) tool for Python. SQLAlchemy simplifies interactions with databases by allowing you to work with Python objects rather than SQL statements directly. https://www.youtube.com/watch?v=AKQ3XEDI9Mw
+
+- Virtual environments: Isolated environment for a python project. This allows you to avoid conflicts between different versions of libraries used by different projects. https://www.youtube.com/watch?v=Y21OR1OPC9A&t=47s
+
+- UserMixin: This is a class provided by the flask_login extension for Flask. IT includes the required methods that Flask-Login needs for managing user sessions. By inheriting from UserMixin, a user model automatically implements these methods.
+
+## Environment Notes
+
+- In a virtual environment with python 3.12.1
+
+Package           Version
+----------------- -------
+blinker           1.8.2
+click             8.1.7
+Flask             3.0.3
+Flask-Login       0.6.3
+Flask-SQLAlchemy  3.1.1
+greenlet          3.0.3
+itsdangerous      2.2.0
+Jinja2            3.1.4
+MarkupSafe        2.1.5
+pip               24.1.2
+SQLAlchemy        2.0.31
+typing_extensions 4.12.2
+watchdog          4.0.1
+Werkzeug          3.0.3
