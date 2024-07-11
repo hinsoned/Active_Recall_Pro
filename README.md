@@ -58,21 +58,21 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 
 ## Environment Notes
 
-- In a virtual environment with python 3.12.1
+- In a virtual environment with Python 3.12.1
 
-Package           Version
------------------ -------
-blinker           1.8.2
-click             8.1.7
-Flask             3.0.3
-Flask-Login       0.6.3
-Flask-SQLAlchemy  3.1.1
-greenlet          3.0.3
-itsdangerous      2.2.0
-Jinja2            3.1.4
-MarkupSafe        2.1.5
-pip               24.1.2
-SQLAlchemy        2.0.31
-typing_extensions 4.12.2
-watchdog          4.0.1
-Werkzeug          3.0.3
+| Package           | Version |
+|-------------------|---------|
+| blinker           | 1.8.2   |
+| click             | 8.1.7   |
+| Flask             | 3.0.3   |
+| Flask-Login       | 0.6.3   |
+| Flask-SQLAlchemy  | 3.1.1   |
+| greenlet          | 3.0.3   |
+| itsdangerous      | 2.2.0   |
+| Jinja2            | 3.1.4   |
+| MarkupSafe        | 2.1.5   |
+| pip               | 24.1.2  |
+| SQLAlchemy        | 2.0.31  |
+| typing_extensions | 4.12.2  |
+| watchdog          | 4.0.1   |
+| Werkzeug          | 3.0.3   |
