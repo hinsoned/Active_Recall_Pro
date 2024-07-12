@@ -1,4 +1,6 @@
 # main.py
+import sys
+print(sys.path)
 
 # 'website' is a python package thanks to  __init__.py so we can import anything 
 # defined in that file.

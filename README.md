@@ -36,7 +36,7 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 ## RELEVANT LINKS:
 1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c Home page: https://getbootstrap.com/
 2. Flask-Admin https://flask-admin.readthedocs.io/en/latest/
-
+3. Flask Documentation: https://flask.palletsprojects.com/en/3.0.x/
 ## NOTES
 - __init__.py :It tells python that the directory this file is in is a package. You can import modules from files in this package to other files using import statments and more. It facilitates the reuse of components within the package. https://www.youtube.com/watch?v=mWaMSGwiSB0
 
@@ -55,6 +55,10 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 - Virtual environments: Isolated environment for a python project. This allows you to avoid conflicts between different versions of libraries used by different projects. https://www.youtube.com/watch?v=Y21OR1OPC9A&t=47s
 
 - UserMixin: This is a class provided by the flask_login extension for Flask. IT includes the required methods that Flask-Login needs for managing user sessions. By inheriting from UserMixin, a user model automatically implements these methods.
+
+- GitHub Desktop: https://www.youtube.com/watch?v=8Dd7KRpKeaE
+
+- __name__ :This is a special built-in variable that represents the name of the current module. When a module is run directly, __name__ is set to '__main__'. When the module is imported, __name__ is set to the module's name. By passing __name__ to Flask, you tell Flask that the root path of the application is the directory containing app.py. This way, Flask knows to look for templates in the templates directory and static files in the static directory.
 
 ## Environment Notes
 

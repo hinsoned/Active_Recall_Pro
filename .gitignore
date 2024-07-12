@@ -5,3 +5,6 @@ website/__pycache__/auth.cpython-311.pyc
 website/__pycache__/views.cpython-311.pyc
 website/__pycache__/__init__.cpython-311.pyc
 *.pyc
+website/.DS_Store
+website/database.db
+.DS_Store
