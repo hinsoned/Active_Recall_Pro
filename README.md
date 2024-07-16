@@ -6,10 +6,10 @@ The immediate goal is to create a flash card application that allows users to lo
 Not that this code will be HEAVILY commented as I am using it as a learning tool and hop too colaborate on later features.
 
 ## TODO:
-1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
+1. [x] Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
     - Figure out pyache issue. What is it?
     - Understand secret key from __init__.py
-    - Understand @ symbol in relation to routes.
+    - [x] Understand @ symbol in relation to routes.
 2. Convert Notes to flashcards
 3. Enable Images in flashcards
 4. Enable flashcards to be organized in to decks
@@ -20,10 +20,11 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 9. Add heat Map feature
 10. Add collaborative/public decks
 11. Add Deck copy feature: Cards will be visible before copy and download.
-12. Add deck branch feature
-13. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-14. Create desktop app (99designs??)
-15. Create mobile app (99designs??)
+12. Host on AWS (or some similar could service)
+13. Add deck branch feature
+14. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+15. Create desktop app (99designs??)
+16. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
