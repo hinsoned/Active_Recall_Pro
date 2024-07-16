@@ -16,27 +16,29 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 5. Create and admin area: All users, decks, stats are visible
 6. Enable spaced repetition algorithm
 7. Improve Bootstrap UI
-8. Add heat Map feature
-9. Add collaborative/public decks
-10. Add Deck copy feature: Cards will be visible before copy and download.
-11. Add deck branch feature
-12. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-13. Create desktop app (99designs??)
-14. Create mobile app (99designs??)
+8. Add light mode (assuming dark mode is the default)
+9. Add heat Map feature
+10. Add collaborative/public decks
+11. Add Deck copy feature: Cards will be visible before copy and download.
+12. Add deck branch feature
+13. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+14. Create desktop app (99designs??)
+15. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
 2. For installation of python, PIP, and general Flask,https://www.youtube.com/watch?v=Z1RJmh_OqeA
 3. Blueprints in flask https://www.youtube.com/watch?v=WteIH6J9v64
-3. Bootstrap tutorial long: https://www.youtube.com/watch?v=-qfEOE4vtxE
-4. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
-5. Admin area https://www.youtube.com/watch?v=WqHtmz8Ibn8
-6. Tkinter https://www.youtube.com/watch?v=Pd3XoLSQ5wg
+4. Bootstrap tutorial long: https://www.youtube.com/watch?v=-qfEOE4vtxE
+5. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
+6. Admin area https://www.youtube.com/watch?v=WqHtmz8Ibn8
+7. Tkinter https://www.youtube.com/watch?v=Pd3XoLSQ5wg
 
 ## RELEVANT LINKS:
 1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c Home page: https://getbootstrap.com/
 2. Flask-Admin https://flask-admin.readthedocs.io/en/latest/
 3. Flask Documentation: https://flask.palletsprojects.com/en/3.0.x/
+
 ## NOTES
 - __init__.py :It tells python that the directory this file is in is a package. You can import modules from files in this package to other files using import statments and more. It facilitates the reuse of components within the package. https://www.youtube.com/watch?v=mWaMSGwiSB0
 
@@ -59,6 +61,13 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 - GitHub Desktop: https://www.youtube.com/watch?v=8Dd7KRpKeaE
 
 - __name__ :This is a special built-in variable that represents the name of the current module. When a module is run directly, __name__ is set to '__main__'. When the module is imported, __name__ is set to the module's name. By passing __name__ to Flask, you tell Flask that the root path of the application is the directory containing app.py. This way, Flask knows to look for templates in the templates directory and static files in the static directory.
+
+- login_user(user, remember=True) : The remember parameter, when set to True, uses a secure cookie to remember the user after the session ends. This allows the user to stay logged in even after closing the browser.
+
+- python decorators: Decorators ( or the @ symbol fllowed by text) can be used on functions, classes, or methods. It is a function that accepts a function and returns a function. Functions in python can be nested in python, think of a decorator as a function in to which the function, classe, or method it is above is passed in to. https://www.youtube.com/watch?v=WpF6azYAxYg https://www.youtube.com/watch?v=BE-L7xu8pO4
+
+- LoginManager: The LoginManager keeps track of the logged-in user during a session.
+It provides a way to "remember" the user between requests and handle login/logout functionality. login_manager.init_app(app) links the LoginManager instance to the Flask app, enabling its functionality within the application. This will automatically add a "Please log in to access this page" flash message.ß
 
 ## Environment Notes
 
