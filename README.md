@@ -6,25 +6,43 @@ The immediate goal is to create a flash card application that allows users to lo
 Not that this code will be HEAVILY commented as I am using it as a learning tool and hop too colaborate on later features.
 
 ## TODO:
-1. [x] Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
-    - Figure out pyache issue. What is it?
-    - Understand secret key from __init__.py
+1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
+    - [x] Figure out pyache issue. What is it?
+    - [x] Understand secret key from __init__.py
     - [x] Understand @ symbol in relation to routes.
-2. Convert Notes to flashcards
-3. Enable Images in flashcards
-4. Enable flashcards to be organized in to decks
-5. Create and admin area: All users, decks, stats are visible
-6. Enable spaced repetition algorithm
-7. Improve Bootstrap UI
-8. Add light mode (assuming dark mode is the default)
-9. Add heat Map feature
-10. Add collaborative/public decks
-11. Add Deck copy feature: Cards will be visible before copy and download.
-12. Host on AWS (or some similar could service)
-13. Add deck branch feature
-14. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-15. Create desktop app (99designs??)
-16. Create mobile app (99designs??)
+2. Find a way to see what is in database at any time.
+    - [x] DB Browser for SQL lite https://sqlitebrowser.org/dl/
+3. Convert Notes to flashcards
+    - [x] Create branch
+    - [x] change model in model.py
+    - [x] change note creation in home.html
+    - [x] change / route in views.py
+    - [x] fix __init__.py import
+    - [x] update base.html delete card function
+    - [x] update views.html deltecard fuction
+    - [x] label front and back of cards in form
+4. Create study mode
+    - add study mode button
+    - add study mode route. Display one card front with "flip" button to study.
+5. Add Flashcards list page. Just display both sides of all cards sequentially.
+6. Update home now that it does not have list
+    - Display greeting to user
+    - Display total number of cards
+    - Display most recently added card?
+7. Enable Images in flashcards
+8. Enable flashcards to be organized in to decks 
+9. Create and admin area: All users, decks, stats are visible
+10. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+11. Improve Bootstrap UI
+12. Add light mode (assuming dark mode is the default)
+13. Add heat Map feature
+14. Add collaborative/public decks
+15. Add Deck copy feature: Cards will be visible before copy and download.
+16. Host on AWS (or some similar could service)
+17. Add deck branch feature
+18. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+19. Create desktop app (99designs??)
+20. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
@@ -67,8 +85,11 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 
 - python decorators: Decorators ( or the @ symbol fllowed by text) can be used on functions, classes, or methods. It is a function that accepts a function and returns a function. Functions in python can be nested in python, think of a decorator as a function in to which the function, classe, or method it is above is passed in to. https://www.youtube.com/watch?v=WpF6azYAxYg https://www.youtube.com/watch?v=BE-L7xu8pO4
 
-- LoginManager: The LoginManager keeps track of the logged-in user during a session.
-It provides a way to "remember" the user between requests and handle login/logout functionality. login_manager.init_app(app) links the LoginManager instance to the Flask app, enabling its functionality within the application. This will automatically add a "Please log in to access this page" flash message.ß
+- LoginManager: The LoginManager keeps track of the logged-in user during a session. It provides a way to "remember" the user between requests and handle login/logout functionality. login_manager.init_app(app) links the LoginManager instance to the Flask app, enabling its functionality within the application. This will automatically add a "Please log in to access this page" flash message.
+
+- Secret Key (as seen in __init__py): (From the flask website) A secret key that will be used for securely signing the session cookie and can be used for any other security related needs by extensions or your application. It should be a long random bytes or str.
+
+- __pyache__ : When you run a Python script, the Python interpreter compiles it into bytecode. This bytecode is a lower-level, platform-independent representation of your source code. If Python had to compile your scripts every time you ran them, it would slow things down. Instead, it stores the compiled bytecode in the __pycache__ directory. The next time you run your script, Python can skip the compilation step if the bytecode is already up-to-date
 
 ## Environment Notes
 

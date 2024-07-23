@@ -98,10 +98,10 @@ creating other pages.
 
     {% block javascript %}
     <script type="text/javascript">
-      function deleteNote(noteId) {
-    fetch("/delete-note", {
+      function deleteFlashcard(flashcardId) {
+    fetch("/delete-flashcard", {
       method: "POST",
-      body: JSON.stringify({ noteId: noteId }),
+      body: JSON.stringify({ flashcardId: flashcardId }),
     }).then((_res) => {
       window.location.href = "/";
     });

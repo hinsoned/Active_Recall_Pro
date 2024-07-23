@@ -40,7 +40,7 @@ def create_app():
 
         #The . indicates the current package. This registers these models with SQLAlchemy.
         # SQLAlchemy keeps track of all models that are defined before you call db.create_all(app=app).
-        from .models import User, Note
+        from .models import User
 
         with app.app_context():
                 db.create_all()

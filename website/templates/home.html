@@ -6,13 +6,30 @@ parts of it.-->
 
 <!--This will override the base.html content block-->
 {% block content %}
-<h1 align="center">Notes</h1>
+<h1 align="center">Flashcards</h1>
+<!--This is the form that allows a user to write a new flashcard.-->
+<form method="POST">
+    <label for="front">Front of Card:</label>
+    <textarea name="front" id="note" class="form-control"></textarea>
+    <br />
+    <label for="back">Back of Card:</label>
+    <textarea name="back" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Card</button>
+    </div>
+</form>
+
+<!--This is where the flashcards will be displayed.-->
 <ul class="list-group list-group-flush" id="notes">
-    <!--This for loop will display of the user's saved notes.-->
-    {% for note in user.notes %}
-    <li class="list-group-item">{{ note.data }}
+    <!--This for loop will display of the user's saved flashcards.-->
+    {% for flashcard in user.flashcards %}
+    <li class="list-group-item mb-3">
+        {{ flashcard.front }}
+        <br />
+        {{ flashcard.back }}
         <!--This sends a request to the back end-->
-        <button type="button" class="close" onclick="deleteNote({{ note.id }})">
+        <button type="button" class="close" onclick="deleteFlashcard({{ flashcard.id }})">
             <!--THis is the x on the close button and some code to tell screen
             readers to ignore it.-->
             <span aria-hidden="true">&times;</span>
@@ -20,12 +37,5 @@ parts of it.-->
     </li>
     {% endfor%}
 </ul>
-<!--This is the form that allows a user to write a note.-->
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form>
+
 {% endblock %}

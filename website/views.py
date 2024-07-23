@@ -6,7 +6,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Flashcard
 #import the database object
 from . import db
 import json
@@ -20,27 +20,29 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method == 'POST':
-        note = request.form.get('note')
+        #note = request.form.get('note')
+        front = request.form.get('front')
+        back = request.form.get('back')
 
-        if len(note) < 1:
-            flash('That\'s not much of a note!', category='error')
+        if not front or not back:
+            flash('That\'s not much of a flashcard!', category='error')
         else:
             #create the note with the text and the user id
-            new_note = Note(data=note, user_id=current_user.id)
+            new_flashcard = Flashcard(front=front, back=back, user_id=current_user.id)
             #add the note do the database
-            db.session.add(new_note)
+            db.session.add(new_flashcard)
             db.session.commit()
-            flash('Note added!', category='success')
+            flash('Flashcard added!', category='success')
     return render_template("home.html", user=current_user)
 
-@views.route('/delete-note', methods=['POST'])
-def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note: 
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+@views.route('/delete-flashcard', methods=['POST'])
+def delete_flashcard():
+    flashcard = json.loads(request.data)
+    flashcardId = flashcard['flashcardId']
+    flashcard = Flashcard.query.get(flashcardId)
+    if flashcard: 
+        if flashcard.user_id == current_user.id:
+            db.session.delete(flashcard)
             db.session.commit()
             
     return jsonify({})
