@@ -37,6 +37,7 @@ creating other pages.
             <!--These are navbar links-->
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">Home</a>
+            <a class="nav-item nav-link" id="study" href="/study">Study</a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             {% else %}
             <a class="nav-item nav-link" id="login" href="/login">Login</a>
@@ -52,7 +53,7 @@ creating other pages.
         {% for category, message in messages %}
           {% if category == 'error' %}
           <div class="alert alert-danger alert-dismissable fade show" role="alert">
-            {{ message }}
+            {{ message }} 
             <button type="button" class="close" data-dismiss="alert">
               <span aria-hidden="true">&times;</span>
             </button>

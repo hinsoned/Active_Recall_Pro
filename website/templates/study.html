@@ -1,0 +1,77 @@
+<!--study.html-->
+<!--This line makes use of the already existing base template. We can now override
+parts of it.-->
+{%extends "base.html"%}
+{% block title %}Study{% endblock %}
+
+<!--This will override the base.html content block-->
+{% block content %}
+<h1 align="center">Study</h1>
+
+<!-- Hidden element to store flashcards data for both front and back -->
+<div id="flashcards-data" style="display: none;">
+    <!--This imports the flashcards data and converts it to JSON-->
+    {{ flashcards | tojson }}
+</div>
+
+<div class="card text-center">
+    <div class="card-header">
+        <p class="card-text" id="flashcard-front">Front of the card will be shown here</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text" id="flashcard-content">Back of the card will be shown here</p>
+        <button class="btn btn-primary" id="toggle-button" onclick="toggleCard()">Show Back</button>
+    </div>
+    <div class="card-footer text-muted">
+        <button class="btn btn-secondary" onclick="nextCard()">Next Card</button>
+    </div>
+</div>
+
+{% block javascript %}
+<script type="text/javascript">
+  // JavaScript variables to keep track of the current flashcard and its state.
+  // This gets the text content of the flashcards-data hidden element and parses it as JSON
+  // to an array of flashcards javascript objects. We can then access indexes 
+  // in the array using the currentIndex variable
+  let flashcards = JSON.parse(document.getElementById('flashcards-data').textContent);
+  let currentIndex = 0;
+  let showFront = true;
+
+  // Function to toggle between front and back of the flashcard
+  function toggleCard() {
+    showFront = !showFront;
+    displayCard();
+  }
+
+  // Function to display the next flashcard
+  function nextCard() {
+    //This uses modulo to cycle through the flashcards array
+    currentIndex = (currentIndex + 1) % flashcards.length;
+    showFront = true;
+    displayCard();
+  }
+
+  // Function to display the current flashcard
+  function displayCard() {
+    // This retrieves the HTML element with the id 'flashcard-content' 
+    // and sets it to the variable 'flashcardContent'
+    let flashcardFront = document.getElementById('flashcard-front');
+    let flashcardContent = document.getElementById('flashcard-content');
+    let toggleButton = document.getElementById('toggle-button');
+
+    flashcardFront.textContent = flashcards[currentIndex].front;
+    if (showFront) {
+      flashcardContent.textContent = "";
+      toggleButton.textContent = "Show Back";
+    } else {
+      flashcardContent.textContent = flashcards[currentIndex].back;
+      toggleButton.textContent = "Hide";
+    }
+  }
+
+  // Initial display of the first flashcard.
+  displayCard();
+</script>
+{% endblock %}
+
+{% endblock %}

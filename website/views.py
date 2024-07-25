@@ -33,7 +33,15 @@ def home():
             db.session.add(new_flashcard)
             db.session.commit()
             flash('Flashcard added!', category='success')
+    #This renders the template and also passes in the current_user variable.
+    #We can access the associated flashcards with current_user.flashcards
     return render_template("home.html", user=current_user)
+
+@views.route('/study', methods=['GET', 'POST'])
+@login_required
+def study():
+    flashcards = [flashcard.to_dict() for flashcard in current_user.flashcards]
+    return render_template("study.html", user=current_user, flashcards=flashcards)
 
 @views.route('/delete-flashcard', methods=['POST'])
 def delete_flashcard():

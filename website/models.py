@@ -25,6 +25,15 @@ class Flashcard(db.Model):
     #This foreign key references the id from the User class
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    #This converts the flashcard object to a dictionary for transmission.
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'front': self.front,
+            'back': self.back,
+            'date': self.date.isoformat()  # Convert datetime to ISO format string
+        }
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)

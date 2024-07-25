@@ -22,10 +22,12 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
     - [x] update views.html deltecard fuction
     - [x] label front and back of cards in form
 4. Create study mode
-    - add study mode button
-    - add study mode route. Display one card front with "flip" button to study.
+    - Add study mode route to views.py
+    - Display one card front with "flip" button to study.
+    - Add study mode button to home and to nav bar
 5. Add Flashcards list page. Just display both sides of all cards sequentially.
-6. Update home now that it does not have list
+    - Add card list and card create route in views.py (this is one page)
+6. Update home now that it does not have card create
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
