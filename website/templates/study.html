@@ -20,12 +20,13 @@ parts of it.-->
     </div>
     <div class="card-body">
         <p class="card-text" id="flashcard-content">Back of the card will be shown here</p>
-        <button class="btn btn-primary" id="toggle-button" onclick="toggleCard()">Show Back</button>
     </div>
     <div class="card-footer text-muted">
-        <button class="btn btn-secondary" onclick="nextCard()">Next Card</button>
+        <button class="btn btn-primary" id="toggle-button" onclick="toggleCard()">Show Back</button>
+        <button class="btn btn-primary" id="next-button" style="display: none;" onclick="nextCard()">Next Card</button>
     </div>
 </div>
+{% endblock %}
 
 {% block javascript %}
 <script type="text/javascript">
@@ -41,6 +42,11 @@ parts of it.-->
   function toggleCard() {
     showFront = !showFront;
     displayCard();
+
+    let nextButton = document.getElementById('next-button');
+    if (!showFront) {
+      nextButton.style.display = 'inline';
+    }
   }
 
   // Function to display the next flashcard
@@ -49,6 +55,11 @@ parts of it.-->
     currentIndex = (currentIndex + 1) % flashcards.length;
     showFront = true;
     displayCard();
+
+    let nextButton = document.getElementById('next-button');
+    if (showFront) {
+      nextButton.style.display = 'none';
+    }
   }
 
   // Function to display the current flashcard
@@ -58,20 +69,22 @@ parts of it.-->
     let flashcardFront = document.getElementById('flashcard-front');
     let flashcardContent = document.getElementById('flashcard-content');
     let toggleButton = document.getElementById('toggle-button');
+    //toggleButton.style.visibility = 'visible'
+    toggleButton.style.display = 'inline';
 
     flashcardFront.textContent = flashcards[currentIndex].front;
+
     if (showFront) {
       flashcardContent.textContent = "";
       toggleButton.textContent = "Show Back";
     } else {
       flashcardContent.textContent = flashcards[currentIndex].back;
-      toggleButton.textContent = "Hide";
+      //toggleButton.style.visibility = 'hidden'
+      toggleButton.style.display = 'none';
     }
   }
 
   // Initial display of the first flashcard.
   displayCard();
 </script>
-{% endblock %}
-
 {% endblock %}
