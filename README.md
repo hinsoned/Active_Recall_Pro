@@ -24,29 +24,36 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 4. Create study mode
     - [x] Add study mode route to views.py
     - [x] Display one card front with "flip" button to study
-    - [x] Next Card button appears only after card is flipped
-    - Move "Show Back" and "Next Card" buttons to lower nav bar? 
-    - Add study mode button to home and to nav bar
-5. Add Flashcards list page. Just display both sides of all cards sequentially.
+    - [x] Next Card button appears only after card is flipped 
+    - [x] Add study mode button to home and to nav bar
+5. Add general dark theme
+    - [x] update bootstrap version to 5.3.3
+    - [x] add dark mode code to html tag on base.html: data-bs-theme="dark" 
+    - [x] add dark mode toggle
+    - fix model close button issue
+    - fix model close button position
+    - fix card delete button position
+6. Add Flashcards list page. Just display both sides of all cards sequentially.
     - Add card list and card create route in views.py (this is one page)
-6. Update home now that it does not have card create
+7. Update home now that it does not have card create
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
-7. Enable Images in flashcards
-8. Enable flashcards to be organized in to decks 
-9. Create and admin area: All users, decks, stats are visible
-10. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-11. Improve Bootstrap UI
-12. Add light mode (assuming dark mode is the default)
-13. Add heat Map feature
-14. Add collaborative/public decks
-15. Add Deck copy feature: Cards will be visible before copy and download.
-16. Host on AWS (or some similar could service)
-17. Add deck branch feature
-18. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-19. Create desktop app (99designs??)
-20. Create mobile app (99designs??)
+    - Graph of cards studied in last month?
+8. Enable Images in flashcards
+9. Enable flashcards to be organized in to decks 
+10. Create and admin area: All users, decks, stats are visible
+11. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+12. Improve Bootstrap UI
+13. Add light mode (assuming dark mode is the default)
+14. Add heat Map feature
+15. Add collaborative/public decks
+16. Add Deck copy feature: Cards will be visible before copy and download.
+17. Host on AWS (or some similar could service)
+18. Add deck branch feature
+19. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+20. Create desktop app (99designs??)
+21. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
