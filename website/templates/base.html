@@ -24,11 +24,20 @@ creating other pages.
     crossorigin="anonymous"
     />
     
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+
+    <!--
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
+    -->
     <!--This is jinja2 templating language. Child templates can override this.-->
     <title>{% block title %}Home{% endblock %}</title>
 </head>
@@ -60,16 +69,16 @@ creating other pages.
       {% if messages %}
         {% for category, message in messages %}
           {% if category == 'error' %}
-          <div class="alert alert-danger alert-dismissable fade show" role="alert">
+          <div class="alert alert-danger alert-dismissable fade show d-flex justify-content-between align-items-center" role="alert">
             {{ message }} 
-            <button type="button" class="close" data-dismiss="alert">
+            <button type="button" class="close" data-bs-dismiss="alert">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           {% else %}
           <div class="alert alert-success alert-dismissable fade show" role="alert">
             {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
+            <button type="button" class="close" data-bs-dismiss="alert">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>

@@ -22,10 +22,10 @@ parts of it.-->
 </form>
 
 <!--This is where the flashcards will be displayed.-->
-<ul class="list-group list-group-flush" id="notes">
+<ul class="list-group list-group-flush " id="notes">
     <!--This for loop will display of the user's saved flashcards.-->
     {% for flashcard in user.flashcards %}
-    <li class="list-group-item mb-3">
+    <li class="list-group-item mb-3 d-flex justify-content-between align-items-center">
         {{ flashcard.front }}
         <br />
         {{ flashcard.back }}
