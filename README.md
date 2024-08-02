@@ -1,11 +1,13 @@
 # Active_Recall_Pro (This is a stand-in name)
  A flashcard web app project.
 ## GOAL:
-The immediate goal is to create a flash card application that allows users to log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. The long term plan is to add a social feature that would allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). I also hope to add a version control feature similar to Git for flashcard decks. This would allow users to copy a public deck to their profile and modify it, or to collaborate on decks using a Git-like branch structure. Tracking stats on who creates popular decks (meaning decks that are studied, copied, and branched often) could allow a ranking or reward system to benefit power-users. Features such as a heat map for studying similar to anki or GitHub, and time view (a view of a deck arranged for studying based on the week of a class one is in) are also possible. Most importantly, users own their cards and they will be saved to the user’s machine to be synced to the site later.
+The immediate goal is to create a flash card web application that allows users to log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. The long term plan is to add a social feature that would allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). I also hope to add a version control feature similar to Git for flashcard decks. This would allow users to copy a public deck to their profile and modify it, or to collaborate on decks using a Git-like branch structure. Tracking stats on who creates popular decks (meaning decks that are studied, copied, and branched often) could allow a ranking or reward system to benefit power-users. Features such as a heat map for studying similar to anki or GitHub, and time view (a view of a deck arranged for studying based on the week of a class one is in) are also possible. Most importantly, users wiil evevntually own their cards and they will be saved to the user’s machine to be synced to the site later.
 
-Not that this code will be HEAVILY commented as I am using it as a learning tool and hop too colaborate on later features.
+This is also a learning project for me to get used to a GIT workflow and creating documentation like this.
 
-## TODO:
+Note that this code will be HEAVILY commented as I am using it as a learning tool and hope to colaborate on later features.
+
+## TODO / KNOWN ISSUES:
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
     - [x] Figure out pyache issue. What is it?
     - [x] Understand secret key from __init__.py
@@ -37,26 +39,35 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 6. Learn about README file standards and update this file.
 7. Add Flashcards list page. Just display both sides of all cards sequentially.
     - Add card list and card create route in views.py (this is one page)
-8. Update home now that it does not have card create
+    - Add card create on this page as well
+    - This will eventually hold a list of decks instead of cards (see step 10)
+8. Update home now that it does not have card list (will still have card create)
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
     - Graph of cards studied in last month?
 9. Enable Images in flashcards
 10. Enable flashcards to be organized in to decks 
+    - Adjust list page to list decks instead of cards
 11. Create and admin area: All users, decks, stats are visible
 12. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
 13. Improve Bootstrap UI
+    - Make Nav bar visible
+    - Pick a color scheme
+    - Create and add a logo?
+    - Set fixed minimum size for study page card
 14. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
 15. Add heat Map feature
-16. Add collaborative/public decks
-17. Add Deck copy feature: Cards will be visible before copy and download.
-18. Host on AWS (or some similar could service)
-19. Add deck branch feature
-20. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-21. Create desktop app (99designs??)
-22. Create mobile app (99designs??)
+16. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+    - Creating a user account without Google must still be an option
+17. Add collaborative/public decks
+18. Add Deck copy feature: Cards will be visible before copy and download.
+19. Host on AWS (or some similar could service)
+20. Add deck branch feature
+21. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+22. Create desktop app (99designs??)
+23. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
@@ -66,6 +77,7 @@ Not that this code will be HEAVILY commented as I am using it as a learning tool
 5. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
 6. Admin area https://www.youtube.com/watch?v=WqHtmz8Ibn8
 7. Tkinter https://www.youtube.com/watch?v=Pd3XoLSQ5wg
+8. Make a good README https://www.youtube.com/watch?v=a8CwpGARAsQ https://www.youtube.com/watch?v=E6NO0rgFub4
 
 ## RELEVANT LINKS:
 1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c Home page: https://getbootstrap.com/
