@@ -37,37 +37,47 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - [x] fix card delete button position
     - [x] Make study page buttons full width (not related I just wanted to)
 6. Learn about README file standards and update this file.
-7. Add Flashcards list page. Just display both sides of all cards sequentially.
+    - Put opening paragraph in to list format
+    - Add contributor instructions
+    - Add contributor expectations
+7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
+    - Create wiki page for each page of site
+8. Add Flashcards list page. Just display both sides of all cards sequentially.
     - Add card list and card create route in views.py (this is one page)
     - Add card create on this page as well
     - This will eventually hold a list of decks instead of cards (see step 10)
-8. Update home now that it does not have card list (will still have card create)
+9. Update home now that it does not have card list (will still have card create)
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
     - Graph of cards studied in last month?
-9. Enable Images in flashcards
-10. Enable flashcards to be organized in to decks 
+10. Enable Images in flashcards
+    - Create branch
+11. Enable flashcards to be organized in to decks 
+    - Create branch
     - Adjust list page to list decks instead of cards
-11. Create and admin area: All users, decks, stats are visible
-12. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-13. Improve Bootstrap UI
+    - Create a "non deck" for cards that are in no deck but still exist in database
+12. Create and admin area: All users, decks, stats are visible
+13. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+14. Improve Bootstrap UI
     - Make Nav bar visible
     - Pick a color scheme
     - Create and add a logo?
     - Set fixed minimum size for study page card
-14. Add light mode (assuming dark mode is the default)
+15. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-15. Add heat Map feature
-16. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+16. Add heat Map feature
+17. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-17. Add collaborative/public decks
-18. Add Deck copy feature: Cards will be visible before copy and download.
-19. Host on AWS (or some similar could service)
-20. Add deck branch feature
-21. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-22. Create desktop app (99designs??)
-23. Create mobile app (99designs??)
+18. Add collaborative/public decks
+    - Create branch
+    - Add private/public toggle for each deck (default to public)
+19. Add Deck copy feature: Cards will be visible before copy and download.
+20. Host on AWS (or some similar could service)
+21. Add deck branch feature
+22. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+23. Create desktop app (99designs??)
+24. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
