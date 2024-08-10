@@ -45,11 +45,10 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - [x] Make study page buttons full width (not related I just wanted to)
 6. Learn about README file standards and update this file.
     - [x] Put opening paragraph in to list format
-    - Add contributor instructions (Git use with video links and written expalnation)
-    - Add contributor expectations
-    - Move tutorials, links, and notes to wiki.
+    - [x] Add contributor instructions (Git use with video links and written expalnation)
 7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
-    - Create wiki page for each page of site
+    - Create wiki page for each page or feature of site
+    - Move tutorials, links, and notes to wiki.
 8. Add Flashcards list page. Just display both sides of all cards sequentially.
     - Add card list and card create route in views.py (this is one page)
     - Add card create on this page as well
@@ -91,8 +90,10 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
 26. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
-- This is a good overview of GitHub desktop I suggest watching first. https://www.youtube.com/watch?v=8Dd7KRpKeaE
-- An excelent basic GitHub tutorial (Skip to 1:35) https://www.youtube.com/watch?v=CML6vfKjQss
+### I like using GitHub deskptop so these instructions reflect that. You do not have to.
+- This is a good overview of GitHub desktop I suggest watching first: https://www.youtube.com/watch?v=8Dd7KRpKeaE
+- An short GitHub tutorial (Skip to 1:35) https://www.youtube.com/watch?v=CML6vfKjQss
+- A more detailed tutorial https://www.youtube.com/watch?v=HbSjyU2vf6Y
 
 1. Be sure to have a GitHub profile.
 2. Download and install GitHub desktop.
@@ -104,56 +105,12 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
 8. Create a branch on your repository. 
 9. To open a dev server version of the project, open "main.py" and run it. It should produce a clickable localhost link in the output. Click on this to open ARP in a browser window.
 10. Make your code changes.
-11. Add, push, and merge your code.
+11. Add, push, and merge your code. This will all be on your copy of the project.
 12. When finished, submit a pull request on GitHub.
+13. Respond to feedback on the pull request.
 
-## RELEVANT TUTORIALS:
-1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
-2. For installation of python, PIP, and general Flask,https://www.youtube.com/watch?v=Z1RJmh_OqeA
-3. Blueprints in flask https://www.youtube.com/watch?v=WteIH6J9v64
-4. Bootstrap tutorial long: https://www.youtube.com/watch?v=-qfEOE4vtxE
-5. Bootstrap tutorial short: https://www.youtube.com/watch?v=eow125xV5-c
-6. Admin area https://www.youtube.com/watch?v=WqHtmz8Ibn8
-7. Tkinter https://www.youtube.com/watch?v=Pd3XoLSQ5wg
-8. Make a good README https://www.youtube.com/watch?v=a8CwpGARAsQ https://www.youtube.com/watch?v=E6NO0rgFub4
-
-## RELEVANT LINKS:
-1. Bootstrap. open source CSS Framework used in the main tutorial:https://www.youtube.com/watch?v=eow125xV5-c Home page: https://getbootstrap.com/
-2. Flask-Admin https://flask-admin.readthedocs.io/en/latest/
-3. Flask Documentation: https://flask.palletsprojects.com/en/3.0.x/
-
-## NOTES
-- __init__.py :It tells python that the directory this file is in is a package. You can import modules from files in this package to other files using import statments and more. It facilitates the reuse of components within the package. https://www.youtube.com/watch?v=mWaMSGwiSB0
-
-- Blueprints: Effectively this allows you to create url routes that return different things that can then be used in a different file using the .register_blueprint( ) function. https://www.youtube.com/watch?v=_LMiUOYDxzE&t=24s
-
-- Jinja2: This is a templating language that allows you to put some python in html files. It makes use of {%%} to create blocks that can be overwritten in a base file by elements of other files. This isincluded with the flask install. https://www.youtube.com/watch?v=4yaG-jFfePc For documentation see: https://jinja.palletsprojects.com/en/3.1.x/
-
-- render_template: When you call render_template('home.html'), Flask looks for the home.html file in the templates directory. By default Flask expects the templates to be located in a directory named templates within your application's directory structure.
-
-- request (the flask object): The request object is used to handle incoming request data. It provides access to the request data sent by the client, such as form data, query parameters, and more. https://www.youtube.com/watch?v=9MHYHgh4jYc
-
-- flash (the flask object): After importing the flash object, you can flash messages on the screen for the user too see. The categories are not necessary but chages the css associated with the messages. https://www.youtube.com/watch?v=qbnqNWXf_tU
-
-- SQLAlchemy: This is a ORM (Object-Relational Mapping) tool for Python. SQLAlchemy simplifies interactions with databases by allowing you to work with Python objects rather than SQL statements directly. https://www.youtube.com/watch?v=AKQ3XEDI9Mw
-
-- Virtual environments: Isolated environment for a python project. This allows you to avoid conflicts between different versions of libraries used by different projects. https://www.youtube.com/watch?v=Y21OR1OPC9A&t=47s
-
-- UserMixin: This is a class provided by the flask_login extension for Flask. IT includes the required methods that Flask-Login needs for managing user sessions. By inheriting from UserMixin, a user model automatically implements these methods.
-
-- GitHub Desktop: https://www.youtube.com/watch?v=8Dd7KRpKeaE
-
-- __name__ :This is a special built-in variable that represents the name of the current module. When a module is run directly, __name__ is set to '__main__'. When the module is imported, __name__ is set to the module's name. By passing __name__ to Flask, you tell Flask that the root path of the application is the directory containing app.py. This way, Flask knows to look for templates in the templates directory and static files in the static directory.
-
-- login_user(user, remember=True) : The remember parameter, when set to True, uses a secure cookie to remember the user after the session ends. This allows the user to stay logged in even after closing the browser.
-
-- python decorators: Decorators ( or the @ symbol fllowed by text) can be used on functions, classes, or methods. It is a function that accepts a function and returns a function. Functions in python can be nested in python, think of a decorator as a function in to which the function, classe, or method it is above is passed in to. https://www.youtube.com/watch?v=WpF6azYAxYg https://www.youtube.com/watch?v=BE-L7xu8pO4
-
-- LoginManager: The LoginManager keeps track of the logged-in user during a session. It provides a way to "remember" the user between requests and handle login/logout functionality. login_manager.init_app(app) links the LoginManager instance to the Flask app, enabling its functionality within the application. This will automatically add a "Please log in to access this page" flash message.
-
-- Secret Key (as seen in __init__py): (From the flask website) A secret key that will be used for securely signing the session cookie and can be used for any other security related needs by extensions or your application. It should be a long random bytes or str.
-
-- __pyache__ : When you run a Python script, the Python interpreter compiles it into bytecode. This bytecode is a lower-level, platform-independent representation of your source code. If Python had to compile your scripts every time you ran them, it would slow things down. Instead, it stores the compiled bytecode in the __pycache__ directory. The next time you run your script, Python can skip the compilation step if the bytecode is already up-to-date
+## CONTRIBUTOR GUIDELINES
+- There is only one guideline: CHECK THE WIKI FIRST.
 
 ## Environment Notes
 
