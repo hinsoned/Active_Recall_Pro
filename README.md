@@ -1,7 +1,14 @@
 # Active_Recall_Pro (This is a stand-in name)
  A flashcard web app project.
 ## GOAL:
-The immediate goal is to create a flash card web application that allows users to log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. The long term plan is to add a social feature that would allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). I also hope to add a version control feature similar to Git for flashcard decks. This would allow users to copy a public deck to their profile and modify it, or to collaborate on decks using a Git-like branch structure. Tracking stats on who creates popular decks (meaning decks that are studied, copied, and branched often) could allow a ranking or reward system to benefit power-users. Features such as a heat map for studying similar to anki or GitHub, and time view (a view of a deck arranged for studying based on the week of a class one is in) are also possible. Most importantly, users wiil evevntually own their cards and they will be saved to the user’s machine to be synced to the site later.
+Active Recall Pro (ARP) is a flash card web application that allows users to create a user account, log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. Future features will include:
+
+* A social media feature that will allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). 
+* A version control feature similar to Git for flashcard decks. This would allow users to copy a public deck to their profile and modify it, or to collaborate on decks using a Git-like branch structure. 
+* Stat tracking on who creates popular decks (meaning decks that are studied, copied, and branched often) will allow a ranking or reward system to benefit power-users. 
+* Features such as a heat map for studying similar to anki or GitHub, and time view (a view of a deck arranged for studying based on the week of a class one is in) are also possible. 
+* An integrate AI using an LLM to read all of the cards in a user's FC database and process the results of their studying. The AI will then make suggesstions for what new cards to make, can change the order of what cards to study next, and articulate the user's strengths and weaknesses to display to the user. 
+* Most importantly, users will evevntually own their cards and they will be saved to the user’s machine to be synced to the site later.
 
 This is also a learning project for me to get used to a GIT workflow and creating documentation like this.
 
@@ -38,8 +45,9 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - [x] Make study page buttons full width (not related I just wanted to)
 6. Learn about README file standards and update this file.
     - Put opening paragraph in to list format
-    - Add contributor instructions
+    - Add contributor instructions (Git use with video links and written expalnation)
     - Add contributor expectations
+    - Move tutorials, links, and notes to wiki.
 7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
     - Create wiki page for each page of site
 8. Add Flashcards list page. Just display both sides of all cards sequentially.
@@ -50,7 +58,6 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
-    - Graph of cards studied in last month?
 10. Enable Images in flashcards
     - Create branch
 11. Enable flashcards to be organized in to decks 
@@ -73,11 +80,15 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - Create branch
     - Add private/public toggle for each deck (default to public)
 19. Add Deck copy feature: Cards will be visible before copy and download.
-20. Host on AWS (or some similar could service)
-21. Add deck branch feature
-22. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-23. Create desktop app (99designs??)
-24. Create mobile app (99designs??)
+20. Add AI/LLM integration
+    - Create branch
+    - Select LLM or ChatGPT API
+21. Host on AWS (or some similar could service)
+22. Add deck branch feature
+23. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+24. Monetize with Google ads (AdSense)?
+25. Create desktop app (99designs??)
+26. Create mobile app (99designs??)
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
