@@ -1,6 +1,6 @@
 # Active_Recall_Pro (This is a stand-in name)
  A flashcard web app project.
-## GOAL:
+## OVERVIEW:
 Active Recall Pro (ARP) is a flash card web application that allows users to create a user account, log in, create multimedia flash cards, edit flash cards, delete flash cards, and study flash cards. Future features will include:
 
 * A social media feature that will allow users to make decks public (so that they may be seen and studied by other users) or private (so that only the creator can see the deck and its cards). 
@@ -44,7 +44,7 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - [x] fix card delete button position
     - [x] Make study page buttons full width (not related I just wanted to)
 6. Learn about README file standards and update this file.
-    - Put opening paragraph in to list format
+    - [x] Put opening paragraph in to list format
     - Add contributor instructions (Git use with video links and written expalnation)
     - Add contributor expectations
     - Move tutorials, links, and notes to wiki.
@@ -89,6 +89,23 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
 24. Monetize with Google ads (AdSense)?
 25. Create desktop app (99designs??)
 26. Create mobile app (99designs??)
+
+## CONTRIBUTOR INSTRUCTIONS
+- This is a good overview of GitHub desktop I suggest watching first. https://www.youtube.com/watch?v=8Dd7KRpKeaE
+- An excelent basic GitHub tutorial (Skip to 1:35) https://www.youtube.com/watch?v=CML6vfKjQss
+
+1. Be sure to have a GitHub profile.
+2. Download and install GitHub desktop.
+3. Go to the ARP project page and click the "fork" button.
+4. Pick yourself as the owner and click "create fork". You should now have your own copy of the project on GitHub. 
+5. Open GitHub desktop. Be sure to be signed in.
+6. Click the clone button on your version of the project on GitHub and copy the URL.
+7. In Github desktop, click "file -> clone repository", paste in the project URL, and select the location to which you will save the repository. The files for the project should now be on your machine and in a local repository. https://docs.github.com/en/desktop/adding-and-cloning-repositories/cloning-a-repository-from-github-to-github-desktop
+8. Create a branch on your repository. 
+9. To open a dev server version of the project, open "main.py" and run it. It should produce a clickable localhost link in the output. Click on this to open ARP in a browser window.
+10. Make your code changes.
+11. Add, push, and merge your code.
+12. When finished, submit a pull request on GitHub.
 
 ## RELEVANT TUTORIALS:
 1. To follow for creation of a notes App. Includes information on file structure, use of Flask,  and SQL integration https://www.youtube.com/watch?v=dam0GPOAvVI
