@@ -18,19 +18,41 @@ parts of it.-->
                 class="form-control" 
                 id="email" 
                 name="email" 
-                placeholder="Enter Email"/>
+                placeholder="Enter Email"
+                onkeydown="return handleEnter(event, 'password')"/>
         </div>
         <div class="form-group">
             <label for="password">Password</label>
             <input 
                 type="password" 
                 class="form-control" 
-                id="passsword" 
+                id="password" 
                 name="password" 
-                placeholder="Enter Password"/>
+                placeholder="Enter Password"
+                onkeydown="return handleEnter(event, 'submitButton')"/>
         </div>
         <!--This break exists purely to make space-->
         <br />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <script>
+        //This function overrides the default setting of the 'Enter' key in the form-group class
+        //Typically, hitting the 'Enter' key would submit the form regardless of what part of the form the user is in
+        //With this function and its employment above, if the user presses 'Enter' while in the 'email' textbox, it will move them to the 'password' textbox
+        //If the user is in the 'password' textbox and presses 'Enter', it will still submit the form
+        function handleEnter(event, nextElementId) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                var nextElement = document.getElementById(nextElementId);
+                if (nextElement) {
+                    nextElement.focus(); // Focus the next element
+                } else {
+                    event.target.form.submit(); // Submit form if no next element
+                }
+                return false;
+            }
+            return true;
+        }
+    </script>
 {% endblock %}
