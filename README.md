@@ -12,7 +12,7 @@ Active Recall Pro (ARP) is a flash card web application that allows users to cre
 
 This is also a learning project for me to get used to a GIT workflow and creating documentation like this.
 
-Note that this code will be HEAVILY commented as I am using it as a learning tool and hope to colaborate on later features.
+Note that this code was HEAVILY commented as I am using it as a learning tool and hope to colaborate on later features, but I am moving that information over to the wiki to clean up the code.
 
 ## TODO / KNOWN ISSUES:
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
@@ -47,9 +47,10 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - [x] Put opening paragraph in to list format
     - [x] Add contributor instructions (Git use with video links and written expalnation)
 7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
-    - Create wiki page for each page or feature of site
-    - Move tutorials, links, and notes to wiki.
+    - Create wiki page for each page or feature of site or file
+    - [x] Move tutorials, links, and notes to wiki.
 8. Add Flashcards list page. Just display both sides of all cards sequentially.
+    - Create branch
     - Add card list and card create route in views.py (this is one page)
     - Add card create on this page as well
     - This will eventually hold a list of decks instead of cards (see step 10)
@@ -63,31 +64,36 @@ Note that this code will be HEAVILY commented as I am using it as a learning too
     - Create branch
     - Adjust list page to list decks instead of cards
     - Create a "non deck" for cards that are in no deck but still exist in database
-12. Create and admin area: All users, decks, stats are visible
-13. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-14. Improve Bootstrap UI
+12. Enable text editor features in card creation. Must persist in future studying.
+    - Add spell check?
+    - Add bold, italics, underline buttons
+    - Add list features
+13. Create and admin area: All users, decks, stats are visible
+14. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+15. Improve Bootstrap UI
     - Make Nav bar visible
     - Pick a color scheme
     - Create and add a logo?
     - Set fixed minimum size for study page card
-15. Add light mode (assuming dark mode is the default)
+    - Add hover text for delet card button
+16. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-16. Add heat Map feature
-17. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+17. Add heat Map feature
+18. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-18. Add collaborative/public decks
+19. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-19. Add Deck copy feature: Cards will be visible before copy and download.
-20. Add AI/LLM integration
+20. Add Deck copy feature: Cards will be visible before copy and download.
+21. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-21. Host on AWS (or some similar could service)
-22. Add deck branch feature
-23. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-24. Monetize with Google ads (AdSense)?
-25. Create desktop app (99designs??)
-26. Create mobile app (99designs??)
+22. Host on AWS (or some similar could service)
+23. Add deck branch feature
+24. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+25. Monetize with Google ads (AdSense)?
+26. Create desktop app (99designs??)
+27. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
