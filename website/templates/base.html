@@ -31,8 +31,8 @@ creating other pages.
     <!--THis is the navbar. These are bootstrap classes.-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <!--This creates a collapsable nav menu from the nav bar.-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" 
-        data-target="#navbar">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
@@ -70,6 +70,17 @@ creating other pages.
           </div>
           {% endif %}
         {% endfor %}
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function (alert) {
+              setTimeout(function () {
+                var alertInstance = new bootstrap.Alert(alert);
+                alertInstance.close();
+              }, 5000);
+            });
+          });
+        </script>
       {% endif %}
     {% endwith %}
 

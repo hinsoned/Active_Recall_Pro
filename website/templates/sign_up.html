@@ -18,7 +18,8 @@ parts of it.-->
                 class="form-control" 
                 id="email" 
                 name="email"  
-                placeholder="Enter Email"/>
+                placeholder="Enter Email"
+                onkeydown="return handleEnter(event, 'firstName')"/>
         </div>
         <div class="form-group">
             <label for="firstName">First Name</label>
@@ -27,16 +28,18 @@ parts of it.-->
                 class="form-control" 
                 id="firstName" 
                 name="firstName" 
-                placeholder="Enter first name"/>
+                placeholder="Enter first name"
+                onkeydown="return handleEnter(event, 'password1')"/>
         </div>
         <div class="form-group">
             <label for="password1">Password</label>
             <input 
                 type="password" 
                 class="form-control" 
-                id="passsword1" 
+                id="password1" 
                 name="password1" 
-                placeholder="Enter Password"/>
+                placeholder="Enter Password"
+                onkeydown="return handleEnter(event, 'password2')"/>
         </div>
         <div class="form-group">
             <label for="password2">Password (confirm)</label>
@@ -45,10 +48,33 @@ parts of it.-->
                 class="form-control" 
                 id="password2" 
                 name="password2" 
-                placeholder="Confirm Password"/>
+                placeholder="Confirm Password"
+                onkeydown="return handleEnter(event, 'submitButton')"/>
         </div>
         <!--This break exists purely to make space-->
         <br />
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    <script>
+        //This function overrides the default setting of the 'Enter' key in the form-group class
+        //Typically, hitting the 'Enter' key would submit the form regardless of what part of the form the user is in
+        //With this function and its employment above, if the user presses 'Enter' while in the 'email' textbox, it will move them to the 'firstName' textbox
+        //If the user is in the 'firstName' textbox and presses 'Enter', it will move them to the 'password1' textbox
+        //If the user is in the 'password1' textbox and presses 'Enter', it will move them to the 'password2' textbox
+        //If the user is in the 'password2' textbox and presses 'Enter', it will submit the form
+        function handleEnter(event, nextElementId) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent form submission
+                var nextElement = document.getElementById(nextElementId);
+                if (nextElement) {
+                    nextElement.focus(); // Focus the next element
+                } else {
+                    event.target.form.submit(); // Submit form if no next element
+                }
+                return false;
+            }
+            return true;
+        }
+    </script>
 {% endblock %}
