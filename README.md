@@ -58,12 +58,14 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Display greeting to user
     - Display total number of cards
     - Display most recently added card?
-10. Enable Images in flashcards
+10. Enable flashcards to be organized in to decks 
     - Create branch
-11. Enable flashcards to be organized in to decks 
-    - Create branch
+    - Adjust models.py for new deck model 
+    - Add one to many relationship from user to deck and deck to fc
     - Adjust list page to list decks instead of cards
     - Create a "non deck" for cards that are in no deck but still exist in database
+11. Enable Images in flashcards
+    - Create branch
 12. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
@@ -120,7 +122,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 13. Respond to feedback on the pull request.
 
 ## CONTRIBUTOR GUIDELINES
-- There is only one guideline: CHECK THE WIKI FIRST.
+- The most important guideline: If you have a question about how something works, CHECK THE WIKI FIRST.
+- Be sure to update the README TODO section by adding an x next to anything  you complete.
+- Also initial the things from the TODO list that you have completed. 
 
 ## Environment Notes
 
