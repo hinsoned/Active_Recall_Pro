@@ -6,8 +6,19 @@ parts of it.-->
 
 <!--This will override the base.html content block-->
 {% block content %}
-<h1 align="center">Flashcards</h1>
+<!--This is the form that allows a user to create a new deck.-->
+<h1 align="center">Decks</h1>
+<form method="POST">
+<label for="deckName">Deck Name</label>
+    <textarea name="deckName" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Create Deck</button> 
+    </div>
+</form>
+
 <!--This is the form that allows a user to write a new flashcard.-->
+<!--
 <form method="POST">
     <label for="front">Front of Card:</label>
     <textarea name="front" id="note" class="form-control"></textarea>
@@ -20,23 +31,20 @@ parts of it.-->
         <a href="{{ url_for('views.study') }}" class="btn btn-primary">Study</a> 
     </div>
 </form>
+-->
 
-<!--This is where the flashcards will be displayed.-->
-<ul class="list-group list-group-flush " id="notes">
-    <!--This for loop will display of the user's saved flashcards.-->
-    {% for flashcard in user.flashcards %}
-    <li class="list-group-item mb-3 d-flex justify-content-between align-items-center">
-        {{ flashcard.front }}
-        <br />
-        {{ flashcard.back }}
-        <!--This sends a request to the back end-->
-        <button type="button" class="close" onclick="deleteFlashcard({{ flashcard.id }})">
-            <!--THis is the x on the close button and some code to tell screen
-            readers to ignore it.-->
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </li>
+<!--This is where the decks will be displayed.-->
+<div class="container">
+    <div class="row">
+    {% for deck in decks %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ deck.name }}</h5>
+                    <a href="{{ url_for('views.view_deck', deck_id=deck.id) }}" class="btn btn-primary">
+                        View Deck
+                    </a>
     {% endfor%}
-</ul>
+
 
 {% endblock %}

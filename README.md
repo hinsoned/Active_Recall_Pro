@@ -54,10 +54,16 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add landing route in views.py (this is one page)
     - Add landing.html file
 9. Enable flashcards to be organized in to decks 
-    - Create branch
-    - Adjust models.py for new deck model 
-    - Add one to many relationship from user to deck and deck to fc
-    - Adjust list page to list decks instead of cards
+    - [x] Create branch
+    - [x] Adjust models.py for new deck model 
+    - [x] Add one to many relationship from user to deck and deck to fc
+    - [x] Add 'create deck' button to home page
+    - Adjust home page to list decks instead of cards
+        - [x] Update home route to pass in list of all decks
+        - [x] change home.html to display bootstrap cards for each deck
+        - create a route for viewing each deck.
+    - Add clickable card for each deck to navigate to a deck page with a card list
+    - Add create card form and study button to deck pages.
     - Create a "non-deck" for cards that are in no deck but still exist in database
 10. Update home now that it does not have card list (will still have card create)
     - Display greeting to user
@@ -125,8 +131,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 ## CONTRIBUTOR GUIDELINES
 - The most important guideline: If you have a question about how something works, CHECK THE WIKI FIRST.
 - Be sure to update the README TODO section by adding an x next to anything  you complete.
+- When you add a function, include a single line comment that explains it in plain English.
 - Initial the things from the TODO list that you have completed so yor get credit.
-- Add any function you create to the wiki for the related page. 
+- Add any function you create to the wiki for the related page so that other conrtibutors can understand it. 
 
 ## Environment Notes
 

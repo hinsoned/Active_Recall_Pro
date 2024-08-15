@@ -6,7 +6,7 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
-from .models import Flashcard
+from .models import Flashcard , Deck
 #import the database object
 from . import db
 import json
@@ -19,29 +19,51 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 @login_required
 def home():
-    if request.method == 'POST':
-        #note = request.form.get('note')
-        front = request.form.get('front')
-        back = request.form.get('back')
+    decks = Deck.query.all()
 
-        if not front or not back:
-            flash('That\'s not much of a flashcard!', category='error')
+    if request.method == 'POST':
+        deckName = request.form.get('deckName')
+
+        if not deckName:
+            flash('That\'s not much of a deck!', category='error')
         else:
-            #create the note with the text and the user id
-            new_flashcard = Flashcard(front=front, back=back, user_id=current_user.id)
-            #add the note do the database
-            db.session.add(new_flashcard)
+            #create the deck with the name and the user id
+            new_deck = Deck(name=deckName, user_id=current_user.id)
+            #add the deck do the database
+            db.session.add(new_deck)
             db.session.commit()
-            flash('Flashcard added!', category='success')
-    #This renders the template and also passes in the current_user variable.
-    #We can access the associated flashcards with current_user.flashcards
-    return render_template("home.html", user=current_user)
+            flash('Deck added!', category='success')
+
+    return render_template("home.html", user=current_user, decks=decks)
+
+    # if request.method == 'POST':
+    #     front = request.form.get('front')
+    #     back = request.form.get('back')
+
+    #     if not front or not back:
+    #         flash('That\'s not much of a flashcard!', category='error')
+    #     else:
+    #         #create the note with the text and the user id
+    #         new_flashcard = Flashcard(front=front, back=back, user_id=current_user.id)
+    #         #add the note do the database
+    #         db.session.add(new_flashcard)
+    #         db.session.commit()
+    #         flash('Flashcard added!', category='success')
+    # #This renders the template and also passes in the current_user variable.
+    # #We can access the associated flashcards with current_user.flashcards
+    # return render_template("home.html", user=current_user)
 
 @views.route('/study', methods=['GET', 'POST'])
 @login_required
 def study():
     flashcards = [flashcard.to_dict() for flashcard in current_user.flashcards]
     return render_template("study.html", user=current_user, flashcards=flashcards)
+
+@views.route('/deck/<int:deck_id>')
+def view_deck(deck_id):
+    deck = Deck.query.get_or_404(deck_id)
+    flashcards = deck.flashcards  # Get all flashcards in this deck
+    return render_template('view_deck.html', deck=deck, flashcards=flashcards)
 
 @views.route('/delete-flashcard', methods=['POST'])
 def delete_flashcard():

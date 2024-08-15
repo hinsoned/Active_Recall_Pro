@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ deck.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ deck.name }}</h1>
+
+<div class="container">
+    <div class="row">
+        {% for flashcard in flashcards %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flashcard.front }}</h5>
+                    <p class="card-text">{{ flashcard.back }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
