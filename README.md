@@ -49,30 +49,31 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
     - Create wiki page for each page or feature of site or file
     - [x] Move tutorials, links, and notes to wiki.
-8. Add Flashcards list page. Just display both sides of all cards sequentially.
+8. Add landing page
     - Create branch
-    - Add card list and card create route in views.py (this is one page)
-    - Add card create on this page as well
-    - This will eventually hold a list of decks instead of cards (see step 10)
-9. Update home now that it does not have card list (will still have card create)
-    - Display greeting to user
-    - Display total number of cards
-    - Display most recently added card?
-10. Enable flashcards to be organized in to decks 
+    - Add landing route in views.py (this is one page)
+    - Add landing.html file
+9. Enable flashcards to be organized in to decks 
     - Create branch
     - Adjust models.py for new deck model 
     - Add one to many relationship from user to deck and deck to fc
     - Adjust list page to list decks instead of cards
-    - Create a "non deck" for cards that are in no deck but still exist in database
-11. Enable Images in flashcards
+    - Create a "non-deck" for cards that are in no deck but still exist in database
+10. Update home now that it does not have card list (will still have card create)
+    - Display greeting to user
+    - Display list of decks
+11. Add edit card feature
+    - make branch
+    - Allow all cards in the card list to be edited both front and back
+12. Enable Images in flashcards
     - Create branch
-12. Enable text editor features in card creation. Must persist in future studying.
+13. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-13. Create and admin area: All users, decks, stats are visible
-14. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-15. Improve Bootstrap UI
+14. Create and admin area: All users, decks, stats are visible
+15. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+16. Improve Bootstrap UI
     - Make Nav bar visible
     - Pick a color scheme
     - Create and add a logo?
@@ -84,22 +85,22 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Change log in flash message to a greeting with the user's name
 16. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-17. Add heat Map feature
-18. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+18. Add heat Map feature
+19. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-19. Add collaborative/public decks
+20. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-20. Add Deck copy feature: Cards will be visible before copy and download.
-21. Add AI/LLM integration
+21. Add Deck copy feature: Cards will be visible before copy and download.
+22. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-22. Host on AWS (or some similar could service)
-23. Add deck branch feature
-24. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-25. Monetize with Google ads (AdSense)?
-26. Create desktop app (99designs??)
-27. Create mobile app (99designs??)
+23. Host on AWS (or some similar could service)
+24. Add deck branch feature
+25. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+26. Monetize with Google ads (AdSense)?
+27. Create desktop app (99designs??)
+28. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
@@ -124,7 +125,8 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 ## CONTRIBUTOR GUIDELINES
 - The most important guideline: If you have a question about how something works, CHECK THE WIKI FIRST.
 - Be sure to update the README TODO section by adding an x next to anything  you complete.
-- Also initial the things from the TODO list that you have completed. 
+- Initial the things from the TODO list that you have completed so yor get credit.
+- Add any function you create to the wiki for the related page. 
 
 ## Environment Notes
 
