@@ -75,7 +75,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Pick a color scheme
     - Create and add a logo?
     - Set fixed minimum size for study page card
-    - Add hover text for delet card button
+    - Add hover text for various buttons (delete card)
+    - Create new delete button that looks less terrible
+    - Add space bar button press for "show back" and "next card" buttons on study.html
+    - Make button placement on flash messages uniform
+    - Change log in flash message to a greeting with the user's name
 16. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
 17. Add heat Map feature
