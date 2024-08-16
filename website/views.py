@@ -59,10 +59,24 @@ def study():
     flashcards = [flashcard.to_dict() for flashcard in current_user.flashcards]
     return render_template("study.html", user=current_user, flashcards=flashcards)
 
-@views.route('/deck/<int:deck_id>')
+@views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])
 def view_deck(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     flashcards = deck.flashcards  # Get all flashcards in this deck
+
+    if request.method == 'POST':
+        front = request.form.get('front')
+        back = request.form.get('back')
+
+        if not front or not back:
+            flash('That\'s not much of a flashcard!', category='error')
+        else:
+            #create the note with the text and the user id
+            new_flashcard = Flashcard(front=front, back=back,  deck_id=deck_id, user_id=current_user.id)
+            #add the note do the database
+            db.session.add(new_flashcard)
+            db.session.commit()
+            flash('Flashcard added!', category='success')
     return render_template('view_deck.html', deck=deck, flashcards=flashcards)
 
 @views.route('/delete-flashcard', methods=['POST'])

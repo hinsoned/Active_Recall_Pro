@@ -32,7 +32,7 @@ parts of it.-->
     </div>
 </form>
 -->
-
+<br />
 <!--This is where the decks will be displayed.-->
 <div class="container">
     <div class="row">
@@ -44,6 +44,9 @@ parts of it.-->
                     <a href="{{ url_for('views.view_deck', deck_id=deck.id) }}" class="btn btn-primary">
                         View Deck
                     </a>
+                </div>
+            </div>
+        </div>
     {% endfor%}
 
 

@@ -38,7 +38,7 @@ creating other pages.
         <div class="collapse navbar-collapse" id="navbar">
           <div class="navbar-nav">
             <!--These are navbar links-->
-            {% if user.is_authenticated %}
+            {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">Home</a>
             <a class="nav-item nav-link" id="study" href="/study">Study</a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>

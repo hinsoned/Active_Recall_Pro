@@ -61,13 +61,17 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Adjust home page to list decks instead of cards
         - [x] Update home route to pass in list of all decks
         - [x] change home.html to display bootstrap cards for each deck
-        - create a route for viewing each deck.
-    - Add clickable card for each deck to navigate to a deck page with a card list
+        - [x] create a route for viewing each deck.
+    - [x] Add clickable card for each deck to navigate to a deck page with a card list
+    - Make study button on each deck page fuctional
+    - Add study button to each deck on Home page
+    - Cause new cards to load immediately when created on deck page.
+    - Remove top study button
     - Add create card form and study button to deck pages.
     - Create a "non-deck" for cards that are in no deck but still exist in database
 10. Update home now that it does not have card list (will still have card create)
     - Display greeting to user
-    - Display list of decks
+    - [x]Display list of decks
 11. Add edit card feature
     - make branch
     - Allow all cards in the card list to be edited both front and back
