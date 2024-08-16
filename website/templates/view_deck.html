@@ -13,7 +13,7 @@
     <br />
     <div align="center">
         <button type="submit" class="btn btn-primary">Add Card</button>
-        <a href="{{ url_for('views.study') }}" class="btn btn-primary">Study</a> 
+        <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">Study</a> 
     </div>
 </form>
 <br />

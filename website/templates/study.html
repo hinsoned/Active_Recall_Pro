@@ -2,7 +2,7 @@
 <!--This line makes use of the already existing base template. We can now override
 parts of it.-->
 {%extends "base.html"%}
-{% block title %}Study{% endblock %}
+{% block title %}Study: {% endblock %}
 
 <!--This will override the base.html content block-->
 {% block content %}
@@ -16,10 +16,10 @@ parts of it.-->
 
 <div class="card text-center">
     <div class="card-header">
-        <p class="card-text" id="flashcard-front">Front of the card will be shown here</p>
+        <p class="card-text" id="flashcard-front">You don't have any flashcards.</p>
     </div>
     <div class="card-body">
-        <p class="card-text" id="flashcard-content">Back of the card will be shown here</p>
+        <p class="card-text" id="flashcard-content"></p>
     </div>
     <div class="card-footer text-muted">
         <button class="btn btn-primary w-100" id="toggle-button" onclick="toggleCard()">Show Back</button>

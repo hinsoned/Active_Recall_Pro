@@ -10,3 +10,4 @@ website/database.db
 .DS_Store
 website/static/index.js
 *.pyc
+website/.DS_Store

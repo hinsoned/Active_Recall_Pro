@@ -63,15 +63,17 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] change home.html to display bootstrap cards for each deck
         - [x] create a route for viewing each deck.
     - [x] Add clickable card for each deck to navigate to a deck page with a card list
-    - Make study button on each deck page fuctional
-    - Add study button to each deck on Home page
-    - Cause new cards to load immediately when created on deck page.
-    - Remove top study button
-    - Add create card form and study button to deck pages.
+    - [x] Make study button on each deck page fuctional
+    - [x] Add study button to each deck on Home page
+    - [x] Remove top study button
+    - Cause new cards to load immediately when created on deck page. (AJAX or refresh?)
+    - [x] Add create card form and study button to deck pages.
+    - Add card delete buttono too each card on view deck page
+    - Add deck delete button to each card on Decks page
     - Create a "non-deck" for cards that are in no deck but still exist in database
 10. Update home now that it does not have card list (will still have card create)
     - Display greeting to user
-    - [x]Display list of decks
+    - [x] Display list of decks
 11. Add edit card feature
     - make branch
     - Allow all cards in the card list to be edited both front and back

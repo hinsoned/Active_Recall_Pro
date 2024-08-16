@@ -53,13 +53,15 @@ def home():
     # #We can access the associated flashcards with current_user.flashcards
     # return render_template("home.html", user=current_user)
 
-@views.route('/study', methods=['GET', 'POST'])
+@views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
-def study():
-    flashcards = [flashcard.to_dict() for flashcard in current_user.flashcards]
-    return render_template("study.html", user=current_user, flashcards=flashcards)
+def study(deck_id):
+    deck = Deck.query.get_or_404(deck_id)
+    flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
+    return render_template("study.html", user=current_user, flashcards=flashcards, deck=deck)
 
 @views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])
+@login_required
 def view_deck(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     flashcards = deck.flashcards  # Get all flashcards in this deck
@@ -77,7 +79,7 @@ def view_deck(deck_id):
             db.session.add(new_flashcard)
             db.session.commit()
             flash('Flashcard added!', category='success')
-    return render_template('view_deck.html', deck=deck, flashcards=flashcards)
+    return render_template('view_deck.html', deck=deck, deck_id=deck_id, flashcards=flashcards)
 
 @views.route('/delete-flashcard', methods=['POST'])
 def delete_flashcard():

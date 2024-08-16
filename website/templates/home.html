@@ -17,21 +17,6 @@ parts of it.-->
     </div>
 </form>
 
-<!--This is the form that allows a user to write a new flashcard.-->
-<!--
-<form method="POST">
-    <label for="front">Front of Card:</label>
-    <textarea name="front" id="note" class="form-control"></textarea>
-    <br />
-    <label for="back">Back of Card:</label>
-    <textarea name="back" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Card</button>
-        <a href="{{ url_for('views.study') }}" class="btn btn-primary">Study</a> 
-    </div>
-</form>
--->
 <br />
 <!--This is where the decks will be displayed.-->
 <div class="container">
@@ -44,10 +29,16 @@ parts of it.-->
                     <a href="{{ url_for('views.view_deck', deck_id=deck.id) }}" class="btn btn-primary">
                         View Deck
                     </a>
+                    <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">
+                        Study
+                    </a>
                 </div>
             </div>
         </div>
     {% endfor%}
+    </div>
+{% endblock %}
 
+{% block javascript %}
 
 {% endblock %}
