@@ -66,13 +66,14 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Make study button on each deck page fuctional
     - [x] Add study button to each deck on Home page
     - [x] Remove top study button
-    - Cause new cards to load immediately when created on deck page. (AJAX or refresh?)
     - [x] Add create card form and study button to deck pages.
-    - Add card delete buttono too each card on view deck page
-    - Add deck delete button to each card on Decks page
-    - Create a "non-deck" for cards that are in no deck but still exist in database
+    - [x] Add card delete button to each card on view deck page (fetch?)
+    - [x] Add deck delete button to each Deck on Decks page
+10. Fix refresh issue for cards and decks
+    - Create branch
+    - Cause new cards to load immediately when created on deck page. (AJAX or fetch?)
+    - Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
 10. Update home now that it does not have card list (will still have card create)
-    - Display greeting to user
     - [x] Display list of decks
 11. Add edit card feature
     - make branch
@@ -83,9 +84,12 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-14. Create and admin area: All users, decks, stats are visible
-15. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-16. Improve Bootstrap UI
+14. Allow cards to be moved between decks
+    - Create a "non-deck" for cards that are in no deck but still exist in database
+15. Create and admin area: All users, decks, stats are visible
+16. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+17. Improve Bootstrap UI
+    - Display greeting to user
     - Make Nav bar visible
     - Pick a color scheme
     - Create and add a logo?
@@ -95,24 +99,24 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-16. Add light mode (assuming dark mode is the default)
+18. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-18. Add heat Map feature
-19. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+19. Add heat Map feature
+20. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-20. Add collaborative/public decks
+21. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-21. Add Deck copy feature: Cards will be visible before copy and download.
-22. Add AI/LLM integration
+22. Add Deck copy feature: Cards will be visible before copy and download.
+23. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-23. Host on AWS (or some similar could service)
-24. Add deck branch feature
-25. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-26. Monetize with Google ads (AdSense)?
-27. Create desktop app (99designs??)
-28. Create mobile app (99designs??)
+24. Host on AWS (or some similar could service)
+25. Add deck branch feature
+26. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+27. Monetize with Google ads (AdSense)?
+28. Create desktop app (99designs??)
+29. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.

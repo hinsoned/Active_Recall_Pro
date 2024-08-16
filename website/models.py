@@ -1,10 +1,11 @@
-#models.py
+#models.py: This file contains the database models for the website.
 
 #imports the database object from this package
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
+#This class defines the User model for the database
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -13,6 +14,7 @@ class User(db.Model, UserMixin):
     flashcards = db.relationship('Flashcard', backref='user')
     decks = db.relationship('Deck', backref='user')
 
+#This class defines the Deck model for the database
 class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)

@@ -22,7 +22,7 @@ parts of it.-->
 <div class="container">
     <div class="row">
     {% for deck in decks %}
-        <div class="col-md-4">
+        <div class="col-md-4" id="deck-{{ deck.id }}">
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">{{ deck.name }}</h5>
@@ -32,6 +32,7 @@ parts of it.-->
                     <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">
                         Study
                     </a>
+                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">Delete</button>
                 </div>
             </div>
         </div>
@@ -40,5 +41,28 @@ parts of it.-->
 {% endblock %}
 
 {% block javascript %}
+<script>
+    //This uses fetch to send the deckId to the back end, then removes the element from the DOM when it gets a good response.
+    function deleteDeck(DeckId){
+        fetch("/delete-deck", {
+            method: "POST",
+            // For fetch to work it must be a JSON string. The backend can use this to find the deck in the database.
+            body: JSON.stringify({ deckId: DeckId }),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((_res) => {
+            if(_res.ok) {
+                document.getElementById("deck-" + DeckId).remove()
+            } else {
+                alert("Failed to delete deck");
+            }
+        })
+        .catch((_err) => {
+            alert("Failed to delete deck");
+        })
+    }
+</script>
 
 {% endblock %}

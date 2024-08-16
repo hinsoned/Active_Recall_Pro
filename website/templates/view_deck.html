@@ -20,15 +20,47 @@
 <div class="container">
     <div class="row">
         {% for flashcard in flashcards %}
-        <div class="col-md-4">
+        <div class="col-md-4" id="flashcard-{{ flashcard.id }}">
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">{{ flashcard.front }}</h5>
                     <p class="card-text">{{ flashcard.back }}</p>
+                    <button class="btn btn-danger" onclick="deleteFlashcard({{ flashcard.id }})">Delete</button>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script> 
+//This uses fetch to send the flashcardId to the back end, then removes the element from the DOM when it gets a good response.
+//Takes in a flashcardId as a parameter
+function deleteFlashcard(flashcardId) {
+    fetch("/delete-flashcard", {
+        //Though we are deleting a flashcard, we send a POST request
+        method: "POST",
+        // For fetch to work it must be a JSON string. The backend can use this to find the flashcard in the database.
+        body: JSON.stringify({ flashcardId: flashcardId }),
+        // Tell the server what type of data we are sending
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    //If the response is good, remove the element from the DOM
+    .then((_res) => {
+        if(_res.ok) {
+            document.getElementById("flashcard-" + flashcardId).remove()
+        } else {
+            alert("Failed to delete flashcard");
+        }
+    })
+    .catch((_err) => {
+        alert("Error occurred: " + error);
+    });
+}
+
+</script>
 {% endblock %}
