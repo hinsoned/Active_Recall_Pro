@@ -75,20 +75,22 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
 10. Update home now that it does not have card list (will still have card create)
     - [x] Display list of decks
+    - Add number of cards in each deck to each deck on home page
 11. Add edit card feature
     - make branch
     - Allow all cards in the card list to be edited both front and back
 12. Enable Images in flashcards
     - Create branch
-13. Enable text editor features in card creation. Must persist in future studying.
+13. Add "card search" feature
+14. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-14. Allow cards to be moved between decks
+15. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-15. Create and admin area: All users, decks, stats are visible
-16. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-17. Improve Bootstrap UI
+16. Create and admin area: All users, decks, stats are visible
+17. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+18. Improve Bootstrap UI
     - Display greeting to user
     - Make Nav bar visible
     - Pick a color scheme
@@ -99,24 +101,24 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-18. Add light mode (assuming dark mode is the default)
+19. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-19. Add heat Map feature
-20. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+20. Add heat Map feature
+21. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-21. Add collaborative/public decks
+22. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-22. Add Deck copy feature: Cards will be visible before copy and download.
-23. Add AI/LLM integration
+23. Add Deck copy feature: Cards will be visible before copy and download.
+24. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-24. Host on AWS (or some similar could service)
-25. Add deck branch feature
-26. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-27. Monetize with Google ads (AdSense)?
-28. Create desktop app (99designs??)
-29. Create mobile app (99designs??)
+25. Host on AWS (or some similar could service)
+26. Add deck branch feature
+27. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+28. Monetize with Google ads (AdSense)?
+29. Create desktop app (99designs??)
+30. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
