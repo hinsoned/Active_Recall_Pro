@@ -1,0 +1,714 @@
+<!--home.html-->
+<!--This line makes use of the already existing base template. We can now override
+parts of it.-->
+{%extends "base.html"%}
+{% block title %}Heat Map{% endblock %}
+
+<!--This will override the base.html content block-->
+{% block content %}
+
+<h1 align="center">Your Heat Map</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        January 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;" id="feb_map">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        February 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        March 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        April 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        May 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        June 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        July 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        August 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        September 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        October 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        November 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="col-sm">
+            <table class="table table-responsive" style="width: 155px;">
+                <thead>
+                  <tr>
+                    <th colspan="7" style="text-align: center">
+                        December 
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                    <td class="border-top border-start border-end border-bottom" style="width: 25px"></td>
+                  </tr>
+                  <tr style="height: 25px">  
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                  <tr style="height: 25px">
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                    <td class="border-top border-start border-end border-bottom"></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        // The following code only runs if the browser has loaded. NOTE: This is different than the readyState. For some reason, the readyState at this point is still loading.
+        window.onload = (event) => {
+
+            // Generates the HTML view for the table we see.
+            createHeatMap();
+            
+            if (isLeapYear()){
+                addFeb29();
+            }
+        };
+
+        function createHeatMap(){
+            
+        }
+
+        // Checks if we are in a leap year and adds Feb 29th if so.
+        function addFeb29(){
+            var table = document.getElementById('feb_map');
+            var new_row = table.insertRow(-1);
+            var new_cell = new_row.insertCell(-1);
+
+            new_row.setAttribute('style', 'height: 25px');
+            new_cell.setAttribute('style', 'width: 25px');
+            new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
+
+        }
+
+        // Checks if we are in a leap year by the Gregorian Calendar.
+        function isLeapYear() {
+            const d = new Date();
+            const year = d.getFullYear();
+            return (year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0);
+        }
+    </script>
+{% endblock %}

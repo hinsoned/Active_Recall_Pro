@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     flashcards = db.relationship('Flashcard', backref='user')
     decks = db.relationship('Deck', backref='user')
+    heatmap = db.relationship('HeatMap', backref='user')
 
 #This class defines the Deck model for the database
 class Deck(db.Model):
@@ -42,3 +43,16 @@ class Flashcard(db.Model):
             'back': self.back,
             'date': self.date.isoformat()  # Convert datetime to ISO format string
         }
+
+class HeatMap(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class CardsStudied(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime(timezone=True), default=func.current_date())
+    num_studied = db.Column(db.Integer)
+    heatmap_id = db.Column(db.Integer, db.ForeignKey('heatmap.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    

@@ -9,11 +9,11 @@ parts of it.-->
 <!--This is the form that allows a user to create a new deck.-->
 <h1 align="center">Decks</h1>
 <form method="POST">
-<label for="deckName">Deck Name</label>
+    <label for="deckName">Deck Name</label>
     <textarea name="deckName" id="note" class="form-control"></textarea>
     <br />
     <div align="center">
-        <button type="submit" class="btn btn-primary">Create Deck</button> 
+        <button type="submit" class="btn btn-primary">Create Deck</button>
     </div>
 </form>
 
@@ -21,7 +21,7 @@ parts of it.-->
 <!--This is where the decks will be displayed.-->
 <div class="container">
     <div class="row">
-    {% for deck in decks %}
+        {% for deck in decks %}
         <div class="col-md-4" id="deck-{{ deck.id }}">
             <div class="card mb-4">
                 <div class="card-body">
@@ -32,37 +32,37 @@ parts of it.-->
                     <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">
                         Study
                     </a>
-                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">Delete</button>
+                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">delete</button>
                 </div>
             </div>
         </div>
-    {% endfor%}
+        {% endfor%}
     </div>
-{% endblock %}
+    {% endblock %}
 
-{% block javascript %}
-<script>
-    //This uses fetch to send the deckId to the back end, then removes the element from the DOM when it gets a good response.
-    function deleteDeck(DeckId){
-        fetch("/delete-deck", {
-            method: "POST",
-            // For fetch to work it must be a JSON string. The backend can use this to find the deck in the database.
-            body: JSON.stringify({ deckId: DeckId }),
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-        .then((_res) => {
-            if(_res.ok) {
-                document.getElementById("deck-" + DeckId).remove()
-            } else {
-                alert("Failed to delete deck");
-            }
-        })
-        .catch((_err) => {
-            alert("Failed to delete deck");
-        })
-    }
-</script>
+    {% block javascript %}
+    <script>
+        //This uses fetch to send the deckId to the back end, then removes the element from the DOM when it gets a good response.
+        function deleteDeck(DeckId) {
+            fetch("/delete-deck", {
+                method: "POST",
+                // For fetch to work it must be a JSON string. The backend can use this to find the deck in the database.
+                body: JSON.stringify({ deckId: DeckId }),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+                .then((_res) => {
+                    if (_res.ok) {
+                        document.getElementById("deck-" + DeckId).remove()
+                    } else {
+                        alert("Failed to delete deck");
+                    }
+                })
+                .catch((_err) => {
+                    alert("Failed to delete deck");
+                })
+        }
+    </script>
 
-{% endblock %}
+    {% endblock %}
