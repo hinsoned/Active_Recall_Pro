@@ -4,12 +4,12 @@
 {% block content %}
 <h1>{{ deck.name }}</h1>
 
-<form method="POST">
+<form id="add-flashcard">
     <label for="front">Front of Card:</label>
-    <textarea name="front" id="note" class="form-control"></textarea>
+    <textarea name="front" id="front" class="form-control"></textarea>
     <br />
     <label for="back">Back of Card:</label>
-    <textarea name="back" id="note" class="form-control"></textarea>
+    <textarea name="back" id="back" class="form-control"></textarea>
     <br />
     <div align="center">
         <button type="submit" class="btn btn-primary">Add Card</button>
@@ -18,7 +18,7 @@
 </form>
 <br />
 <div class="container">
-    <div class="row">
+    <div class="row" id="flashcard-container">
         {% for flashcard in flashcards %}
         <div class="col-md-4" id="flashcard-{{ flashcard.id }}">
             <div class="card mb-4">
@@ -61,6 +61,67 @@ function deleteFlashcard(flashcardId) {
         alert("Error occurred: " + error);
     });
 }
+</script>
+
+<!--This will create a new card in the deck-->
+<script>
+// Add event lister to the form. It will inturrupt the normal form submission
+//Event is the event that triggers the function, in this case it is a submit
+document.getElementById("add-flashcard").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission that would refresh the page
+
+    //Get the values from the form based on the id
+    let front = document.getElementById("front").value;
+    let back = document.getElementById("back").value;
+
+    // Send the data to the back end in a fetch POST request. 
+    //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the 
+    //id of the deck to the back end
+    fetch("/deck/{{ deck.id }}", {
+        method: "POST",
+        body: JSON.stringify({ front: front, back: back }),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    //Parses the JSON response and resolves with a javascript object
+    .then((response) => response.json())
+    //data refers to the javascript object
+    .then((data) => {
+        //Update the DOM
+        if (data.success) {
+            // Create a new flashcard element and add it to the DOM
+            let flashcardContainer = document.getElementById("flashcard-container");
+            let newFlashcard = document.createElement("div");
+            newFlashcard.className = "col-md-4";
+            newFlashcard.id = "flashcard-" + data.flashcard.id;
+
+            // All values with $ are Javascript placeholders.
+            newFlashcard.innerHTML = `
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.flashcard.front}</h5>
+                        <p class="card-text">${data.flashcard.back}</p>
+                        <button class="btn btn-danger" onclick="deleteFlashcard(${data.flashcard.id})">Delete</button>
+                    </div>
+                </div>
+            `;
+            //Actually adds the flashcard to the DOM
+            flashcardContainer.appendChild(newFlashcard);
+
+            //Clear the form but setting the values to empty strings
+            document.getElementById("front").value = "";
+            document.getElementById("back").value = "";
+            
+        //If the response is not good, alert the user
+        } else {
+            alert("Failed to add flashcard");
+        }
+    })
+    .catch((error) => {
+        alert("Error occurred: " + error);
+    });
+});
 
 </script>
 {% endblock %}

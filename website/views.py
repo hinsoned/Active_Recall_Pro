@@ -36,6 +36,7 @@ def home():
 
     return render_template("home.html", user=current_user, decks=decks)
 
+# the route for studying a deck
 @views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
 def study(deck_id):
@@ -43,6 +44,7 @@ def study(deck_id):
     flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
     return render_template("study.html", user=current_user, flashcards=flashcards, deck=deck)
 
+# the route for viewing a deck
 @views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
 def view_deck(deck_id):
@@ -50,18 +52,25 @@ def view_deck(deck_id):
     flashcards = deck.flashcards  # Get all flashcards in this deck
 
     if request.method == 'POST':
-        front = request.form.get('front')
-        back = request.form.get('back')
+        #This converts the json data to a python dictionary
+        data = request.get_json()
+        #Now that we have a dictionary we can get the values we need
+        front = data.get('front')
+        back = data.get('back')
 
         if not front or not back:
             flash('That\'s not much of a flashcard!', category='error')
-        else:
-            #create the note with the text and the user id
-            new_flashcard = Flashcard(front=front, back=back,  deck_id=deck_id, user_id=current_user.id)
-            #add the note do the database
-            db.session.add(new_flashcard)
-            db.session.commit()
-            flash('Flashcard added!', category='success')
+            return jsonify({'success': False, 'message': 'Both front and back are required'}), 400
+
+        #create the note with the text and the user id
+        new_flashcard = Flashcard(front=front, back=back,  deck_id=deck_id, user_id=current_user.id)
+        #add the note do the database
+        db.session.add(new_flashcard)
+        db.session.commit()
+
+        #This returns a json object with the success key set to true and the new flashcard information in json form 
+        return jsonify({'success': True, 'flashcard': {'id': new_flashcard.id, 'front': new_flashcard.front, 'back': new_flashcard.back}})
+
     return render_template('view_deck.html', deck=deck, deck_id=deck_id, flashcards=flashcards)
 
 @views.route('/delete-flashcard', methods=['POST'])

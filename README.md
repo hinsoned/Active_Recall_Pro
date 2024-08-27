@@ -58,7 +58,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Adjust models.py for new deck model 
     - [x] Add one to many relationship from user to deck and deck to fc
     - [x] Add 'create deck' button to home page
-    - Adjust home page to list decks instead of cards
+    - [x] Adjust home page to list decks instead of cards
         - [x] Update home route to pass in list of all decks
         - [x] change home.html to display bootstrap cards for each deck
         - [x] create a route for viewing each deck.
@@ -69,28 +69,40 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add create card form and study button to deck pages.
     - [x] Add card delete button to each card on view deck page (fetch?)
     - [x] Add deck delete button to each Deck on Decks page
-10. Fix refresh issue for cards and decks
-    - Create branch
-    - Cause new cards to load immediately when created on deck page. (AJAX or fetch?)
+10. Contributor Instructions update
+    - Add information about virtual environments
+    - Update environment notes if needed
+    - Add option for using DB Browser
+11. Fix refresh issue for cards and decks
+    - [x] Create branch
+    - [x] Cause new cards to load immediately when created on deck page. (AJAX or fetch?)
+        - Flash messages may be impossible now, create some equivalent
     - Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
-10. Update home now that it does not have card list (will still have card create)
+        - Flash messages may be impossible now, create some equivalent
+    - Create new .py file for fetch related end points
+        - import and register in __init__.py
+        - move code for these end points
+        - update necessary imports
+12. Update home now that it does not have card list (will still have card create)
     - [x] Display list of decks
     - Add number of cards in each deck to each deck on home page
-11. Add edit card feature
+13. Add edit card feature
     - make branch
     - Allow all cards in the card list to be edited both front and back
-12. Enable Images in flashcards
+14. Enable Images in flashcards
     - Create branch
-13. Add "card search" feature
-14. Enable text editor features in card creation. Must persist in future studying.
+15. Add "card search" feature
+16. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-15. Allow cards to be moved between decks
+17. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-16. Create and admin area: All users, decks, stats are visible
-17. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-18. Improve Bootstrap UI
+18. Create card search funtionality
+    - Allow users to search through their cards based on the cards text content.
+19. Create and admin area: All users, decks, stats are visible
+20. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+21. Improve Bootstrap UI
     - Display greeting to user
     - Make Nav bar visible
     - Pick a color scheme
@@ -101,24 +113,24 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-19. Add light mode (assuming dark mode is the default)
+22. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-20. Add heat Map feature
-21. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+23. Add heat Map feature
+24. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-22. Add collaborative/public decks
+25. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-23. Add Deck copy feature: Cards will be visible before copy and download.
-24. Add AI/LLM integration
+26. Add Deck copy feature: Cards will be visible before copy and download.
+27. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-25. Host on AWS (or some similar could service)
-26. Add deck branch feature
-27. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-28. Monetize with Google ads (AdSense)?
-29. Create desktop app (99designs??)
-30. Create mobile app (99designs??)
+28. Host on AWS (or some similar could service)
+29. Add deck branch feature
+30. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+31. Monetize with Google ads (AdSense)?
+32. Create desktop app (99designs??)
+33. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
