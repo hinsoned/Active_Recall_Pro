@@ -4,6 +4,8 @@
 {% block content %}
 <h1>{{ deck.name }}</h1>
 
+<div id="flashcard-error" class="alert alert-danger" style="display: none;"></div>
+
 <form id="add-flashcard">
     <label for="front">Front of Card:</label>
     <textarea name="front" id="front" class="form-control"></textarea>
@@ -36,6 +38,13 @@
 
 {% block javascript %}
 <script> 
+
+function displayError(message) {
+    const errorDiv = document.getElementById("flashcard-error");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+}
+
 //This uses fetch to send the flashcardId to the back end, then removes the element from the DOM when it gets a good response.
 //Takes in a flashcardId as a parameter
 function deleteFlashcard(flashcardId) {
@@ -54,17 +63,16 @@ function deleteFlashcard(flashcardId) {
         if(_res.ok) {
             document.getElementById("flashcard-" + flashcardId).remove()
         } else {
-            alert("Failed to delete flashcard");
+            displayError("Failed to delete flashcard");
         }
     })
     .catch((_err) => {
-        alert("Error occurred: " + error);
+        displayError("Error occurred: " + error.message);
     });
 }
-</script>
 
-<!--This will create a new card in the deck-->
-<script>
+//This will create a new card in the deck
+
 // Add event lister to the form. It will inturrupt the normal form submission
 //Event is the event that triggers the function, in this case it is a submit
 document.getElementById("add-flashcard").addEventListener("submit", function(event) {
@@ -73,6 +81,10 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
     //Get the values from the form based on the id
     let front = document.getElementById("front").value;
     let back = document.getElementById("back").value;
+
+    const errorDiv = document.getElementById("flashcard-error");
+    errorDiv.textContent = "";
+    errorDiv.style.display = "none";
 
     // Send the data to the back end in a fetch POST request. 
     //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the 
@@ -112,10 +124,10 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
             //Clear the form but setting the values to empty strings
             document.getElementById("front").value = "";
             document.getElementById("back").value = "";
-            
+
         //If the response is not good, alert the user
         } else {
-            alert("Failed to add flashcard");
+            displayError("Failed to add flashcard: " + (data.message || "Unknown error"));
         }
     })
     .catch((error) => {

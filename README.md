@@ -103,6 +103,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 19. Create and admin area: All users, decks, stats are visible
 20. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
 21. Improve Bootstrap UI
+    - Causee card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
     - Pick a color scheme

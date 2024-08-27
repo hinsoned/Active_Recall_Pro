@@ -59,7 +59,6 @@ def view_deck(deck_id):
         back = data.get('back')
 
         if not front or not back:
-            flash('That\'s not much of a flashcard!', category='error')
             return jsonify({'success': False, 'message': 'Both front and back are required'}), 400
 
         #create the note with the text and the user id
