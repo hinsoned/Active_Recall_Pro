@@ -6,80 +6,77 @@ parts of it.-->
 
 <!--This will override the base.html content block-->
 {% block content %}
+  <div class="row" id="row_0">
+      <div class="col" id="January">
+      </div>
+      <div class="col" id="February">
+      </div>
+      <div class="col" id="March">
+      </div>
+  </div>
+  <div class="row" id="row_1">
+      <div class="col" id="April">
+      </div>
+      <div class="col" id="May">
+      </div>
+      <div class="col" id="June">
+      </div>
+  </div>
+  <div class="row" id="row_2">
+      <div class="col" id="July">
+      </div>
+      <div class="col" id="August">
+      </div>
+      <div class="col" id="September">
+      </div>
+  </div>
+  <div class="row" id="row_3">
+      <div class="col" id="October">
+      </div>
+      <div class="col" id="November">
+      </div>
+      <div class="col" id="December">
+      </div>
+  </div>
 
-<h1 align="center">Your Heat Map</h1>
-<div class="container">
-    <div class="row">
-        <div class="col-sm" id="January">
-        </div>
-        <div class="col-sm" id="February">
-        </div>
-        <div class="col-sm" id="March">        
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm" id="April">
-        </div>
-        <div class="col-sm" id="May">
-        </div>
-        <div class="col-sm" id="June">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm" id="July">
-        </div>
-        <div class="col-sm" id="August">
-        </div>
-        <div class="col-sm" id="September">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm" id="October">
-        </div>
-        <div class="col-sm" id="November">
-        </div>
-        <div class="col-sm" id="December">
-        </div>
-    </div>
 
-</div>
+
+
+
 {% endblock %}
 
 {% block javascript %}
     <script>
-      function createHeatMap(grid_id, days){
+      function createHeatMap(grid_id, days, cell_height){
         const grid = document.getElementById(grid_id);
         const table = document.createElement('table');
         table.setAttribute('id', grid_id + "_table");
-        table.setAttribute('class', 'table table-responsive');
-        table.setAttribute('style', 'width: 155px');
+        table.setAttribute('class', 'table m  -auto');
+        table.setAttribute('style', "width: " + (cell_height * 7)+ "px;" + "height: " + (cell_height * 6) + "px");
 
         var new_row, new_cell;
         
+        // Creating Table Rows and Cells
+        for (let i = 0; i < Math.ceil((days / 7)); i++){
+          new_row = table.insertRow(-1);
+          new_row.setAttribute('id', grid_id + '_row_' + i);
+          const k = i < 4 ? 7 : (days - (i * 7));
+          for (let j = 0; j < k; j++){
+            new_cell = new_row.insertCell(-1);
+            new_cell.setAttribute('id', "cell_" + ((i * 7) + j));
+            new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
+          }
+        } 
+
         // Creating Table Header
         const header = table.createTHead();
         new_row = header.insertRow(0);  
         new_cell = document.createElement('th');
         new_cell.setAttribute("id", grid_id + "_header_cell");
         new_cell.setAttribute("colspan", "7");
-        new_cell.setAttribute("style", "text-align: center");
+        new_row.setAttribute("style", "text-align: center; height: 30px");
         new_cell.innerHTML = grid_id;
         new_row.appendChild(new_cell);
-
-
-        // Creating Table Rows and Cells
-        for (let i = 0; i < Math.ceil((days / 7)); i++){
-          new_row = table.insertRow(-1);
-          new_row.setAttribute('id', grid_id + '_row_' + i);
-          new_row.setAttribute('style', 'height: 25px');
-          const k = i < 4 ? 7 : (days - (i * 7));
-          for (let j = 0; j < k; j++){
-            new_cell = new_row.insertCell(-1);
-            new_cell.setAttribute('id', "cell_" + ((i * 7) + j));
-            new_cell.setAttribute('style', 'width: 25px');
-            new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
-          }
-        }
 
         grid.appendChild(table);
       }
@@ -90,8 +87,6 @@ parts of it.-->
         var new_row = table.insertRow(-1);
         var new_cell = new_row.insertCell(-1);
 
-        new_row.setAttribute('style', 'height: 25px');
-        new_cell.setAttribute('style', 'width: 25px');
         new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
       }
 
@@ -104,6 +99,18 @@ parts of it.-->
 
       // The following code only runs if the browser has loaded. NOTE: This is different than the readyState. For some reason, the readyState at this point is still loading.
       window.onload = (event) => {
+
+        let row;
+        // Setting a height for the row. Currently all rows will take up 90% of viewport height, or whatever the window.innerHeight value is.
+        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.1)) / 4) 
+        const row_height = "height: " + row_height_num + "px";
+
+        // Loops through the rows and set their height, this way it is set dynamically and will function even for mobile users.
+        for (let i = 0; i <4; i++){
+          row = document.getElementById('row_' + i);
+          row.setAttribute('style', row_height);
+        }
+
         const months = {
           "January" : 31,
           "February" : 28,
@@ -118,9 +125,11 @@ parts of it.-->
           "November" : 30,
           "December" : 31,
         }
+
+        const cell_height = Math.floor(row_height_num / 6);
         // Generates the HTML view for the table we see.
         Object.entries(months).forEach(([key, val]) => {
-          createHeatMap(key, val);
+          createHeatMap(key, val, cell_height);
         })
         
         if (isLeapYear()){
