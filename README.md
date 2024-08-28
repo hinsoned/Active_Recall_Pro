@@ -76,9 +76,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 11. Fix refresh issue for cards and decks
     - [x] Create branch
     - [x] Cause new cards to load immediately when created on deck page. (AJAX or fetch?)
-        - Flash messages may be impossible now, create some equivalent
-    - Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
-        - Flash messages may be impossible now, create some equivalent
+        - [x] Flash messages may be impossible now, create some equivalent: works for failure to make card
+        - [x] Add flash message for creating a new card 
+    - [x] Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
+        - [x] Flash messages may be impossible now, create some equivalent: works for failure to make deck
+        - [x] Add flash messages for creating new deck
     - Create new .py file for fetch related end points
         - import and register in __init__.py
         - move code for these end points
