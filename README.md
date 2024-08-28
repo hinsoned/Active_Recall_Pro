@@ -81,30 +81,30 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
         - [x] Flash messages may be impossible now, create some equivalent: works for failure to make deck
         - [x] Add flash messages for creating new decks
-    - Create new .py file for fetch related end points
-        - import and register in __init__.py
-        - move code for these end points
-        - update necessary imports
-12. Update home now that it does not have card list (will still have card create)
+12. Create new .py file for fetch related end points
+    - import and register in __init__.py
+    - move code for these end points
+    - update necessary imports
+13. Update home now that it does not have card list (will still have card create)
     - [x] Display list of decks
     - Add number of cards in each deck to each deck on home page
-13. Add edit card feature
+14. Add edit card feature
     - make branch
     - Allow all cards in the card list to be edited both front and back
-14. Enable Images in flashcards
+15. Enable Images in flashcards
     - Create branch
-15. Add "card search" feature
-16. Enable text editor features in card creation. Must persist in future studying.
+16. Add "card search" feature
+17. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-17. Allow cards to be moved between decks
+18. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-18. Create card search funtionality
+19. Create card search funtionality
     - Allow users to search through their cards based on the cards text content.
-19. Create and admin area: All users, decks, stats are visible
-20. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-21. Improve Bootstrap UI
+20. Create and admin area: All users, decks, stats are visible
+21. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+22. Improve Bootstrap UI
     - Causee card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -116,24 +116,24 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-22. Add light mode (assuming dark mode is the default)
+23. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-23. Add heat Map feature
-24. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+24. Add heat Map feature
+25. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-25. Add collaborative/public decks
+26. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-26. Add Deck copy feature: Cards will be visible before copy and download.
-27. Add AI/LLM integration
+27. Add Deck copy feature: Cards will be visible before copy and download.
+28. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-28. Host on AWS (or some similar could service)
-29. Add deck branch feature
-30. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-31. Monetize with Google ads (AdSense)?
-32. Create desktop app (99designs??)
-33. Create mobile app (99designs??)
+29. Host on AWS (or some similar could service)
+30. Add deck branch feature
+31. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+32. Monetize with Google ads (AdSense)?
+33. Create desktop app (99designs??)
+34. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
