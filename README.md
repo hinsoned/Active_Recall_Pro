@@ -80,7 +80,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] Add flash message for creating a new card 
     - [x] Cause new decks to load immediately when created on deck page. (AJAX or fetch?)
         - [x] Flash messages may be impossible now, create some equivalent: works for failure to make deck
-        - [x] Add flash messages for creating new deck
+        - [x] Add flash messages for creating new decks
     - Create new .py file for fetch related end points
         - import and register in __init__.py
         - move code for these end points
