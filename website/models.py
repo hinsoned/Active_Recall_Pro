@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     flashcards = db.relationship('Flashcard', backref='user')
     decks = db.relationship('Deck', backref='user')
     heatmap = db.relationship('HeatMap', backref='user')
+    cards_studied = db.relationship('CardsStudied', backref='user')
 
 #This class defines the Deck model for the database
 class Deck(db.Model):
@@ -44,15 +45,17 @@ class Flashcard(db.Model):
             'date': self.date.isoformat()  # Convert datetime to ISO format string
         }
 
+#This class defines the Heatmap model for the database
 class HeatMap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
+    cards_studied = db.relationship('CardsStudied', backref='heatmap')
 
-
+#This class defines the CardsStudied model for the database
 class CardsStudied(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime(timezone=True), default=func.current_date())
     num_studied = db.Column(db.Integer)
-    heatmap_id = db.Column(db.Integer, db.ForeignKey('heatmap.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    heatmap_id = db.Column(db.Integer, db.ForeignKey(HeatMap.id))
+    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     
