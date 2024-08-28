@@ -22,17 +22,20 @@ def home():
     decks = Deck.query.all()
 
     if request.method == 'POST':
-        deckName = request.form.get('deckName')
+        #This converts the json data to a python dictionary
+        data = request.get_json()
+        #Now that we have a dictionary we can get the values we need
+        deckName = data.get('deckName')
 
         if not deckName:
-            flash('That\'s not much of a deck!', category='error')
-        else:
-            #create the deck with the name and the user id
-            new_deck = Deck(name=deckName, user_id=current_user.id)
-            #add the deck do the database
-            db.session.add(new_deck)
-            db.session.commit()
-            flash('Deck added!', category='success')
+            return jsonify({'success': False, 'message': 'Deck name is required'}), 400
+
+        #create the deck with the name and the user id
+        new_deck = Deck(name=deckName, user_id=current_user.id)
+        #add the deck do the database
+        db.session.add(new_deck)
+        db.session.commit()
+        return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
 
     return render_template("home.html", user=current_user, decks=decks)
 

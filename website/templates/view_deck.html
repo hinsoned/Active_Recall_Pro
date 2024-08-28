@@ -6,6 +6,8 @@
 
 <div id="flashcard-error" class="alert alert-danger" style="display: none;"></div>
 
+<div id="flashcard-success" class="alert alert-info" style="display: none;"></div>
+
 <form id="add-flashcard">
     <label for="front">Front of Card:</label>
     <textarea name="front" id="front" class="form-control"></textarea>
@@ -41,6 +43,12 @@
 
 function displayError(message) {
     const errorDiv = document.getElementById("flashcard-error");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+}
+
+function displaySuccess(message) {
+    const errorDiv = document.getElementById("flashcard-success");
     errorDiv.textContent = message;
     errorDiv.style.display = "block";
 }
@@ -86,6 +94,10 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
     errorDiv.textContent = "";
     errorDiv.style.display = "none";
 
+    const successDiv = document.getElementById("flashcard-success");
+    successDiv.textContent = "";
+    successDiv.style.display = "none";
+
     // Send the data to the back end in a fetch POST request. 
     //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the 
     //id of the deck to the back end
@@ -124,6 +136,9 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
             //Clear the form but setting the values to empty strings
             document.getElementById("front").value = "";
             document.getElementById("back").value = "";
+
+            //If the response is good, alert the user
+            displaySuccess("Flashcard added successfully");
 
         //If the response is not good, alert the user
         } else {
