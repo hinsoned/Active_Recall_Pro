@@ -17,7 +17,7 @@ parts of it.-->
     <textarea name="deckName" id="deckName" class="form-control"></textarea>
     <br />
     <div align="center">
-        <button type="submit" class="btn btn-primary">Create Deck</button> 
+        <button type="submit" class="btn btn-primary">Create Deck</button>
     </div>
 </form>
 
@@ -36,13 +36,13 @@ parts of it.-->
                     <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">
                         Study
                     </a>
-                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">Delete</button>
+                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">delete</button>
                 </div>
             </div>
         </div>
-    {% endfor%}
+        {% endfor%}
     </div>
-{% endblock %}
+    {% endblock %}
 
 {% block javascript %}
 <script>
@@ -179,5 +179,4 @@ parts of it.-->
         });
     });
 </script>
-
-{% endblock %}
+    {% endblock %}

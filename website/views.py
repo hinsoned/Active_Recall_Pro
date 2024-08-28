@@ -110,3 +110,10 @@ def delete_deck():
         return jsonify({'success': True})
 
     return jsonify({'success': False}), 400
+
+# This is the backend for Heat Map
+@views.route('/heatmap', methods=['GET', 'POST'])
+@login_required
+def heat_map():
+
+    return render_template("heat_map.html")
