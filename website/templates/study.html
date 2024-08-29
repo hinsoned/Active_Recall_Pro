@@ -47,6 +47,28 @@ parts of it.-->
     if (!showFront) {
       nextButton.style.display = 'inline';
     }
+    // Update database
+    fetch("/study/{{deck_id}}", {
+      method: "POST",
+      body: JSON.stringify({ 
+        flashcard_id : flashcards[currentIndex].id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      //Update the DOM
+      if (data.success) {
+        //TODO: Display this information to user
+      } else {
+        console.error("Something went awry. ", data.message)
+      }
+    })
+    .catch((error) => {
+      alert("Error occurred: " + error);
+    });
   }
 
   // Function to display the next flashcard

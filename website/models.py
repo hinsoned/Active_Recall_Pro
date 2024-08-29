@@ -13,8 +13,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     flashcards = db.relationship('Flashcard', backref='user')
     decks = db.relationship('Deck', backref='user')
-    heatmap = db.relationship('HeatMap', backref='user')
-    cards_studied = db.relationship('CardsStudied', backref='user')
+    study_frequency = db.relationship('StudyFrequency', backref='user')
 
 #This class defines the Deck model for the database
 class Deck(db.Model):
@@ -23,6 +22,7 @@ class Deck(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     flashcards = db.relationship('Flashcard', backref='deck')
+    study_frequency = db.relationship('StudyFrequency', backref='deck')
 
 #These id value will be automatically set by the database software when a FC object
 #is created.
@@ -35,6 +35,7 @@ class Flashcard(db.Model):
     #This foreign key references the id from the User class
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     deck_id = db.Column(db.Integer, db.ForeignKey('deck.id'))
+    study_frequency = db.relationship('StudyFrequency', backref='Flashcard')
 
     #This converts the flashcard object to a dictionary for transmission.
     def to_dict(self):
@@ -45,17 +46,11 @@ class Flashcard(db.Model):
             'date': self.date.isoformat()  # Convert datetime to ISO format string
         }
 
-#This class defines the Heatmap model for the database
-class HeatMap(db.Model):
+#This class defines the StudyFrequency attached to each FlashCard
+class StudyFrequency(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    cards_studied = db.relationship('CardsStudied', backref='heatmap')
-
-#This class defines the CardsStudied model for the database
-class CardsStudied(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime(timezone=True), default=func.current_date())
-    num_studied = db.Column(db.Integer)
-    heatmap_id = db.Column(db.Integer, db.ForeignKey(HeatMap.id))
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    
+    deck_id = db.Column(db.Integer, db.ForeignKey(Deck.id))
+    flashcard_id = db.Column(db.Integer, db.ForeignKey(Flashcard.id))
+    date = db.Column(db.String, default=func.current_date())
+    frequency = db.Column(db.Integer)

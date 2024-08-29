@@ -47,6 +47,7 @@ parts of it.-->
 
 {% block javascript %}
     <script>
+      // Creates a table
       function createHeatMap(grid_id, days, cell_height){
         const grid = document.getElementById(grid_id);
         const table = document.createElement('table');
@@ -63,7 +64,7 @@ parts of it.-->
           const k = i < 4 ? 7 : (days - (i * 7));
           for (let j = 0; j < k; j++){
             new_cell = new_row.insertCell(-1);
-            new_cell.setAttribute('id', "cell_" + ((i * 7) + j));
+            new_cell.setAttribute('id', grid_id + "_cell_" + ((i * 7) + j));
             new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
           }
         } 
@@ -81,13 +82,14 @@ parts of it.-->
         grid.appendChild(table);
       }
 
-      // Checks if we are in a leap year and adds Feb 29th if so.
+      // Adds Feb 29th to the front end.
       function addFeb29(){
         var table = document.getElementById('February_table');
         var new_row = table.insertRow(-1);
         var new_cell = new_row.insertCell(-1);
 
         new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
+        new_cell.setAttribute('id', 'February_cell_28');
       }
 
       // Checks if we are in a leap year by the Gregorian Calendar.
@@ -101,8 +103,8 @@ parts of it.-->
       window.onload = (event) => {
 
         let row;
-        // Setting a height for the row. Currently all rows will take up 90% of viewport height, or whatever the window.innerHeight value is.
-        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.1)) / 4) 
+        // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
+        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.07)) / 4) 
         const row_height = "height: " + row_height_num + "px";
 
         // Loops through the rows and set their height, this way it is set dynamically and will function even for mobile users.
@@ -126,12 +128,15 @@ parts of it.-->
           "December" : 31,
         }
 
+        // Individual Cell Heights 
         const cell_height = Math.floor(row_height_num / 6);
+
         // Generates the HTML view for the table we see.
         Object.entries(months).forEach(([key, val]) => {
           createHeatMap(key, val, cell_height);
         })
         
+
         if (isLeapYear()){
           addFeb29();
         }
