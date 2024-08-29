@@ -6,10 +6,11 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
-from .models import Flashcard , Deck
+from .models import Flashcard ,Deck, StudyFrequency
 #import the database object
 from . import db
 import json
+from datetime import datetime
 
 # Blueprints are used to define routes, error handlers, and other request-related 
 # functions. It allows the views for the project to be defined in multiple files.
@@ -43,9 +44,35 @@ def home():
 @views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
 def study(deck_id):
+    if request.method == 'POST':
+        data = request.get_json()
+        flashcard_id = data.get('flashcard_id')
+
+        if not flashcard_id:
+            return jsonify({'success': False, 'message': 'Something happened in Front End'}), 400
+        
+        cur_date = datetime.today().strftime('%Y-%m-%d')
+
+        study_instance = StudyFrequency.query.filter_by(user_id=current_user.id, deck_id=deck_id, flashcard_id=flashcard_id, date=cur_date)
+
+        if (not study_instance.first()):
+            new_study_frequency = StudyFrequency(user_id=current_user.id, deck_id=deck_id, flashcard_id=flashcard_id, frequency=1)
+            db.session.add(new_study_frequency)
+        else:
+            study_instance.update(
+                { StudyFrequency.frequency : StudyFrequency.frequency + 1 } ,
+                synchronize_session=False
+            )
+
+        db.session.commit()
+
+        return jsonify({'success': True}), 200
+
+
     deck = Deck.query.get_or_404(deck_id)
     flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
-    return render_template("study.html", user=current_user, flashcards=flashcards, deck=deck)
+
+    return render_template("study.html", user=current_user, flashcards=flashcards, deck=deck, deck_id=deck_id)
 
 # the route for viewing a deck
 @views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])
