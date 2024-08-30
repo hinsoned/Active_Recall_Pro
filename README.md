@@ -89,8 +89,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Display list of decks
     - Add number of cards in each deck to each deck on home page
 14. Add edit card feature
-    - make branch
-    - Allow all cards in the card list to be edited both front and back
+    - [x] Make branch
+    - [x] Allow all cards in the card list to be edited both front and back
+        - [x] Add edit button to each card in card list
+        - [x] Add "edit-card" end point to views.py
+        - [x] Create edit_card html file
 15. Enable Images in flashcards
     - Create branch
 16. Add "card search" feature

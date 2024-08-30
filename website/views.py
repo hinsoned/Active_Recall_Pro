@@ -75,6 +75,28 @@ def view_deck(deck_id):
 
     return render_template('view_deck.html', deck=deck, deck_id=deck_id, flashcards=flashcards)
 
+# the route for editing a flashcard
+@views.route('/edit-flashcard/<int:flashcard_id>', methods=['GET', 'POST'])
+@login_required
+def edit_flashcard(flashcard_id):
+    flashcard = Flashcard.query.get_or_404(flashcard_id)
+
+    if request.method == 'POST':
+        data = request.get_json()
+        front = data.get('front')
+        back = data.get('back')
+
+        if not front or not back:
+            return jsonify({'success': False, 'message': 'Both front and back are required'}), 400
+
+        flashcard.front = front
+        flashcard.back = back
+        db.session.commit()
+
+        return jsonify({'success': True, 'flashcard': {'id': flashcard.id, 'front': flashcard.front, 'back': flashcard.back}})
+
+    return render_template('edit_card.html', flashcard=flashcard)
+
 @views.route('/delete-flashcard', methods=['POST'])
 @login_required
 def delete_flashcard():
