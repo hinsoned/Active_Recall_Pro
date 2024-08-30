@@ -41,7 +41,7 @@ creating other pages.
             {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">Home</a>
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-            <a class="nav-item nav-link" id="heatmap" href="/heatmap">Heatmap</a>
+            <a class="nav-item nav-link" id="heatmap" href="{{ url_for('views.heat_map', user_id=current_user.id) }}">Heatmap</a>
 
             {% else %}
             <a class="nav-item nav-link" id="login" href="/login">Login</a>
