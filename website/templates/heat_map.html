@@ -47,8 +47,9 @@ parts of it.-->
 
 {% block javascript %}
     <script>
-      // Creates a table
-      function createHeatMap(grid_id, days, cell_height){
+
+      // Creates a html table and customizes it
+      function createHeatMap(grid_id, days, cell_height, month, year, heat_dict_json){
         const grid = document.getElementById(grid_id);
         const table = document.createElement('table');
         table.setAttribute('id', grid_id + "_table");
@@ -66,6 +67,17 @@ parts of it.-->
             new_cell = new_row.insertCell(-1);
             new_cell.setAttribute('id', grid_id + "_cell_" + ((i * 7) + j));
             new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
+
+            const cur_date = year + "-" + month + "-" + ((i * 7) + j + 1)
+
+            if (cur_date in heat_dict_json === true){
+              const thresh = Math.ceil(heat_dict_json[cur_date] / 20)
+              const freq_level = thresh > 1 ? (25 * (thresh - 1)) : 10;
+              
+              const opacity = freq_level > 75 ? "" : "bg-opacity-" + freq_level;
+
+              new_cell.setAttribute("class", "border-top border-start border-end border-bottom bg-success " + opacity);
+            }
           }
         } 
 
@@ -93,26 +105,12 @@ parts of it.-->
       }
 
       // Checks if we are in a leap year by the Gregorian Calendar.
-      function isLeapYear() {
-        const d = new Date();
-        const year = d.getFullYear();
+      function isLeapYear(year) {
         return (year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0);
       }
 
-      // The following code only runs if the browser has loaded. NOTE: This is different than the readyState. For some reason, the readyState at this point is still loading.
-      window.onload = (event) => {
-
-        let row;
-        // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
-        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.07)) / 4) 
-        const row_height = "height: " + row_height_num + "px";
-
-        // Loops through the rows and set their height, this way it is set dynamically and will function even for mobile users.
-        for (let i = 0; i <4; i++){
-          row = document.getElementById('row_' + i);
-          row.setAttribute('style', row_height);
-        }
-
+      // This function is the main function that calls other helpers which renders the front end of heatmap.
+      function renderHeatMap(year){
         const months = {
           "January" : 31,
           "February" : 28,
@@ -127,19 +125,42 @@ parts of it.-->
           "November" : 30,
           "December" : 31,
         }
+        // Convert the heat_dict passed from our backend to json
+        const heat_dict_json = {{heat_dict|tojson}};
+
+        let row;
+        // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
+        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.07)) / 4) 
+        const row_height = "height: " + row_height_num + "px";
+
+        // Loops through the rows and set their height, this way it is set dynamically and will function even for mobile users.
+        for (let i = 0; i <4; i++){
+          row = document.getElementById('row_' + i);
+          row.setAttribute('style', row_height);
+        }
 
         // Individual Cell Heights 
         const cell_height = Math.floor(row_height_num / 6);
 
+        let month = 1;
+
         // Generates the HTML view for the table we see.
         Object.entries(months).forEach(([key, val]) => {
-          createHeatMap(key, val, cell_height);
+          if (key === "February" && isLeapYear(year)){
+            val += 1
+          }
+          createHeatMap(key, val, cell_height, month < 10 ? "0" + month : month.toString(), year, heat_dict_json);
+          month += 1;
         })
         
-
-        if (isLeapYear()){
-          addFeb29();
-        }
       };
+
+      // Gets the current year
+      const d = new Date();
+      const year = d.getFullYear();
+
+      // Render the heatmap based on the current year
+      renderHeatMap(year)
+
     </script>
 {% endblock %}

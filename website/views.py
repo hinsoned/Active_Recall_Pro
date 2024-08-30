@@ -40,7 +40,7 @@ def home():
 
     return render_template("home.html", user=current_user, decks=decks)
 
-# the route for studying a deck
+# The route for studying a deck
 @views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
 @login_required
 def study(deck_id):
@@ -138,9 +138,19 @@ def delete_deck():
 
     return jsonify({'success': False}), 400
 
-# This is the backend for Heat Map
-@views.route('/heatmap', methods=['GET', 'POST'])
+# This is the backend for Heat Map. It reads the StudyFrequency table based on the user and passes the date and freq to the front end.
+@views.route('/heatmap/<int:user_id>', methods=['GET', 'POST'])
 @login_required
-def heat_map():
+def heat_map(user_id):  
+    user_heat = StudyFrequency.query.filter_by(user_id = user_id).all()
+    heat_dict = {}
+    for heat in user_heat:
+        date = heat.date
+        freq = heat.frequency
 
-    return render_template("heat_map.html")
+        if date not in heat_dict:
+            heat_dict[date] = freq
+        else:
+            heat_dict[date] += freq
+
+    return render_template("heat_map.html", heat_dict=heat_dict)
