@@ -1,0 +1,56 @@
+<!--edit_card.html-->
+<!--This line makes use of the already existing base template. We can now override
+parts of it.-->
+{%extends "base.html"%}
+{% block title %}Edit Flashcard{% endblock %}
+
+{% block content %}
+
+<div id="flashcard-error" class="alert alert-danger" style="display: none;"></div>
+
+<form id="edit-flashcard-form">
+    <label for="front">Front of Card:</label>
+    <textarea name="front" id="front" class="form-control">{{ flashcard.front }}</textarea>
+    <br />
+    <label for="back">Back of Card:</label>
+    <textarea name="back" id="back" class="form-control">{{ flashcard.back }}</textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{{ url_for('views.view_deck', deck_id=flashcard.deck_id) }}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    document.getElementById("edit-flashcard-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+    
+        let front = document.getElementById("front").value;
+        let back = document.getElementById("back").value;
+    
+        fetch("/edit-flashcard/{{ flashcard.id }}", {
+            method: "POST",
+            body: JSON.stringify({ front: front, back: back }),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.success) {
+                window.location.href = "{{ url_for('views.view_deck', deck_id=flashcard.deck_id) }}";
+            } else {
+                const errorDiv = document.getElementById("flashcard-error");
+                errorDiv.textContent = data.message || "Failed to update flashcard";
+                errorDiv.style.display = "block";
+            }
+        })
+        .catch((error) => {
+            alert("Error occurred: " + error);
+        });
+    });
+    </script> 
+{% endblock %}
