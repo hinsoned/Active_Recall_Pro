@@ -82,12 +82,12 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] Flash messages may be impossible now, create some equivalent: works for failure to make deck
         - [x] Add flash messages for creating new decks
 12. Create new .py file for fetch related end points
-    - import and register in __init__.py
-    - move code for these end points
-    - update necessary imports
+    - [x] import and register in __init__.py
+    - [x] move code for these end points
+    - [x] update necessary imports
 13. Update home now that it does not have card list (will still have card create)
     - [x] Display list of decks
-    - Add number of cards in each deck to each deck on home page
+    - [x] Add number of cards in each deck to each deck on home page
 14. Add edit card feature
     - [x] Make branch
     - [x] Allow all cards in the card list to be edited both front and back
