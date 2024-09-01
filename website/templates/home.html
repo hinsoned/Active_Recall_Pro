@@ -30,6 +30,7 @@ parts of it.-->
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">{{ deck.name }}</h5>
+                    <p class="card-text">Cards: {{ deck.flashcards|length }}</p>
                     <a href="{{ url_for('views.view_deck', deck_id=deck.id) }}" class="btn btn-primary">
                         View Deck
                     </a>

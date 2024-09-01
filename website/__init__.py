@@ -24,8 +24,10 @@ def create_app():
         # Import blueperint objects and registers them.
         from .views import views
         from .auth import auth
+        from .actions import actions
         app.register_blueprint(views, url_prefix='/')
         app.register_blueprint(auth, url_prefix='/')
+        app.register_blueprint(actions, url_prefix='/')
 
         # imports User model
         from .models import User
