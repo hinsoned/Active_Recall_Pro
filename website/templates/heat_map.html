@@ -6,7 +6,8 @@ parts of it.-->
 
 <!--This will override the base.html content block-->
 {% block content %}
-  <div class="row" id="row_0">
+
+  <div class="row g-0" id="row_0">
       <div class="col" id="January">
       </div>
       <div class="col" id="February">
@@ -14,7 +15,7 @@ parts of it.-->
       <div class="col" id="March">
       </div>
   </div>
-  <div class="row" id="row_1">
+  <div class="row g-0" id="row_1">
       <div class="col" id="April">
       </div>
       <div class="col" id="May">
@@ -22,7 +23,7 @@ parts of it.-->
       <div class="col" id="June">
       </div>
   </div>
-  <div class="row" id="row_2">
+  <div class="row g-0" id="row_2">
       <div class="col" id="July">
       </div>
       <div class="col" id="August">
@@ -30,7 +31,7 @@ parts of it.-->
       <div class="col" id="September">
       </div>
   </div>
-  <div class="row" id="row_3">
+  <div class="row g-0" id="row_3">
       <div class="col" id="October">
       </div>
       <div class="col" id="November">
@@ -38,10 +39,6 @@ parts of it.-->
       <div class="col" id="December">
       </div>
   </div>
-
-
-
-
 
 {% endblock %}
 
@@ -52,9 +49,18 @@ parts of it.-->
       function createHeatMap(grid_id, days, cell_height, month, year, heat_dict_json){
         const grid = document.getElementById(grid_id);
         const table = document.createElement('table');
+        const oldTable = document.getElementById(grid_id + "_table");
+
         table.setAttribute('id', grid_id + "_table");
         table.setAttribute('class', 'table m-auto');
         table.setAttribute('style', "width: " + (cell_height * 7)+ "px;" + "height: " + (cell_height * 6) + "px");
+        
+        if (!!oldTable){
+          oldTable.replaceWith(table)
+        }
+        else{
+          grid.appendChild(table);
+        }
 
         var new_row, new_cell;
         
@@ -91,17 +97,6 @@ parts of it.-->
         new_cell.innerHTML = grid_id;
         new_row.appendChild(new_cell);
 
-        grid.appendChild(table);
-      }
-
-      // Adds Feb 29th to the front end.
-      function addFeb29(){
-        var table = document.getElementById('February_table');
-        var new_row = table.insertRow(-1);
-        var new_cell = new_row.insertCell(-1);
-
-        new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
-        new_cell.setAttribute('id', 'February_cell_28');
       }
 
       // Checks if we are in a leap year by the Gregorian Calendar.
@@ -111,9 +106,10 @@ parts of it.-->
 
       // This function is the main function that calls other helpers which renders the front end of heatmap.
       function renderHeatMap(year){
+
         const months = {
           "January" : 31,
-          "February" : 28,
+          "February" : isLeapYear(year) ? 29 : 28,
           "March" : 31,
           "April" : 30,
           "May" : 31,
@@ -125,31 +121,53 @@ parts of it.-->
           "November" : 30,
           "December" : 31,
         }
+
+        const bootstrap_width_breakpoint= [1400, 1200, 992, 768, 576]
+        const bootstrap_width= [1320, 1140, 960, 720, 540]
+        
         // Convert the heat_dict passed from our backend to json
         const heat_dict_json = {{heat_dict|tojson}};
 
         let row;
+
         // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
-        const row_height_num = Math.floor((window.innerHeight - (window.innerHeight * 0.07)) / 4) 
+        const row_height_num = Math.floor((window.outerHeight - (window.outerHeight * 0.07)) / 4) 
         const row_height = "height: " + row_height_num + "px";
 
-        // Loops through the rows and set their height, this way it is set dynamically and will function even for mobile users.
-        for (let i = 0; i <4; i++){
-          row = document.getElementById('row_' + i);
-          row.setAttribute('style', row_height);
+        let col_width_num = window.outerWidth;
+        
+        // Change columns to mobile view if the window width is too small. Or else adjust the column width based on the boostrap breakpoints
+        if (window.outerWidth < bootstrap_width_breakpoint[bootstrap_width_breakpoint.length - 1]){
+          Object.keys(months).forEach((key) =>{
+            col = document.getElementById(key)
+            col.setAttribute("class", "col-xs")
+          })
         }
+        else{
+          Object.keys(months).forEach((key) =>{
+            col = document.getElementById(key)
+            col.setAttribute("class", "col")
+          })
+
+          for (let i = 0; i < bootstrap_width_breakpoint.length; i++){
+            if (window.outerWidth >= bootstrap_width_breakpoint[i]){
+              col_width_num = bootstrap_width[i];
+              break;
+            }
+          }
+        }
+
+        const col_width = "width: " + col_width_num + "px"
 
         // Individual Cell Heights 
         const cell_height = Math.floor(row_height_num / 6);
-
+        const cell_width = Math.floor(col_width_num / 25);
+    
         let month = 1;
 
         // Generates the HTML view for the table we see.
         Object.entries(months).forEach(([key, val]) => {
-          if (key === "February" && isLeapYear(year)){
-            val += 1
-          }
-          createHeatMap(key, val, cell_height, month < 10 ? "0" + month : month.toString(), year, heat_dict_json);
+          createHeatMap(key, val, Math.min(cell_height, cell_width), month < 10 ? "0" + month : month.toString(), year, heat_dict_json);
           month += 1;
         })
         
@@ -160,7 +178,13 @@ parts of it.-->
       const year = d.getFullYear();
 
       // Render the heatmap based on the current year
-      renderHeatMap(year)
+      document.addEventListener("DOMContentLoaded", function(event){
+        renderHeatMap(year);
+      });
+
+      window.addEventListener("resize", function(event){
+        renderHeatMap(year);
+      })
 
     </script>
 {% endblock %}
