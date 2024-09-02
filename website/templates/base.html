@@ -4,7 +4,10 @@ creating other pages.
 -->
 
 <!DOCTYPE html>
+<!--
 <html lang="en" data-bs-theme="dark">
+-->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <!--This line is metadata about html in the viewport. In this case it sets the
@@ -26,13 +29,31 @@ creating other pages.
 
     <!--This is jinja2 templating language. Child templates can override this.-->
     <title>{% block title %}Home{% endblock %}</title>
+    <style>
+      :root {
+        --background-color: white;
+        --text-color: black;
+      }
+      
+      [data-theme="dark"] {
+        --background-color: rgb(78, 78, 78);
+        --text-color: white;
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+      }
+    </style>
 </head>
 <body>
+  <div class="container-fluid" style="background-color:rgb(164, 163, 163); ">
     <!--This is the navbar. These are bootstrap classes.-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg">
       <!--This creates a collapsable nav menu from the nav bar.-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" 
-        data-target="#navbar">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#navbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbar">
@@ -40,16 +61,46 @@ creating other pages.
             <!--These are navbar links-->
             {% if current_user.is_authenticated %}
             <a class="nav-item nav-link" id="home" href="/">Home</a>
-            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
             <a class="nav-item nav-link" id="heatmap" href="{{ url_for('views.heat_map', user_id=current_user.id) }}">Heatmap</a>
+            <a class="nav-item nav-link" id="themetoggle">
+              <label class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="themeToggle">
+                <span class="form-check-label">Dark Mode</span>
+              </label>
+            </a>
+            <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 
             {% else %}
             <a class="nav-item nav-link" id="login" href="/login">Login</a>
-            <a class="nav-item nav-link" id="singUp" href="/sign-up">Sign Up</a>
+            <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
             {% endif %}
           </div>
         </div>
     </nav>
+  </div>
+  <script>
+    // Function to switch themes
+    const themeToggle = document.getElementById('themeToggle');
+    
+    // Check for saved user preference, if any, on page load
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        document.body.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            themeToggle.checked = true;
+        }
+    }
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            document.body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.body.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        }
+    });
+</script>
     <!--get_flashed_messages is a built in flash method. This if statement will
     only display messages if there are any to be displayed.--> 
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -71,6 +122,21 @@ creating other pages.
           </div>
           {% endif %}
         {% endfor %}
+
+        <!--JavaScript to automatically close alerts-->
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            // Select all alerts
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function (alert) {
+              // Set timeout to auto-dismiss the alert
+              setTimeout(function () {
+                var alertInstance = new bootstrap.Alert(alert);
+                alertInstance.close();
+              }, 5000);
+            });
+          });
+        </script>
       {% endif %}
     {% endwith %}
 
@@ -102,6 +168,7 @@ creating other pages.
     </script>
 
     {% block javascript %}
+    <!--
     <script type="text/javascript">
       function deleteFlashcard(flashcardId) {
     fetch("/delete-flashcard", {
@@ -112,6 +179,7 @@ creating other pages.
     });
     }
     </script>
+    -->
     {% endblock %}
     
 </body>
