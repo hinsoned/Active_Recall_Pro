@@ -94,20 +94,25 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] Add edit button to each card in card list
         - [x] Add "edit-card" end point to views.py
         - [x] Create edit_card html file
-15. Enable Images in flashcards
+15. Change study page to allow dynamic card retrieval from database
     - Create branch
-16. Add "card search" feature
-17. Enable text editor features in card creation. Must persist in future studying.
+    - Remove hidden div html from study.html
+    - Update javascript in study.html to use fetch
+    - Add necessary GET endpoints to actions.py
+16. Enable Images in flashcards
+    - Create branch
+17. Add "card search" feature
+18. Enable text editor features in card creation. Must persist in future studying.
     - Add spell check?
     - Add bold, italics, underline buttons
     - Add list features
-18. Allow cards to be moved between decks
+19. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-19. Create card search funtionality
+20. Create card search funtionality
     - Allow users to search through their cards based on the cards text content.
-20. Create and admin area: All users, decks, stats are visible
-21. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-22. Improve Bootstrap UI
+21. Create and admin area: All users, decks, stats are visible
+22. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+23. Improve Bootstrap UI
     - Causee card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -119,24 +124,24 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-23. Add light mode (assuming dark mode is the default)
+24. Add light mode (assuming dark mode is the default)
     - add dark mode toggle?
-24. Add heat Map feature
-25. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+25. Add heat Map feature
+26. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-26. Add collaborative/public decks
+27. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-27. Add Deck copy feature: Cards will be visible before copy and download.
-28. Add AI/LLM integration
+28. Add Deck copy feature: Cards will be visible before copy and download.
+29. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-29. Host on AWS (or some similar could service)
-30. Add deck branch feature
-31. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-32. Monetize with Google ads (AdSense)?
-33. Create desktop app (99designs??)
-34. Create mobile app (99designs??)
+30. Host on AWS (or some similar could service)
+31. Add deck branch feature
+32. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+33. Monetize with Google ads (AdSense)?
+34. Create desktop app (99designs??)
+35. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 ### I like using GitHub deskptop so these instructions reflect that. You do not have to.
