@@ -49,7 +49,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 7. Create a wiki pages (https://www.youtube.com/watch?v=bnMl0d-RcPQ)
     - Create wiki page for each page or feature of site or file
     - [x] Move tutorials, links, and notes to wiki.
-8. Add landing page
+8. Add landing page (in progress by edleary)
     - Create branch
     - Add landing route in views.py (this is one page)
     - Add landing.html file
@@ -105,12 +105,12 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Create a "non-deck" for cards that are in no deck but still exist in database
 19. Create card search funtionality
     - Allow users to search through their cards based on the cards text content.
-20. Create and admin area: All users, decks, stats are visible
+20. Create an admin area: All users, decks, stats are visible
 21. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
 22. Improve Bootstrap UI
-    - Causee card creation error to vanish after some time.
+    - [x] Cause card creation error to vanish after some time.
     - Display greeting to user
-    - Make Nav bar visible
+    - [x] Make Nav bar visible
     - Pick a color scheme
     - Create and add a logo?
     - Set fixed minimum size for study page card
@@ -120,8 +120,8 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
 23. Add light mode (assuming dark mode is the default)
-    - add dark mode toggle?
-24. Add heat Map feature
+    - [x] add dark mode toggle?
+24. [x] Add heat Map feature
 25. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
 26. Add collaborative/public decks
