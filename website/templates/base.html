@@ -7,7 +7,7 @@ creating other pages.
 <!--
 <html lang="en" data-bs-theme="dark">
 -->
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <!--This line is metadata about html in the viewport. In this case it sets the
@@ -29,26 +29,9 @@ creating other pages.
 
     <!--This is jinja2 templating language. Child templates can override this.-->
     <title>{% block title %}Home{% endblock %}</title>
-    <style>
-      :root {
-        --background-color: white;
-        --text-color: black;
-      }
-      
-      [data-theme="dark"] {
-        --background-color: rgb(78, 78, 78);
-        --text-color: white;
-      }
-
-      body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        transition: background-color 0.3s, color 0.3s;
-      }
-    </style>
 </head>
 <body>
-  <div class="container-fluid" style="background-color:rgb(164, 163, 163); ">
+  <div class="container-fluid" style="background-color:rgb(164, 163, 163); margin-bottom: 20px;">
     <!--This is the navbar. These are bootstrap classes.-->
     <nav class="navbar navbar-expand-lg">
       <!--This creates a collapsable nav menu from the nav bar.-->
@@ -78,29 +61,32 @@ creating other pages.
         </div>
     </nav>
   </div>
-  <script>
-    // Function to switch themes
-    const themeToggle = document.getElementById('themeToggle');
-    
-    // Check for saved user preference, if any, on page load
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        document.body.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            themeToggle.checked = true;
-        }
-    }
 
-    themeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            document.body.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-        }
-    });
-</script>
+  <script>
+  // Get the themeToggle checkbox element
+  const themeToggle = document.getElementById('themeToggle');
+
+  // Load the user's theme preference on page load
+  document.addEventListener('DOMContentLoaded', function () {
+      // Check if a theme is saved in localStorage
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+          // Set the body's theme to the saved value (either 'dark' or 'light')
+          document.body.setAttribute('data-bs-theme', savedTheme);
+          // Set the theme toggle checkbox to match the saved theme
+          themeToggle.checked = savedTheme === 'dark';
+      }
+  });
+
+  // Listen for changes to the theme toggle checkbox
+  themeToggle.addEventListener('change', function () {
+      const newTheme = themeToggle.checked ? 'dark' : 'light';
+      // Apply the new theme
+      document.body.setAttribute('data-bs-theme', newTheme);
+      // Save the new theme preference in localStorage
+      localStorage.setItem('theme', newTheme);
+  });
+  </script>
     <!--get_flashed_messages is a built in flash method. This if statement will
     only display messages if there are any to be displayed.--> 
     {% with messages = get_flashed_messages(with_categories=true) %}
