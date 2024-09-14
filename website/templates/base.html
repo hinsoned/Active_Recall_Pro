@@ -40,8 +40,9 @@ creating other pages.
           <div class="navbar-nav">
             <!--These are navbar links-->
             {% if current_user.is_authenticated %}
-            <a class="nav-item nav-link" id="home" href="/">Home</a>
-            <a class="nav-item nav-link" id="heatmap" href="{{ url_for('views.heat_map', user_id=current_user.id) }}">Heatmap</a>
+            <a class="navbar-brand">Active Recall Pro</a>
+            <a class="nav-item nav-link {% if request.path == '/' %}active{% endif %}" id="home" href="/">Home</a>
+            <a class="nav-item nav-link {% if request.path == url_for('views.heat_map', user_id=current_user.id) %}active{% endif %}" id="heatmap" href="{{ url_for('views.heat_map', user_id=current_user.id) }}">Heatmap</a>
             <a class="nav-item nav-link" id="themetoggle">
               <label class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="themeToggle">
@@ -51,8 +52,8 @@ creating other pages.
             <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
 
             {% else %}
-            <a class="nav-item nav-link" id="login" href="/login">Login</a>
-            <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
+            <a class="nav-item nav-link {% if request.path == '/login' %}active{% endif %}" id="login" href="/login">Login</a>
+            <a class="nav-item nav-link {% if request.path == '/sign-up' %}active{% endif %}" id="signUp" href="/sign-up">Sign Up</a>
             {% endif %}
           </div>
         </div>
