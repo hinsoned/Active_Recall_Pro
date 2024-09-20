@@ -7,12 +7,6 @@ parts of it.-->
 {% block content %}
 <h1 align="center">Study</h1>
 
-<!-- Hidden element to store flashcards data for both front and back -->
-<div id="flashcards-data" style="display: none">
-  <!--This imports the flashcards data and converts it to JSON-->
-  {{ flashcards | tojson }}
-</div>
-
 <div class="card text-center">
   <div class="card-header">
     <p class="card-text" id="flashcard-front">You don't have any flashcards.</p>
@@ -25,7 +19,7 @@ parts of it.-->
       class="btn btn-primary w-100"
       id="toggle-button"
       onclick="toggleCard()"
-    >
+    > 
       Show Back
     </button>
     <button
@@ -41,14 +35,28 @@ parts of it.-->
 {% endblock %} {% block javascript %}
 <script type="text/javascript">
   // JavaScript variables to keep track of the current flashcard and its state.
-  // This gets the text content of the flashcards-data hidden element and parses it as JSON
-  // to an array of flashcards javascript objects. We can then access indexes
-  // in the array using the currentIndex variable
-  let flashcards = JSON.parse(
-    document.getElementById("flashcards-data").textContent
-  );
   let currentIndex = 0;
   let showFront = true;
+  let currentFlashcard = null;
+  const deckLength = {{ deck_length }};
+ 
+  function fetchFlashcard(index) {
+    fetch(`/study/{{deck_id}}/${index}`, {
+      method: "GET",
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        currentFlashcard = data.flashcard;
+        displayCard();
+      } else {
+        console.error("Failed to load flashcard:", data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Error fetching flashcard:", error);
+    });
+  }
 
   // Function to toggle between front and back of the flashcard
   function toggleCard() {
@@ -63,7 +71,7 @@ parts of it.-->
     fetch("/study/{{deck_id}}", {
       method: "POST",
       body: JSON.stringify({
-        flashcard_id: flashcards[currentIndex].id,
+        flashcard_id: currentFlashcard.id,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -86,9 +94,10 @@ parts of it.-->
   // Function to display the next flashcard
   function nextCard() {
     //This uses modulo to cycle through the flashcards array
-    currentIndex = (currentIndex + 1) % flashcards.length;
+    currentIndex = (currentIndex + 1) % deckLength;
     showFront = true;
-    displayCard();
+
+    fetchFlashcard(currentIndex);
 
     let nextButton = document.getElementById("next-button");
     if (showFront) {
@@ -103,22 +112,20 @@ parts of it.-->
     let flashcardFront = document.getElementById("flashcard-front");
     let flashcardContent = document.getElementById("flashcard-content");
     let toggleButton = document.getElementById("toggle-button");
-    //toggleButton.style.visibility = 'visible'
     toggleButton.style.display = "inline";
 
-    flashcardFront.textContent = flashcards[currentIndex].front;
+    flashcardFront.textContent = currentFlashcard.front;
 
     if (showFront) {
       flashcardContent.textContent = "";
       toggleButton.textContent = "Show Back";
     } else {
-      flashcardContent.textContent = flashcards[currentIndex].back;
-      //toggleButton.style.visibility = 'hidden'
+      flashcardContent.textContent = currentFlashcard.back;
       toggleButton.style.display = "none";
     }
   }
 
   // Initial display of the first flashcard.
-  displayCard();
+  fetchFlashcard(currentIndex);
 </script>
 {% endblock %}
