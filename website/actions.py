@@ -44,3 +44,11 @@ def delete_deck():
         return jsonify({'success': True})
 
     return jsonify({'success': False}), 400
+
+#returns a dictionary object that is turned in to json by jsonify
+@actions.route('/study/<int:deck_id>/<int:index>', methods=['GET'])
+@login_required
+def get_flashcard(deck_id, index):
+    deck = Deck.query.get_or_404(deck_id)
+    flashcard = deck.flashcards[index].to_dict()
+    return jsonify({'success': True, 'flashcard': flashcard}), 200
