@@ -71,7 +71,7 @@ def study(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
 
-    return render_template("study.html", user=current_user, flashcards=flashcards, deck=deck, deck_id=deck_id, deck_length=len(flashcards))
+    return render_template("study.html", user=current_user, deck=deck, deck_id=deck_id, deck_length=len(flashcards))
 
 # the route for viewing a deck
 @views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])
