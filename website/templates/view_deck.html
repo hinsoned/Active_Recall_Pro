@@ -1,121 +1,171 @@
-{% extends "base.html" %}
-{% block title %}{{ deck.name }}{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}{{ deck.name }}{% endblock %} {%
+block content %}
 <h1>{{ deck.name }}</h1>
 
-<div id="flashcard-error" class="alert alert-danger" style="display: none;"></div>
-<div id="flashcard-success" class="alert alert-info" style="display: none;"></div>
+<div
+  id="flashcard-error"
+  class="alert alert-danger"
+  style="display: none"
+></div>
+<div
+  id="flashcard-success"
+  class="alert alert-info"
+  style="display: none"
+></div>
 
 <form id="add-flashcard">
-    <label for="front">Front of Card:</label>
-    <textarea name="front" id="front" class="form-control"></textarea>
-    <br />
-    <label for="back">Back of Card:</label>
-    <textarea name="back" id="back" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Card</button>
-        <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">Study</a> 
-    </div>
+  <label for="editor-front">Front of Card:</label>
+  <div id="editor-front"></div>
+  <br />
+  <label for="editor-back">Back of Card:</label>
+  <div id="editor-back"></div>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Card</button>
+    <a
+      href="{{ url_for('views.study', deck_id=deck.id) }}"
+      class="btn btn-primary"
+      >Study</a
+    >
+  </div>
 </form>
 <br />
 <div class="container">
-    <div class="row" id="flashcard-container">
-        {% for flashcard in flashcards %}
-        <div class="col-md-4" id="flashcard-{{ flashcard.id }}">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">{{ flashcard.front }}</h5>
-                    <p class="card-text">{{ flashcard.back }}</p>
-                    <a href="{{ url_for('views.edit_flashcard', flashcard_id=flashcard.id) }}" class="btn btn-primary">Edit</a>
-                    <button class="btn btn-danger" onclick="deleteFlashcard({{ flashcard.id }})">Delete</button>
-                </div>
-            </div>
+  <div class="row" id="flashcard-container">
+    {% for flashcard in flashcards %}
+    <div class="col-md-4" id="flashcard-{{ flashcard.id }}">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ flashcard.front | safe}}</h5>
+          <p class="card-text">{{ flashcard.back | safe}}</p>
+          <a
+            href="{{ url_for('views.edit_flashcard', flashcard_id=flashcard.id) }}"
+            class="btn btn-primary"
+            >Edit</a
+          >
+          <button
+            class="btn btn-danger"
+            onclick="deleteFlashcard({{ flashcard.id }})"
+          >
+            Delete
+          </button>
         </div>
-        {% endfor %}
+      </div>
     </div>
+    {% endfor %}
+  </div>
 </div>
-{% endblock %}
-
-{% block javascript %}
-<script> 
-
-function displayError(message) {
+{% endblock %} {% block javascript %}
+<script>
+  function displayError(message) {
     const errorDiv = document.getElementById("flashcard-error");
     errorDiv.textContent = message;
     errorDiv.style.display = "block";
-}
+  }
 
-function displaySuccess(message) {
+  function displaySuccess(message) {
     const errorDiv = document.getElementById("flashcard-success");
     errorDiv.textContent = message;
     errorDiv.style.display = "block";
-}
+  }
 
-//This uses fetch to send the flashcardId to the back end, then removes the element from the DOM when it gets a good response.
-//Takes in a flashcardId as a parameter
-function deleteFlashcard(flashcardId) {
+  //This uses fetch to send the flashcardId to the back end, then removes the element from the DOM when it gets a good response.
+  //Takes in a flashcardId as a parameter
+  function deleteFlashcard(flashcardId) {
     fetch("/delete-flashcard", {
-        //Though we are deleting a flashcard, we send a POST request
-        method: "POST",
-        // For fetch to work it must be a JSON string. The backend can use this to find the flashcard in the database.
-        body: JSON.stringify({ flashcardId: flashcardId }),
-        // Tell the server what type of data we are sending
-        headers: {
-            "Content-Type": "application/json",
-        }
+      //Though we are deleting a flashcard, we send a POST request
+      method: "POST",
+      // For fetch to work it must be a JSON string. The backend can use this to find the flashcard in the database.
+      body: JSON.stringify({ flashcardId: flashcardId }),
+      // Tell the server what type of data we are sending
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
-    //If the response is good, remove the element from the DOM
-    .then((_res) => {
-        if(_res.ok) {
-            document.getElementById("flashcard-" + flashcardId).remove()
+      //If the response is good, remove the element from the DOM
+      .then((_res) => {
+        if (_res.ok) {
+          document.getElementById("flashcard-" + flashcardId).remove();
         } else {
-            displayError("Failed to delete flashcard");
+          displayError("Failed to delete flashcard");
         }
-    })
-    .catch((_err) => {
+      })
+      .catch((_err) => {
         displayError("Error occurred: " + error.message);
-    });
-}
+      });
+  }
 
-//This will create a new card in the deck
+  // Initialize the Quill editor
+  var quillFront = new Quill("#editor-front", {
+    theme: "snow",
+  });
 
-// Add event lister to the form. It will inturrupt the normal form submission
-//Event is the event that triggers the function, in this case it is a submit
-document.getElementById("add-flashcard").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission that would refresh the page
+  var quillBack = new Quill("#editor-back", {
+    theme: "snow",
+  });
 
-    //Get the values from the form based on the id
-    let front = document.getElementById("front").value;
-    let back = document.getElementById("back").value;
+  //This will create a new card in the deck
 
-    const errorDiv = document.getElementById("flashcard-error");
-    errorDiv.textContent = "";
-    errorDiv.style.display = "none";
+  // Add event lister to the form. It will inturrupt the normal form submission
+  //Event is the event that triggers the function, in this case it is a submit
+  document
+    .getElementById("add-flashcard")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent the default form submission that would refresh the page
 
-    const successDiv = document.getElementById("flashcard-success");
-    successDiv.textContent = "";
-    successDiv.style.display = "none";
+      //Get the values from the form based on the id
+      let front = quillFront.root.innerHTML;
+      let back = quillBack.root.innerHTML;
 
-    // Send the data to the back end in a fetch POST request. 
-    //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the 
-    //id of the deck to the back end
-    fetch("/deck/{{ deck.id }}", {
+      // This is the text to make sure the user has entered something
+      let frontText = quillFront.getText().trim();
+      let backText = quillBack.getText().trim();
+
+      //See the HTML contents of the editor
+      //console.log("Front HTML content:", front);
+      //console.log("Back HTML content:", back);
+
+      //See just text content
+      //console.log("Front text content:", frontText);
+      //console.log("Back text content:", backText);
+
+      //The blank quill card content for comparison
+      let blankCard = "<p><br></p>";
+
+      //Prevent addition of blank cards or cards of only spaces. And display error.
+      if (frontText === "" || backText === "" || front === blankCard || back === blankCard ) {
+        displayError("Both front and back are required");
+        return;
+      }
+
+      const errorDiv = document.getElementById("flashcard-error");
+      errorDiv.textContent = "";
+      errorDiv.style.display = "none";
+
+      const successDiv = document.getElementById("flashcard-success");
+      successDiv.textContent = "";
+      successDiv.style.display = "none";
+
+      // Send the data to the back end in a fetch POST request.
+      //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the
+      //id of the deck to the back end
+      fetch("/deck/{{ deck.id }}", {
         method: "POST",
         body: JSON.stringify({ front: front, back: back }),
         headers: {
-            "Content-Type": "application/json",
-        }
-    })
-    //Parses the JSON response and resolves with a javascript object
-    .then((response) => response.json())
-    //data refers to the javascript object
-    .then((data) => {
-        //Update the DOM
-        if (data.success) {
+          "Content-Type": "application/json",
+        },
+      })
+        //Parses the JSON response and resolves with a javascript object
+        .then((response) => response.json())
+        //data refers to the javascript object
+        .then((data) => {
+          //Update the DOM
+          if (data.success) {
             // Create a new flashcard element and add it to the DOM
-            let flashcardContainer = document.getElementById("flashcard-container");
+            let flashcardContainer = document.getElementById(
+              "flashcard-container"
+            );
             let newFlashcard = document.createElement("div");
             newFlashcard.className = "col-md-4";
             newFlashcard.id = "flashcard-" + data.flashcard.id;
@@ -126,6 +176,7 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
                     <div class="card-body">
                         <h5 class="card-title">${data.flashcard.front}</h5>
                         <p class="card-text">${data.flashcard.back}</p>
+                        <a href="/edit-flashcard/${data.flashcard.id}" class="btn btn-primary">Edit</a>
                         <button class="btn btn-danger" onclick="deleteFlashcard(${data.flashcard.id})">Delete</button>
                     </div>
                 </div>
@@ -134,21 +185,22 @@ document.getElementById("add-flashcard").addEventListener("submit", function(eve
             flashcardContainer.appendChild(newFlashcard);
 
             //Clear the form but setting the values to empty strings
-            document.getElementById("front").value = "";
-            document.getElementById("back").value = "";
+            quillFront.root.innerHTML = "";
+            quillBack.root.innerHTML = "";
 
             //If the response is good, alert the user
             displaySuccess("Flashcard added successfully");
 
-        //If the response is not good, alert the user
-        } else {
-            displayError("Failed to add flashcard: " + (data.message || "Unknown error"));
-        }
-    })
-    .catch((error) => {
-        alert("Error occurred: " + error);
+            //If the response is not good, alert the user
+          } else {
+            displayError(
+              "Failed to add flashcard: " + (data.message || "Unknown error")
+            );
+          }
+        })
+        .catch((error) => {
+          alert("Error occurred: " + error);
+        });
     });
-});
-
 </script>
 {% endblock %}
