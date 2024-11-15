@@ -39,10 +39,9 @@ def login():
 
 @auth.route('/logout')
 #this just means that you can not get to the logout page without being logged in
-@login_required
 def logout():
     logout_user()
-    return redirect(url_for('auth.login'))
+    return render_template("landing_page.html")
 
 #Use methods associated with the request object to save form values to variables
 @auth.route('/sign-up', methods=['GET', 'POST'])

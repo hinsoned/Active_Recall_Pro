@@ -18,27 +18,29 @@ views = Blueprint('views', __name__)
 
 # This function will run when we go to '/' or the main page of the website
 @views.route('/', methods=['GET', 'POST'])
-@login_required
 def home():
-    decks = Deck.query.all()
+    if current_user.is_authenticated:
+        decks = Deck.query.all()
 
-    if request.method == 'POST':
-        #This converts the json data to a python dictionary
-        data = request.get_json()
-        #Now that we have a dictionary we can get the values we need
-        deckName = data.get('deckName')
+        if request.method == 'POST':
+            #This converts the json data to a python dictionary
+            data = request.get_json()
+            #Now that we have a dictionary we can get the values we need
+            deckName = data.get('deckName')
 
-        if not deckName:
-            return jsonify({'success': False, 'message': 'Deck name is required'}), 400
+            if not deckName:
+                return jsonify({'success': False, 'message': 'Deck name is required'}), 400
 
-        #create the deck with the name and the user id
-        new_deck = Deck(name=deckName, user_id=current_user.id)
-        #add the deck do the database
-        db.session.add(new_deck)
-        db.session.commit()
-        return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
+            #create the deck with the name and the user id
+            new_deck = Deck(name=deckName, user_id=current_user.id)
+            #add the deck do the database
+            db.session.add(new_deck)
+            db.session.commit()
+            return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
 
-    return render_template("home.html", user=current_user, decks=decks)
+        return render_template("home.html", user=current_user, decks=decks)
+    else:
+        return render_template("landing_page.html")
 
 # The route for studying a deck
 @views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
