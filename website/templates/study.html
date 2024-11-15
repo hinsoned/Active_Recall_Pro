@@ -7,7 +7,7 @@ parts of it.-->
 {% block content %}
 <h1 align="center">Study</h1>
 
-<div class="card text-center">
+<div class="card text-center h-100" style="min-height: 50vh">
   <div class="card-header">
     <p class="card-text" id="flashcard-front">You don't have any flashcards.</p>
   </div>
@@ -19,7 +19,7 @@ parts of it.-->
       class="btn btn-primary w-100"
       id="toggle-button"
       onclick="toggleCard()"
-    > 
+    >
       Show Back
     </button>
     <button
@@ -39,7 +39,7 @@ parts of it.-->
   let showFront = true;
   let currentFlashcard = null;
   const deckLength = {{ deck_length }};
- 
+
   function fetchFlashcard(index) {
     fetch(`/study/{{deck_id}}/${index}`, {
       method: "GET",
@@ -114,13 +114,13 @@ parts of it.-->
     let toggleButton = document.getElementById("toggle-button");
     toggleButton.style.display = "inline";
 
-    flashcardFront.textContent = currentFlashcard.front;
+    flashcardFront.innerHTML = currentFlashcard.front;
 
     if (showFront) {
       flashcardContent.textContent = "";
       toggleButton.textContent = "Show Back";
     } else {
-      flashcardContent.textContent = currentFlashcard.back;
+      flashcardContent.innerHTML = currentFlashcard.back;
       toggleButton.style.display = "none";
     }
   }

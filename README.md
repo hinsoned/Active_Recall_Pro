@@ -108,12 +108,12 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 17. Add "card search" feature
 18. Enable text editor features in card creation. Must persist in future studying.
     - [x] Create Brach
-    - Quilljs
-        - Add bold, italics, underline buttons
-        - Add list features
-        - Use safe to allow for render of HTML created by quiljs RTE (jinja security concerns?)
+    - [x] Quilljs
+        - [x] Add bold, italics, underline buttons
+        - [x] Add list features
+        - [x] Use safe to allow for render of HTML created by quiljs RTE (jinja security concerns?)
     - [x] Prevent addition of blank card
-    - Prevent the addition of only cards with only spaces on them
+    - [x]Prevent the addition of only cards with only spaces on them
 19. Enable rich text editor for card edit.
     - Create Branch
 20. Allow cards to be moved between decks
