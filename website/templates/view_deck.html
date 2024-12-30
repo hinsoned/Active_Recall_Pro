@@ -133,7 +133,12 @@ block content %}
       let blankCard = "<p><br></p>";
 
       //Prevent addition of blank cards or cards of only spaces. And display error.
-      if (frontText === "" || backText === "" || front === blankCard || back === blankCard ) {
+      if (
+        frontText === "" ||
+        backText === "" ||
+        front === blankCard ||
+        back === blankCard
+      ) {
         displayError("Both front and back are required");
         return;
       }
