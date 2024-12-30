@@ -116,6 +116,8 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x]Prevent the addition of only cards with only spaces on them
 19. Enable rich text editor for card edit.
     - Create Branch
+    - Fix existing text display in card edit window (currently appearing as HTML)
+    - Add RTE to Card edit display
 20. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
 21. Create card search funtionality
