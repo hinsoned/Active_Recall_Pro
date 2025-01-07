@@ -54,9 +54,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
    - Create wiki page for each page or feature of site or file
    - [x] Move tutorials, links, and notes to wiki.
 8. Add landing page
-   - Create branch
-   - Add landing route in views.py (this is one page)
-   - Add landing.html file
+   - [x] Create branch
+   - [x] Add landing route in views.py as alternate to home page
+   - [x] Add landing.html file
 9. Enable flashcards to be organized in to decks
    - [x] Create branch
    - [x] Adjust models.py for new deck model
@@ -115,9 +115,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Prevent addition of blank card
     - [x]Prevent the addition of only cards with only spaces on them
 19. Enable rich text editor for card edit.
-    - Create Branch
-    - Fix existing text display in card edit window (currently appearing as HTML): Replace textarea with div for Quill editors.
-    - Add RTE to Card edit display. Initialize Quill editors in script section.
+    - [x] Create Branch
+    - [x] Fix existing text display in card edit window (currently appearing as HTML): Replace textarea with div for Quill editors.
+    - [x] Add RTE to Card edit display. Initialize Quill editors in script section.
 20. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
 21. Create card search funtionality

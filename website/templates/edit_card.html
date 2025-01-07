@@ -9,6 +9,11 @@ content %}
   class="alert alert-danger"
   style="display: none"
 ></div>
+<div
+  id="flashcard-success"
+  class="alert alert-info"
+  style="display: none"
+></div>
 
 <form id="edit-flashcard-form">
   <label for="editor-front">Front of Card:</label>
@@ -29,6 +34,17 @@ content %}
 
 {% endblock %} {% block javascript %}
 <script>
+  function displayError(message) {
+    const errorDiv = document.getElementById("flashcard-error");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+  }
+
+  function displaySuccess(message) {
+    const errorDiv = document.getElementById("flashcard-success");
+    errorDiv.textContent = message;
+    errorDiv.style.display = "block";
+  }
   // Initialize the Quill editor
   var quillFront = new Quill("#editor-front", {
     theme: "snow",
@@ -48,10 +64,29 @@ content %}
   document
     .getElementById("edit-flashcard-form")
     .addEventListener("submit", function (event) {
-      event.preventDefault();
+      event.preventDefault(); // Prevent the default form submission that would refresh the page
 
-      let front = document.getElementById("front").value;
-      let back = document.getElementById("back").value;
+      //Get the values from the form based on the id
+      let front = quillFront.root.innerHTML;
+      let back = quillBack.root.innerHTML;
+
+      // This is the text to make sure the user has entered something
+      let frontText = quillFront.getText().trim();
+      let backText = quillBack.getText().trim();
+
+      //The blank quill card content for comparison
+      let blankCard = "<p><br></p>";
+
+      //Prevent addition of blank cards or cards of only spaces. And display error.
+      if (
+        frontText === "" ||
+        backText === "" ||
+        front === blankCard ||
+        back === blankCard
+      ) {
+        displayError("Both front and back are required");
+        return;
+      }
 
       fetch("/edit-flashcard/{{ flashcard.id }}", {
         method: "POST",
