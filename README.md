@@ -21,7 +21,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 
 1. Create initial notes app following tutorial: https://www.youtube.com/watch?v=dam0GPOAvVI
    - [x] Figure out pyache issue. What is it?
-   - [x] Understand secret key from __init__.py
+   - [x] Understand secret key from **init**.py
    - [x] Understand @ symbol in relation to routes.
 2. Find a way to see what is in database at any time.
    - [x] DB Browser for SQL lite https://sqlitebrowser.org/dl/
@@ -30,7 +30,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
    - [x] change model in model.py
    - [x] change note creation in home.html
    - [x] change / route in views.py
-   - [x] fix __init__.py import
+   - [x] fix **init**.py import
    - [x] update base.html delete card function
    - [x] update views.html deltecard fuction
    - [x] label front and back of cards in form
@@ -54,9 +54,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
    - Create wiki page for each page or feature of site or file
    - [x] Move tutorials, links, and notes to wiki.
 8. Add landing page
-   - Create branch
-   - Add landing route in views.py (this is one page)
-   - Add landing.html file
+   - [x] Create branch
+   - [x] Add landing route in views.py as alternate to home page
+   - [x] Add landing.html file
 9. Enable flashcards to be organized in to decks
    - [x] Create branch
    - [x] Adjust models.py for new deck model
@@ -86,7 +86,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
       - [x] Flash messages may be impossible now, create some equivalent: works for failure to make deck
       - [x] Add flash messages for creating new decks
 12. Create new .py file for fetch related end points
-    - [x] import and register in __init__.py
+    - [x] import and register in **init**.py
     - [x] move code for these end points
     - [x] update necessary imports
 13. Update home now that it does not have card list (will still have card create)
@@ -109,15 +109,15 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 18. Enable text editor features in card creation. Must persist in future studying.
     - [x] Create Brach
     - [x] Quilljs
-        - [x] Add bold, italics, underline buttons
-        - [x] Add list features
-        - [x] Use safe to allow for render of HTML created by quiljs RTE (jinja security concerns?)
+      - [x] Add bold, italics, underline buttons
+      - [x] Add list features
+      - [x] Use safe to allow for render of HTML created by quiljs RTE (jinja security concerns?)
     - [x] Prevent addition of blank card
     - [x]Prevent the addition of only cards with only spaces on them
 19. Enable rich text editor for card edit.
-    - Create Branch
-    - Fix existing text display in card edit window (currently appearing as HTML)
-    - Add RTE to Card edit display
+    - [x] Create Branch
+    - [x] Fix existing text display in card edit window (currently appearing as HTML): Replace textarea with div for Quill editors.
+    - [x] Add RTE to Card edit display. Initialize Quill editors in script section.
 20. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
 21. Create card search funtionality

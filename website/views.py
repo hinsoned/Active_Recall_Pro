@@ -7,7 +7,6 @@ from flask import Blueprint, render_template, request, flash, jsonify
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
 from .models import Flashcard ,Deck, StudyFrequency
-#import the database object
 from . import db
 import json
 from datetime import datetime
