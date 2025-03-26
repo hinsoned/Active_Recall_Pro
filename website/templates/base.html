@@ -36,6 +36,7 @@ creating other pages.
     />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!--This is jinja2 templating language. Child templates can override this.-->
     <title>{% block title %}Home{% endblock %}</title>
@@ -464,9 +465,8 @@ creating other pages.
     </script>
     {% endif %} {% endwith %}
 
-    <!--This will be content beneath the navbar. Notice the container block can
-    be overridden by information in template files. "container" is a bootstrap class-->
-    <div class="container">{% block content %} {% endblock %}</div>
+    <!--This will be content beneath the navbar.-->
+    <div class="container fade-in shadow">{% block content %} {% endblock %}</div>
 
     <!--This loads in bootstrap to simplify UI development.-->
     <script

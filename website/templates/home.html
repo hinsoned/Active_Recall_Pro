@@ -1,88 +1,94 @@
 <!--home.html-->
 <!--This line makes use of the already existing base template. We can now override
 parts of it.-->
-{%extends "base.html"%}
-{% block title %}Home{% endblock %}
+{%extends "base.html"%} {% block title %}Home{% endblock %}
 
 <!--This will override the base.html content block-->
 {% block content %}
 <!--This is the form that allows a user to create a new deck.-->
 <h1 align="center">Decks</h1>
 
-<div id="deck-error" class="alert alert-danger" style="display: none;"></div>
-<div id="deck-success" class="alert alert-info" style="display: none;"></div>
+<div id="deck-error" class="alert alert-danger" style="display: none"></div>
+<div id="deck-success" class="alert alert-info" style="display: none"></div>
 
 <form id="create-deck">
-<label for="deckName">Deck Name</label>
-    <textarea name="deckName" id="deckName" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Create Deck</button>
-    </div>
+  <label for="deckName">Deck Name</label>
+  <textarea name="deckName" id="deckName" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Create Deck</button>
+  </div>
 </form>
 
 <br />
 <!--This is where the decks will be displayed.-->
-<div class="container" >
-    <div class="row" id="deck-container">
+<div class="container">
+  <div class="row" id="deck-container">
     {% for deck in decks %}
-        <div class="col-md-4" id="deck-{{ deck.id }}">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">{{ deck.name }}</h5>
-                    <p class="card-text">Cards: {{ deck.flashcards|length }}</p>
-                    <a href="{{ url_for('views.view_deck', deck_id=deck.id) }}" class="btn btn-primary">
-                        View Deck
-                    </a>
-                    <a href="{{ url_for('views.study', deck_id=deck.id) }}" class="btn btn-primary">
-                        Study
-                    </a>
-                    <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">Delete</button>
-                </div>
-            </div>
+    <div class="col-md-4" id="deck-{{ deck.id }}">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ deck.name }}</h5>
+          <p class="card-text">Cards: {{ deck.flashcards|length }}</p>
+          <a
+            href="{{ url_for('views.view_deck', deck_id=deck.id) }}"
+            class="btn btn-primary"
+          >
+            View Deck
+          </a>
+          <a
+            href="{{ url_for('views.study', deck_id=deck.id) }}"
+            class="btn btn-primary"
+          >
+            Study
+          </a>
+          <button class="btn btn-danger" onclick="deleteDeck({{ deck.id }})">
+            Delete
+          </button>
         </div>
-        {% endfor%}
+      </div>
     </div>
-    {% endblock %}
-
-{% block javascript %}
-<script>
-
+    {% endfor%}
+  </div>
+  {% endblock %} {% block javascript %}
+  <script>
     function displayError(message) {
-        const errorDiv = document.getElementById("deck-error");
-        errorDiv.textContent = message;
-        errorDiv.style.display = "block";
+      const errorDiv = document.getElementById("deck-error");
+      errorDiv.textContent = message;
+      errorDiv.style.display = "block";
     }
 
     function displaySuccess(message) {
-        const errorDiv = document.getElementById("deck-success");
-        errorDiv.textContent = message;
-        errorDiv.style.display = "block";
+      const errorDiv = document.getElementById("deck-success");
+      errorDiv.textContent = message;
+      errorDiv.style.display = "block";
     }
 
     //This uses fetch to send the deckId to the back end, then removes the element from the DOM when it gets a good response.
-    function deleteDeck(DeckId){
-        fetch("/delete-deck", {
-            method: "POST",
-            // For fetch to work it must be a JSON string. The backend can use this to find the deck in the database.
-            body: JSON.stringify({ deckId: DeckId }),
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
+    function deleteDeck(DeckId) {
+      fetch("/delete-deck", {
+        method: "POST",
+        // For fetch to work it must be a JSON string. The backend can use this to find the deck in the database.
+        body: JSON.stringify({ deckId: DeckId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
         .then((_res) => {
-            if(_res.ok) {
-                document.getElementById("deck-" + DeckId).remove()
-            } else {
-                alert("Failed to delete deck");
-            }
+          if (_res.ok) {
+            document.getElementById("deck-" + DeckId).remove();
+          } else {
+            alert("Failed to delete deck");
+          }
         })
         .catch((_err) => {
-            alert("Failed to delete deck");
-        })
+          alert("Failed to delete deck");
+        });
     }
 
-    document.getElementById("create-deck").addEventListener("submit", function(event) {
+    document
+      .getElementById("create-deck")
+      .addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission that would refresh the page
 
         //Get the values from the form based on the id
@@ -96,88 +102,91 @@ parts of it.-->
         successDiv.textContent = "";
         successDiv.style.display = "none";
 
-        // Send the data to the back end in a fetch POST request. 
-        //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the 
+        // Send the data to the back end in a fetch POST request.
+        //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the
         //id of the deck to the back end
         fetch("/", {
-            method: "POST",
-            body: JSON.stringify({ deckName: deckName }),
-            headers: {
-                "Content-Type": "application/json",
-            }
+          method: "POST",
+          body: JSON.stringify({ deckName: deckName }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         })
-        //Parses the JSON response and resolves with a javascript object
-        .then((response) => response.json())
-        //data refers to the javascript object
-        .then((data) => {
+          //Parses the JSON response and resolves with a javascript object
+          .then((response) => response.json())
+          //data refers to the javascript object
+          .then((data) => {
             //Update the DOM
             if (data.success) {
-                // Create a new deck element and add it to the DOM
-                let deckContainer = document.getElementById("deck-container");
-              
-                let newDeck = document.createElement("div");
-                newDeck.className = "col-md-4";
-                newDeck.id = "deck-" + data.deck.id;
+              // Create a new deck element and add it to the DOM
+              let deckContainer = document.getElementById("deck-container");
 
-                // Create the card div
-                let cardDiv = document.createElement("div");
-                cardDiv.className = "card mb-4";
+              let newDeck = document.createElement("div");
+              newDeck.className = "col-md-4";
+              newDeck.id = "deck-" + data.deck.id;
 
-                // Create the card body div
-                let cardBodyDiv = document.createElement("div");
-                cardBodyDiv.className = "card-body";
+              // Create the card div
+              let cardDiv = document.createElement("div");
+              cardDiv.className = "card mb-4";
 
-                // Create the card title
-                let cardTitle = document.createElement("h5");
-                cardTitle.className = "card-title";
-                cardTitle.textContent = data.deck.name;
+              // Create the card body div
+              let cardBodyDiv = document.createElement("div");
+              cardBodyDiv.className = "card-body";
 
-                // Create the "View Deck" link
-                let viewDeckLink = document.createElement("a");
-                viewDeckLink.href = "/deck/" + data.deck.id;
-                viewDeckLink.className = "btn btn-primary me-1";
-                viewDeckLink.textContent = "View Deck";
+              // Create the card title
+              let cardTitle = document.createElement("h5");
+              cardTitle.className = "card-title";
+              cardTitle.textContent = data.deck.name;
 
-                // Create the "Study" link
-                let studyLink = document.createElement("a");
-                studyLink.href = "/study/" + data.deck.id;
-                studyLink.className = "btn btn-primary me-1";
-                studyLink.textContent = "Study";
+              // Create the "View Deck" link
+              let viewDeckLink = document.createElement("a");
+              viewDeckLink.href = "/deck/" + data.deck.id;
+              viewDeckLink.className = "btn btn-primary me-1";
+              viewDeckLink.textContent = "View Deck";
 
-                // Create the "Delete" button
-                let deleteButton = document.createElement("button");
-                deleteButton.className = "btn btn-danger";
-                deleteButton.textContent = "Delete";
-                deleteButton.onclick = function() {
-                    deleteDeck(data.deck.id);
-                };
+              // Create the "Study" link
+              let studyLink = document.createElement("a");
+              studyLink.href = "/study/" + data.deck.id;
+              studyLink.className = "btn btn-primary me-1";
+              studyLink.textContent = "Study";
 
-                // Append the elements together
-                cardBodyDiv.appendChild(cardTitle);
-                cardBodyDiv.appendChild(viewDeckLink);
-                cardBodyDiv.appendChild(studyLink);
-                cardBodyDiv.appendChild(deleteButton);
+              // Create the "Delete" button
+              let deleteButton = document.createElement("button");
+              deleteButton.className = "btn btn-danger";
+              deleteButton.textContent = "Delete";
+              deleteButton.onclick = function () {
+                deleteDeck(data.deck.id);
+              };
 
-                cardDiv.appendChild(cardBodyDiv);
-                newDeck.appendChild(cardDiv);
+              // Append the elements together
+              cardBodyDiv.appendChild(cardTitle);
+              cardBodyDiv.appendChild(viewDeckLink);
+              cardBodyDiv.appendChild(studyLink);
+              cardBodyDiv.appendChild(deleteButton);
 
-                //Actually adds the flashcard to the DOM
-                deckContainer.appendChild(newDeck);
+              cardDiv.appendChild(cardBodyDiv);
+              newDeck.appendChild(cardDiv);
 
-                //Clear the form but setting the values to empty strings
-                document.getElementById("deckName").value = "";
+              //Actually adds the flashcard to the DOM
+              deckContainer.appendChild(newDeck);
 
-                //If the response is good, alert the user
-                displaySuccess("Deck added successfully");
+              //Clear the form but setting the values to empty strings
+              document.getElementById("deckName").value = "";
 
-            //If the response is not good, alert the user
+              //If the response is good, alert the user
+              displaySuccess("Deck added successfully");
+
+              //If the response is not good, alert the user
             } else {
-                displayError("Failed to add flashcard: " + (data.message || "Unknown error"));
+              displayError(
+                "Failed to add flashcard: " + (data.message || "Unknown error")
+              );
             }
-        })
-        .catch((error) => {
+          })
+          .catch((error) => {
             alert("Error occurred: " + error);
-        });
-    });
-</script>
-    {% endblock %}
+          });
+      });
+  </script>
+  {% endblock %}
+</div>
