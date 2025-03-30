@@ -22,12 +22,10 @@ def home():
         decks = Deck.query.all()
 
         if request.method == 'POST':
-            #This converts the json data to a python dictionary
             data = request.get_json()
-            #Now that we have a dictionary we can get the values we need
             deckName = data.get('deckName')
 
-            if not deckName:
+            if not deckName or not deckName.strip():
                 return jsonify({'success': False, 'message': 'Deck name is required'}), 400
 
             #create the deck with the name and the user id

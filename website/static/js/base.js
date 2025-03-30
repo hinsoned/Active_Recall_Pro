@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   
     // --- Auto-Dismiss Alerts Logic ---
+    /*
     const alerts = document.querySelectorAll(".alert");
     alerts.forEach((alert) => {
       setTimeout(() => {
@@ -31,4 +32,5 @@ document.addEventListener("DOMContentLoaded", () => {
         alertInstance.close();
       }, 5000);
     });
+    */
   });
