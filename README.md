@@ -117,13 +117,21 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create Branch
     - [x] Fix existing text display in card edit window (currently appearing as HTML): Replace textarea with div for Quill editors.
     - [x] Add RTE to Card edit display. Initialize Quill editors in script section.
-19. Allow cards to be moved between decks
+19. Move JS to separate files
+    - [x] Create Branch
+    - Move all JS to new files
+20. Update Storage from RTE (fix card edit with RTE issue)
+    - Creat Branch
+    - Move to Delta Format for storage of Quill
+    - Update create card (sanitize content on server side, add server-side validation to avoid empty cards)
+    - Update edit card
+21. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-20. Create card search funtionality
+22. Create card search funtionality
     - Allow users to search through their cards based on the cards text content.
-21. Create an admin area: All users, decks, stats are visible
-22. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
-23. Improve Bootstrap UI
+23. Create an admin area: All users, decks, stats are visible
+24. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+25. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -135,29 +143,29 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-24. Add light mode (assuming dark mode is the default)
+26. Add light mode (assuming dark mode is the default)
     - [x] add dark mode toggle?
-25. Add heat Map feature
+27. Add heat Map feature
     - [x] create branch
     - [x] add heat_map.html
-26. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+28. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-27. Add social media features
+29. Add social media features
     - create branch
     - Creat public user profile
-28. Add collaborative/public decks
+30. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-29. Add Deck copy feature: Cards will be visible before copy and download.
-30. Add AI/LLM integration
+31. Add Deck copy feature: Cards will be visible before copy and download.
+32. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-31. Host on AWS (or some similar could service)
-32. Add deck branch feature
-33. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-34. Monetize with Google ads (AdSense)?
-35. Create desktop app (99designs??)
-36. Create mobile app (99designs??)
+33. Host on AWS (or some similar could service)
+34. Add deck branch feature
+35. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+36. Monetize with Google ads (AdSense)?
+37. Create desktop app (99designs??)
+38. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 
