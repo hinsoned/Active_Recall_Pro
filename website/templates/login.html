@@ -1,36 +1,37 @@
 <!--login.html-->
 <!--This line makes use of the already existing base template. We can now override
 parts of it.-->
-{%extends "landing_page.html"%}
-{% block title %}Login{% endblock %}
+{%extends "base_public.html"%} {% block title %}Login{% endblock %}
 
 <!--This will override the base.html content block-->
 {% block content %}
-    <!--THis is a form the uses POST to send data to the server.-->
-    <form method="POST">
-        <h3 align="center">Login</h3>
-        <!--When information is sent to the back end, the name field is 
+<!--THis is a form the uses POST to send data to the server.-->
+<form method="POST">
+  <h3 align="center">Login</h3>
+  <!--When information is sent to the back end, the name field is 
         what the attribute will be called.-->
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input 
-                type="email" 
-                class="form-control" 
-                id="email" 
-                name="email" 
-                placeholder="Enter Email"/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input 
-                type="password" 
-                class="form-control" 
-                id="passsword" 
-                name="password" 
-                placeholder="Enter Password"/>
-        </div>
-        <!--This break exists purely to make space-->
-        <br />
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter Email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="passsword"
+      name="password"
+      placeholder="Enter Password"
+    />
+  </div>
+  <!--This break exists purely to make space-->
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 {% endblock %}

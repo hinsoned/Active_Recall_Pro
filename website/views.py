@@ -22,12 +22,10 @@ def home():
         decks = Deck.query.all()
 
         if request.method == 'POST':
-            #This converts the json data to a python dictionary
             data = request.get_json()
-            #Now that we have a dictionary we can get the values we need
             deckName = data.get('deckName')
 
-            if not deckName:
+            if not deckName or not deckName.strip():
                 return jsonify({'success': False, 'message': 'Deck name is required'}), 400
 
             #create the deck with the name and the user id
@@ -72,7 +70,7 @@ def study(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
 
-    return render_template("study.html", user=current_user, deck=deck, deck_id=deck_id, deck_length=len(flashcards))
+    return render_template("study.html", user=current_user, deck=deck)
 
 # the route for viewing a deck
 @views.route('/deck/<int:deck_id>', methods=['GET', 'POST'])

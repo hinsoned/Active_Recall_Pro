@@ -1,131 +1,26 @@
 <!--study.html-->
-<!--This line makes use of the already existing base template. We can now override
-parts of it.-->
-{%extends "base.html"%} {% block title %}Study: {% endblock %}
-
-<!--This will override the base.html content block-->
-{% block content %}
-<h1 align="center">Study</h1>
+{%extends "base.html"%} {% block title %}Study: {{ deck.name }}{% endblock %} {%
+block content %}
+<h1 align="center">Study: {{ deck.name }}</h1>
 
 <div class="card text-center h-100" style="min-height: 50vh">
   <div class="card-header">
-    <p class="card-text" id="flashcard-front">You don't have any flashcards.</p>
+    <p class="card-text" id="flashcard-front">Loading...</p>
   </div>
   <div class="card-body">
     <p class="card-text" id="flashcard-content"></p>
   </div>
   <div class="card-footer text-muted">
-    <button
-      class="btn btn-primary w-100"
-      id="toggle-button"
-      onclick="toggleCard()"
-    >
-      Show Back
-    </button>
+    <button class="btn btn-primary w-100" id="toggle-button">Show Back</button>
     <button
       class="btn btn-primary w-100"
       id="next-button"
       style="display: none"
-      onclick="nextCard()"
     >
       Next Card
     </button>
   </div>
 </div>
 {% endblock %} {% block javascript %}
-<script type="text/javascript">
-  // JavaScript variables to keep track of the current flashcard and its state.
-  let currentIndex = 0;
-  let showFront = true;
-  let currentFlashcard = null;
-  const deckLength = {{ deck_length }};
-
-  function fetchFlashcard(index) {
-    fetch(`/study/{{deck_id}}/${index}`, {
-      method: "GET",
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        currentFlashcard = data.flashcard;
-        displayCard();
-      } else {
-        console.error("Failed to load flashcard:", data.message);
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching flashcard:", error);
-    });
-  }
-
-  // Function to toggle between front and back of the flashcard
-  function toggleCard() {
-    showFront = !showFront;
-    displayCard();
-
-    let nextButton = document.getElementById("next-button");
-    if (!showFront) {
-      nextButton.style.display = "inline";
-    }
-    // Update database
-    fetch("/study/{{deck_id}}", {
-      method: "POST",
-      body: JSON.stringify({
-        flashcard_id: currentFlashcard.id,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        //Update the DOM
-        if (data.success) {
-          //TODO: Display this information to user
-        } else {
-          console.error("Something went awry. ", data.message);
-        }
-      })
-      .catch((error) => {
-        alert("Error occurred: " + error);
-      });
-  }
-
-  // Function to display the next flashcard
-  function nextCard() {
-    //This uses modulo to cycle through the flashcards array
-    currentIndex = (currentIndex + 1) % deckLength;
-    showFront = true;
-
-    fetchFlashcard(currentIndex);
-
-    let nextButton = document.getElementById("next-button");
-    if (showFront) {
-      nextButton.style.display = "none";
-    }
-  }
-
-  // Function to display the current flashcard
-  function displayCard() {
-    // This retrieves the HTML element with the id 'flashcard-content'
-    // and sets it to the variable 'flashcardContent'
-    let flashcardFront = document.getElementById("flashcard-front");
-    let flashcardContent = document.getElementById("flashcard-content");
-    let toggleButton = document.getElementById("toggle-button");
-    toggleButton.style.display = "inline";
-
-    flashcardFront.innerHTML = currentFlashcard.front;
-
-    if (showFront) {
-      flashcardContent.textContent = "";
-      toggleButton.textContent = "Show Back";
-    } else {
-      flashcardContent.innerHTML = currentFlashcard.back;
-      toggleButton.style.display = "none";
-    }
-  }
-
-  // Initial display of the first flashcard.
-  fetchFlashcard(currentIndex);
-</script>
+<script src="{{ url_for('static', filename='js/study.js') }}"></script>
 {% endblock %}

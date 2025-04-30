@@ -1,6 +1,4 @@
 <!--edit_card.html-->
-<!--This line makes use of the already existing base template. We can now override
-parts of it.-->
 {%extends "base.html"%} {% block title %}Edit Flashcard{% endblock %} {% block
 content %}
 
@@ -15,7 +13,7 @@ content %}
   style="display: none"
 ></div>
 
-<form id="edit-flashcard-form">
+<form id="edit-flashcard-form" data-flashcard-id="{{ flashcard.id }}" data-deck-id="{{ flashcard.deck_id }}">
   <label for="editor-front">Front of Card:</label>
   <div id="editor-front"></div>
   <br />
@@ -32,83 +30,10 @@ content %}
   </div>
 </form>
 
+<!-- Hidden divs for initial Quill content -->
+<div id="front-content" style="display: none">{{ flashcard.front | safe }}</div>
+<div id="back-content" style="display: none">{{ flashcard.back | safe }}</div>
+
 {% endblock %} {% block javascript %}
-<script>
-  function displayError(message) {
-    const errorDiv = document.getElementById("flashcard-error");
-    errorDiv.textContent = message;
-    errorDiv.style.display = "block";
-  }
-
-  function displaySuccess(message) {
-    const errorDiv = document.getElementById("flashcard-success");
-    errorDiv.textContent = message;
-    errorDiv.style.display = "block";
-  }
-  // Initialize the Quill editor
-  var quillFront = new Quill("#editor-front", {
-    theme: "snow",
-  });
-
-  var quillBack = new Quill("#editor-back", {
-    theme: "snow",
-  });
-
-  // Set the initial values of the Quill editors
-  frontContent = "{{ flashcard.front | safe }}";
-  backContent = "{{ flashcard.back | safe }}";
-
-  quillFront.clipboard.dangerouslyPasteHTML(frontContent);
-  quillBack.clipboard.dangerouslyPasteHTML(backContent);
-
-  document
-    .getElementById("edit-flashcard-form")
-    .addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent the default form submission that would refresh the page
-
-      //Get the values from the form based on the id
-      let front = quillFront.root.innerHTML;
-      let back = quillBack.root.innerHTML;
-
-      // This is the text to make sure the user has entered something
-      let frontText = quillFront.getText().trim();
-      let backText = quillBack.getText().trim();
-
-      //The blank quill card content for comparison
-      let blankCard = "<p><br></p>";
-
-      //Prevent addition of blank cards or cards of only spaces. And display error.
-      if (
-        frontText === "" ||
-        backText === "" ||
-        front === blankCard ||
-        back === blankCard
-      ) {
-        displayError("Both front and back are required");
-        return;
-      }
-
-      fetch("/edit-flashcard/{{ flashcard.id }}", {
-        method: "POST",
-        body: JSON.stringify({ front: front, back: back }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            window.location.href =
-              "{{ url_for('views.view_deck', deck_id=flashcard.deck_id) }}";
-          } else {
-            const errorDiv = document.getElementById("flashcard-error");
-            errorDiv.textContent = data.message || "Failed to update flashcard";
-            errorDiv.style.display = "block";
-          }
-        })
-        .catch((error) => {
-          alert("Error occurred: " + error);
-        });
-    });
-</script>
+<script src="{{ url_for('static', filename='js/edit_card.js') }}"></script>
 {% endblock %}

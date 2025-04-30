@@ -1,190 +1,176 @@
 <!--heat_map.html-->
 <!--This line makes use of the already existing base template. We can now override
 parts of it.-->
-{%extends "base.html"%}
-{% block title %}Heat Map{% endblock %}
+{%extends "base.html"%} {% block title %}Heat Map{% endblock %}
 
 <!--This will override the base.html content block-->
 {% block content %}
 
+<div class="fade-in-scale">
   <div class="row g-0" id="row_0">
-      <div class="col" id="January">
-      </div>
-      <div class="col" id="February">
-      </div>
-      <div class="col" id="March">
-      </div>
+    <div class="col" id="January"></div>
+    <div class="col" id="February"></div>
+    <div class="col" id="March"></div>
   </div>
   <div class="row g-0" id="row_1">
-      <div class="col" id="April">
-      </div>
-      <div class="col" id="May">
-      </div>
-      <div class="col" id="June">
-      </div>
+    <div class="col" id="April"></div>
+    <div class="col" id="May"></div>
+    <div class="col" id="June"></div>
   </div>
   <div class="row g-0" id="row_2">
-      <div class="col" id="July">
-      </div>
-      <div class="col" id="August">
-      </div>
-      <div class="col" id="September">
-      </div>
+    <div class="col" id="July"></div>
+    <div class="col" id="August"></div>
+    <div class="col" id="September"></div>
   </div>
   <div class="row g-0" id="row_3">
-      <div class="col" id="October">
-      </div>
-      <div class="col" id="November">
-      </div>
-      <div class="col" id="December">
-      </div>
+    <div class="col" id="October"></div>
+    <div class="col" id="November"></div>
+    <div class="col" id="December"></div>
   </div>
+</div>
 
-{% endblock %}
+{% endblock %} {% block javascript %}
+<script>
 
-{% block javascript %}
-    <script>
+  // Creates a html table and customizes it
+  function createHeatMap(grid_id, days, cell_height, month, year, heat_dict_json){
+    const grid = document.getElementById(grid_id);
+    const table = document.createElement('table');
+    const oldTable = document.getElementById(grid_id + "_table");
 
-      // Creates a html table and customizes it
-      function createHeatMap(grid_id, days, cell_height, month, year, heat_dict_json){
-        const grid = document.getElementById(grid_id);
-        const table = document.createElement('table');
-        const oldTable = document.getElementById(grid_id + "_table");
+    table.setAttribute('id', grid_id + "_table");
+    table.setAttribute('class', 'table m-auto');
+    table.setAttribute('style', "width: " + (cell_height * 7)+ "px;" + "height: " + (cell_height * 6) + "px");
 
-        table.setAttribute('id', grid_id + "_table");
-        table.setAttribute('class', 'table m-auto');
-        table.setAttribute('style', "width: " + (cell_height * 7)+ "px;" + "height: " + (cell_height * 6) + "px");
-        
-        if (!!oldTable){
-          oldTable.replaceWith(table)
+    if (!!oldTable){
+      oldTable.replaceWith(table)
+    }
+    else{
+      grid.appendChild(table);
+    }
+
+    var new_row, new_cell;
+
+    // Creating Table Rows and Cells
+    for (let i = 0; i < Math.ceil((days / 7)); i++){
+      new_row = table.insertRow(-1);
+      new_row.setAttribute('id', grid_id + '_row_' + i);
+      const k = i < 4 ? 7 : (days - (i * 7));
+      for (let j = 0; j < k; j++){
+        new_cell = new_row.insertCell(-1);
+        new_cell.setAttribute('id', grid_id + "_cell_" + ((i * 7) + j));
+        new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
+
+        const cur_date = year + "-" + month + "-" + ((i * 7) + j + 1)
+
+        if (cur_date in heat_dict_json === true){
+          const thresh = Math.ceil(heat_dict_json[cur_date] / 20)
+          const freq_level = thresh > 1 ? (25 * (thresh - 1)) : 10;
+
+          const opacity = freq_level > 75 ? "" : "bg-opacity-" + freq_level;
+
+          new_cell.setAttribute("class", "border-top border-start border-end border-bottom bg-success " + opacity);
         }
-        else{
-          grid.appendChild(table);
-        }
-
-        var new_row, new_cell;
-        
-        // Creating Table Rows and Cells
-        for (let i = 0; i < Math.ceil((days / 7)); i++){
-          new_row = table.insertRow(-1);
-          new_row.setAttribute('id', grid_id + '_row_' + i);
-          const k = i < 4 ? 7 : (days - (i * 7));
-          for (let j = 0; j < k; j++){
-            new_cell = new_row.insertCell(-1);
-            new_cell.setAttribute('id', grid_id + "_cell_" + ((i * 7) + j));
-            new_cell.setAttribute('class', 'border-top border-start border-end border-bottom');
-
-            const cur_date = year + "-" + month + "-" + ((i * 7) + j + 1)
-
-            if (cur_date in heat_dict_json === true){
-              const thresh = Math.ceil(heat_dict_json[cur_date] / 20)
-              const freq_level = thresh > 1 ? (25 * (thresh - 1)) : 10;
-              
-              const opacity = freq_level > 75 ? "" : "bg-opacity-" + freq_level;
-
-              new_cell.setAttribute("class", "border-top border-start border-end border-bottom bg-success " + opacity);
-            }
-          }
-        } 
-
-        // Creating Table Header
-        const header = table.createTHead();
-        new_row = header.insertRow(0);  
-        new_cell = document.createElement('th');
-        new_cell.setAttribute("id", grid_id + "_header_cell");
-        new_cell.setAttribute("colspan", "7");
-        new_row.setAttribute("style", "text-align: center; height: 30px");
-        new_cell.innerHTML = grid_id;
-        new_row.appendChild(new_cell);
-
       }
+    }
 
-      // Checks if we are in a leap year by the Gregorian Calendar.
-      function isLeapYear(year) {
-        return (year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0);
-      }
+    // Creating Table Header
+    const header = table.createTHead();
+    new_row = header.insertRow(0);
+    new_cell = document.createElement('th');
+    new_cell.setAttribute("id", grid_id + "_header_cell");
+    new_cell.setAttribute("colspan", "7");
+    new_row.setAttribute("style", "text-align: center; height: 30px");
+    new_cell.innerHTML = grid_id;
+    new_row.appendChild(new_cell);
 
-      // This function is the main function that calls other helpers which renders the front end of heatmap.
-      function renderHeatMap(year){
+  }
 
-        const months = {
-          "January" : 31,
-          "February" : isLeapYear(year) ? 29 : 28,
-          "March" : 31,
-          "April" : 30,
-          "May" : 31,
-          "June" : 30,
-          "July" : 31,
-          "August" : 31,
-          "September" : 30,
-          "October" : 31,
-          "November" : 30,
-          "December" : 31,
-        }
+  // Checks if we are in a leap year by the Gregorian Calendar.
+  function isLeapYear(year) {
+    return (year & 3) == 0 && ((year % 25) != 0 || (year & 15) == 0);
+  }
 
-        const bootstrap_width_breakpoint= [1400, 1200, 992, 768, 576]
-        const bootstrap_width= [1320, 1140, 960, 720, 540]
-        
-        // Convert the heat_dict passed from our backend to json
-        const heat_dict_json = {{heat_dict|tojson}};
+  // This function is the main function that calls other helpers which renders the front end of heatmap.
+  function renderHeatMap(year){
 
-        let row;
+    const months = {
+      "January" : 31,
+      "February" : isLeapYear(year) ? 29 : 28,
+      "March" : 31,
+      "April" : 30,
+      "May" : 31,
+      "June" : 30,
+      "July" : 31,
+      "August" : 31,
+      "September" : 30,
+      "October" : 31,
+      "November" : 30,
+      "December" : 31,
+    }
 
-        // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
-        const row_height_num = Math.floor((window.outerHeight - (window.outerHeight * 0.07)) / 4) 
-        const row_height = "height: " + row_height_num + "px";
+    const bootstrap_width_breakpoint= [1400, 1200, 992, 768, 576]
+    const bootstrap_width= [1320, 1140, 960, 720, 540]
 
-        let col_width_num = window.outerWidth;
-        
-        // Change columns to mobile view if the window width is too small. Or else adjust the column width based on the boostrap breakpoints
-        if (window.outerWidth < bootstrap_width_breakpoint[bootstrap_width_breakpoint.length - 1]){
-          Object.keys(months).forEach((key) =>{
-            col = document.getElementById(key)
-            col.setAttribute("class", "col-xs")
-          })
-        }
-        else{
-          Object.keys(months).forEach((key) =>{
-            col = document.getElementById(key)
-            col.setAttribute("class", "col")
-          })
+    // Convert the heat_dict passed from our backend to json
+    const heat_dict_json = {{heat_dict|tojson}};
 
-          for (let i = 0; i < bootstrap_width_breakpoint.length; i++){
-            if (window.outerWidth >= bootstrap_width_breakpoint[i]){
-              col_width_num = bootstrap_width[i];
-              break;
-            }
-          }
-        }
+    let row;
 
-        const col_width = "width: " + col_width_num + "px"
+    // Setting a height for the row. Currently all rows will take up 93% of viewport height, or whatever the window.innerHeight value is.
+    const row_height_num = Math.floor((window.outerHeight - (window.outerHeight * 0.07)) / 4)
+    const row_height = "height: " + row_height_num + "px";
 
-        // Individual Cell Heights 
-        const cell_height = Math.floor(row_height_num / 6);
-        const cell_width = Math.floor(col_width_num / 25);
-    
-        let month = 1;
+    let col_width_num = window.outerWidth;
 
-        // Generates the HTML view for the table we see.
-        Object.entries(months).forEach(([key, val]) => {
-          createHeatMap(key, val, Math.min(cell_height, cell_width), month < 10 ? "0" + month : month.toString(), year, heat_dict_json);
-          month += 1;
-        })
-        
-      };
-
-      // Gets the current year
-      const d = new Date();
-      const year = d.getFullYear();
-
-      // Render the heatmap based on the current year
-      document.addEventListener("DOMContentLoaded", function(event){
-        renderHeatMap(year);
-      });
-
-      window.addEventListener("resize", function(event){
-        renderHeatMap(year);
+    // Change columns to mobile view if the window width is too small. Or else adjust the column width based on the boostrap breakpoints
+    if (window.outerWidth < bootstrap_width_breakpoint[bootstrap_width_breakpoint.length - 1]){
+      Object.keys(months).forEach((key) =>{
+        col = document.getElementById(key)
+        col.setAttribute("class", "col-xs")
+      })
+    }
+    else{
+      Object.keys(months).forEach((key) =>{
+        col = document.getElementById(key)
+        col.setAttribute("class", "col")
       })
 
-    </script>
+      for (let i = 0; i < bootstrap_width_breakpoint.length; i++){
+        if (window.outerWidth >= bootstrap_width_breakpoint[i]){
+          col_width_num = bootstrap_width[i];
+          break;
+        }
+      }
+    }
+
+    const col_width = "width: " + col_width_num + "px"
+
+    // Individual Cell Heights
+    const cell_height = Math.floor(row_height_num / 6);
+    const cell_width = Math.floor(col_width_num / 25);
+
+    let month = 1;
+
+    // Generates the HTML view for the table we see.
+    Object.entries(months).forEach(([key, val]) => {
+      createHeatMap(key, val, Math.min(cell_height, cell_width), month < 10 ? "0" + month : month.toString(), year, heat_dict_json);
+      month += 1;
+    })
+
+  };
+
+  // Gets the current year
+  const d = new Date();
+  const year = d.getFullYear();
+
+  // Render the heatmap based on the current year
+  document.addEventListener("DOMContentLoaded", function(event){
+    renderHeatMap(year);
+  });
+
+  window.addEventListener("resize", function(event){
+    renderHeatMap(year);
+  })
+</script>
 {% endblock %}
