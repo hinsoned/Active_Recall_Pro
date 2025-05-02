@@ -133,7 +133,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Change HTML to take full width of screen
     - [x] Set max height? (optional)
 23. Separate Home and Profile pages
-    - Create branch
+    - [x] Create branch
     - Create new Flask endpoint
     - Create new HTML and JS files for this Home page
     - Rename all Profile page elements
