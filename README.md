@@ -121,11 +121,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create Branch
     - [x] Move all JS to new files (leave heat map for now)
 20. Update Storage from RTE (fix card edit with RTE issue)
-    - Create Branch
+    - [x] Create Branch
     - [x] Move to Delta Format for storage of Quill
-    - Move card display on view_deck to javascript from jinja
+    - [x] Move card display on view_deck to javascript from jinja
     - Update create card (sanitize content on server side, add server-side validation to avoid empty cards)
-    - Update edit card
+    - [x] Update edit card
 21. Log in card visibility
 22. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
