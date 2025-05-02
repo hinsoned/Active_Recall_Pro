@@ -4,6 +4,7 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+import json
 
 #This class defines the User model for the database
 class User(db.Model, UserMixin):
@@ -28,8 +29,8 @@ class Deck(db.Model):
 #is created.
 class Flashcard(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
-    front = db.Column(db.String(10000))
-    back = db.Column(db.String(10000))
+    front = db.Column(db.String(10000))  # Will store Delta JSON
+    back = db.Column(db.String(10000))   # Will store Delta JSON
     #This uses func to get the current date and time and save it to this variable
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     #This foreign key references the id from the User class
@@ -45,6 +46,13 @@ class Flashcard(db.Model):
             'back': self.back,
             'date': self.date.isoformat()  # Convert datetime to ISO format string
         }
+
+    # Return the content directly - Quill will handle conversion on frontend
+    def get_front_html(self):
+        return self.front
+
+    def get_back_html(self):
+        return self.back
 
 #This class defines the StudyFrequency attached to each FlashCard
 class StudyFrequency(db.Model):

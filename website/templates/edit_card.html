@@ -13,7 +13,11 @@ content %}
   style="display: none"
 ></div>
 
-<form id="edit-flashcard-form" data-flashcard-id="{{ flashcard.id }}" data-deck-id="{{ flashcard.deck_id }}">
+<form
+  id="edit-flashcard-form"
+  data-flashcard-id="{{ flashcard.id }}"
+  data-deck-id="{{ flashcard.deck_id }}"
+>
   <label for="editor-front">Front of Card:</label>
   <div id="editor-front"></div>
   <br />
@@ -30,9 +34,9 @@ content %}
   </div>
 </form>
 
-<!-- Hidden divs for initial Quill content -->
-<div id="front-content" style="display: none">{{ flashcard.front | safe }}</div>
-<div id="back-content" style="display: none">{{ flashcard.back | safe }}</div>
+<!-- Hidden divs for initial Quill content in Delta format -->
+<div id="front-content" style="display: none">{{ flashcard.front }}</div>
+<div id="back-content" style="display: none">{{ flashcard.back }}</div>
 
 {% endblock %} {% block javascript %}
 <script src="{{ url_for('static', filename='js/edit_card.js') }}"></script>

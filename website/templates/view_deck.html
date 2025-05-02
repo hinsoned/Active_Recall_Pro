@@ -1,7 +1,7 @@
-{% extends "base.html" %} {% block title %}{{ deck.name }}{% endblock %} {%
+{% extends "base.html" %} {% block title %}{{ deck_name }}{% endblock %} {%
 block content %}
-<div id="deck-page" data-deck-id="{{ deck.id }}">
-  <h1>{{ deck.name }}</h1>
+<div id="deck-page" data-deck-id="{{ deck_id }}">
+  <h1>{{ deck_name }}</h1>
 
   <div
     id="flashcard-error"
@@ -24,7 +24,7 @@ block content %}
     <div align="center">
       <button type="submit" class="btn btn-primary">Add Card</button>
       <a
-        href="{{ url_for('views.study', deck_id=deck.id) }}"
+        href="{{ url_for('views.study', deck_id=deck_id) }}"
         class="btn btn-primary"
         >Study</a
       >
@@ -33,27 +33,7 @@ block content %}
   <br />
   <div class="container">
     <div class="row" id="flashcard-container">
-      {% for flashcard in flashcards %}
-      <div class="col-md-4" id="flashcard-{{ flashcard.id }}">
-        <div class="card mb-4">
-          <div class="card-body">
-            <h5 class="card-title">{{ flashcard.front | safe}}</h5>
-            <p class="card-text">{{ flashcard.back | safe}}</p>
-            <a
-              href="{{ url_for('views.edit_flashcard', flashcard_id=flashcard.id) }}"
-              class="btn btn-primary"
-              >Edit</a
-            >
-            <button
-              class="btn btn-danger delete-flashcard"
-              data-flashcard-id="{{ flashcard.id }}"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
+      <!-- Flashcards will be populated by JavaScript -->
     </div>
   </div>
 </div>

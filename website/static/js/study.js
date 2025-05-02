@@ -6,6 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
     let showFront = true;
     let currentFlashcard = null;
   
+    // Helper function to convert Delta JSON to HTML
+    function deltaToHtml(delta) {
+        const tempQuill = new Quill(document.createElement('div'));
+        tempQuill.setContents(JSON.parse(delta));
+        return tempQuill.root.innerHTML;
+    }
+
     // Extract deckId from URL for initial fetch
     const pathParts = window.location.pathname.split("/");
     const deckIdFromUrl = pathParts[2]; // Assumes URL is /study/<deck_id>
@@ -93,13 +100,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!currentFlashcard) return;
   
       toggleButton.style.display = "inline";
-      flashcardFront.innerHTML = currentFlashcard.front;
+      // Convert Delta to HTML before displaying
+      flashcardFront.innerHTML = deltaToHtml(currentFlashcard.front);
   
       if (showFront) {
         flashcardContent.textContent = "";
         toggleButton.textContent = "Show Back";
       } else {
-        flashcardContent.innerHTML = currentFlashcard.back;
+        // Convert Delta to HTML before displaying
+        flashcardContent.innerHTML = deltaToHtml(currentFlashcard.back);
         toggleButton.style.display = "none";
       }
     }

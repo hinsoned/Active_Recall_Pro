@@ -17,22 +17,30 @@ const quillFront = new Quill("#editor-front", { theme: "snow" });
 const quillBack = new Quill("#editor-back", { theme: "snow" });
 
 // Load initial content from hidden elements
-const frontContent = document.getElementById("front-content").innerHTML;
-const backContent = document.getElementById("back-content").innerHTML;
-quillFront.clipboard.dangerouslyPasteHTML(frontContent);
-quillBack.clipboard.dangerouslyPasteHTML(backContent);
+const frontContent = document.getElementById("front-content").textContent;
+const backContent = document.getElementById("back-content").textContent;
+
+try {
+    const frontDelta = JSON.parse(frontContent);
+    const backDelta = JSON.parse(backContent);
+    quillFront.setContents(frontDelta);
+    quillBack.setContents(backDelta);
+} catch (e) {
+    // Fallback for old content format
+    quillFront.clipboard.dangerouslyPasteHTML(frontContent);
+    quillBack.clipboard.dangerouslyPasteHTML(backContent);
+}
 
 // Form submission handler
 document.getElementById("edit-flashcard-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const front = quillFront.root.innerHTML;
-    const back = quillBack.root.innerHTML;
+    const front = JSON.stringify(quillFront.getContents());
+    const back = JSON.stringify(quillBack.getContents());
     const frontText = quillFront.getText().trim();
     const backText = quillBack.getText().trim();
-    const blankCard = "<p><br></p>";
 
-    if (frontText === "" || backText === "" || front === blankCard || back === blankCard) {
+    if (frontText === "" || backText === "") {
         displayError("Both front and back are required");
         return;
     }
