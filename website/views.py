@@ -20,7 +20,8 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET', 'POST'])
 def home():
     if current_user.is_authenticated:
-        decks = Deck.query.all()
+        # Only fetch decks belonging to the current user
+        decks = Deck.query.filter_by(user_id=current_user.id).all()
 
         if request.method == 'POST':
             data = request.get_json()
