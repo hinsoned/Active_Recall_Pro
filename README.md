@@ -133,10 +133,10 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Change HTML to take full width of screen
     - [x] Set max height? (optional)
 23. Separate Home and Profile pages
-    - Create branch
-    - Create new Flask endpoint
-    - Create new HTML and JS files for this Home page
-    - Rename all Profile page elements
+    - [x] Create branch
+    - [x] Create new Flask endpoint
+    - [x] Create new HTML and JS files for this Home page
+    - [x] Rename all Profile page elements
 23. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
 24. Create card search funtionality

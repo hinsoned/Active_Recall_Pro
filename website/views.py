@@ -17,29 +17,35 @@ from datetime import datetime
 views = Blueprint('views', __name__)
 
 # This function will run when we go to '/' or the main page of the website
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/', methods=['GET'])
 def home():
     if current_user.is_authenticated:
-        # Only fetch decks belonging to the current user
-        decks = Deck.query.filter_by(user_id=current_user.id).all()
-
-        if request.method == 'POST':
-            data = request.get_json()
-            deckName = data.get('deckName')
-
-            if not deckName or not deckName.strip():
-                return jsonify({'success': False, 'message': 'Deck name is required'}), 400
-
-            #create the deck with the name and the user id
-            new_deck = Deck(name=deckName, user_id=current_user.id)
-            #add the deck do the database
-            db.session.add(new_deck)
-            db.session.commit()
-            return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
-
-        return render_template("home.html", user=current_user, decks=decks)
+        return render_template("home.html")
     else:
         return render_template("landing_page.html")
+
+# Profile page showing user's decks
+@views.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    # Only fetch decks belonging to the current user
+    decks = Deck.query.filter_by(user_id=current_user.id).all()
+
+    if request.method == 'POST':
+        data = request.get_json()
+        deckName = data.get('deckName')
+
+        if not deckName or not deckName.strip():
+            return jsonify({'success': False, 'message': 'Deck name is required'}), 400
+
+        #create the deck with the name and the user id
+        new_deck = Deck(name=deckName, user_id=current_user.id)
+        #add the deck do the database
+        db.session.add(new_deck)
+        db.session.commit()
+        return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
+
+    return render_template("profile.html", user=current_user, decks=decks)
 
 # The route for studying a deck
 @views.route('/study/<int:deck_id>', methods=['GET', 'POST'])
