@@ -139,9 +139,12 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Rename all Profile page elements
 23. Allow cards to be moved between decks
     - Create a "non-deck" for cards that are in no deck but still exist in database
-24. Create card search funtionality
+24. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
+    - Create branch
+    - Update models with new fields
+25. Create card search funtionality
+    - Create branch
     - Allow users to search through their cards based on the cards text content.
-25. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
 26. Create an admin area: All users, decks, stats are visible
 27. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
