@@ -129,9 +129,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
 21. Log in card visibility
     - [x] Update card visibility such that it decks only appear for their associated user
 22. Card list appearance update on Decks view
-    - Create branch 
-    - Change HTML to take full width of screen
-    - Set max height? (optional)
+    - [x] Create branch 
+    - [x] Change HTML to take full width of screen
+    - [x] Set max height? (optional)
 23. Separate Home and Profile pages
     - Create branch
     - Create new Flask endpoint
