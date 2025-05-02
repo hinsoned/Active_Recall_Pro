@@ -78,8 +78,7 @@ def study(deck_id):
 @login_required
 def view_deck(deck_id):
     deck = Deck.query.get_or_404(deck_id)
-    flashcards = deck.flashcards  # Get all flashcards in this deck
-
+    
     if request.method == 'POST':
         #This converts the json data to a python dictionary
         data = request.get_json()
@@ -104,9 +103,11 @@ def view_deck(deck_id):
         db.session.commit()
 
         #This returns a json object with the success key set to true and the new flashcard information in json form 
-        return jsonify({'success': True, 'flashcard': {'id': new_flashcard.id, 'front': new_flashcard.front, 'back': new_flashcard.back}})
+        return jsonify({'success': True, 'flashcard': new_flashcard.to_dict()})
 
-    return render_template('view_deck.html', deck=deck, deck_id=deck_id, flashcards=flashcards)
+    return render_template('view_deck.html', 
+        deck_id=deck.id,
+        deck_name=deck.name)
 
 # the route for editing a flashcard
 @views.route('/edit-flashcard/<int:flashcard_id>', methods=['GET', 'POST'])

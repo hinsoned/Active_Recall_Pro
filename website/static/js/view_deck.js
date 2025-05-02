@@ -1,6 +1,8 @@
 //view_deck.js
 
 document.addEventListener('DOMContentLoaded', function() {
+    const flashcardContainer = document.getElementById("flashcard-container");
+    
     function displayError(message) {
         const errorDiv = document.getElementById("flashcard-error");
         errorDiv.textContent = message;
@@ -36,8 +38,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Function to convert Delta to HTML
+    function deltaToHtml(delta) {
+        const tempQuill = new Quill(document.createElement('div'));
+        tempQuill.setContents(JSON.parse(delta));
+        return tempQuill.root.innerHTML;
+    }
+
+    // Function to create a flashcard element
+    function createFlashcardElement(flashcard) {
+        const frontHtml = deltaToHtml(flashcard.front);
+        const backHtml = deltaToHtml(flashcard.back);
+
+        const flashcardElement = document.createElement('div');
+        flashcardElement.className = 'col-md-4';
+        flashcardElement.id = `flashcard-${flashcard.id}`;
+        flashcardElement.innerHTML = `
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">${frontHtml}</h5>
+                    <p class="card-text">${backHtml}</p>
+                    <a href="/edit-flashcard/${flashcard.id}" class="btn btn-primary">Edit</a>
+                    <button class="btn btn-danger delete-flashcard" data-flashcard-id="${flashcard.id}">Delete</button>
+                </div>
+            </div>
+        `;
+        return flashcardElement;
+    }
+
+    // Initialize Quill editors
     var quillFront = new Quill("#editor-front", { theme: "snow" });
     var quillBack = new Quill("#editor-back", { theme: "snow" });
+
+    // Fetch initial flashcards
+    const deckId = document.getElementById("deck-page").dataset.deckId;
+    fetch(`/deck/${deckId}/flashcards`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                data.flashcards.forEach(flashcard => {
+                    const flashcardElement = createFlashcardElement(flashcard);
+                    flashcardContainer.appendChild(flashcardElement);
+                });
+            } else {
+                displayError("Failed to load flashcards");
+            }
+        })
+        .catch(error => {
+            displayError("Error loading flashcards: " + error);
+        });
 
     document.getElementById("add-flashcard").addEventListener("submit", function(event) {
         event.preventDefault();
@@ -68,29 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then((response) => response.json())
         .then((data) => {
             if (data.success) {
-                let flashcardContainer = document.getElementById("flashcard-container");
-                let newFlashcard = document.createElement("div");
-                newFlashcard.className = "col-md-4";
-                newFlashcard.id = "flashcard-" + data.flashcard.id;
-                
-                // Create a temporary Quill instance to convert Delta to HTML
-                const tempQuill = new Quill(document.createElement('div'));
-                tempQuill.setContents(JSON.parse(data.flashcard.front));
-                const frontHtml = tempQuill.root.innerHTML;
-                tempQuill.setContents(JSON.parse(data.flashcard.back));
-                const backHtml = tempQuill.root.innerHTML;
-
-                newFlashcard.innerHTML = `
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h5 class="card-title">${frontHtml}</h5>
-                            <p class="card-text">${backHtml}</p>
-                            <a href="/edit-flashcard/${data.flashcard.id}" class="btn btn-primary">Edit</a>
-                            <button class="btn btn-danger delete-flashcard" data-flashcard-id="${data.flashcard.id}">Delete</button>
-                        </div>
-                    </div>
-                `;
-                flashcardContainer.appendChild(newFlashcard);
+                const flashcardElement = createFlashcardElement(data.flashcard);
+                flashcardContainer.appendChild(flashcardElement);
                 
                 quillFront.setContents([]);
                 quillBack.setContents([]);
@@ -100,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch((error) => {
-            alert("Error occurred: " + error);
+            displayError("Error occurred: " + error);
         });
     });
 
