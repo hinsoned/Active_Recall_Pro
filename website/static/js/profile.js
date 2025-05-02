@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
           //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the
           //id of the deck to the back end
           console.log("deckName:", JSON.stringify(deckName));//check the data
-          fetch("/", {
+          fetch("/profile", {
             method: "POST",
             body: JSON.stringify({ deckName: deckName }),
             headers: {
