@@ -51,17 +51,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const backHtml = deltaToHtml(flashcard.back);
 
         const flashcardElement = document.createElement('div');
-        flashcardElement.className = 'col-md-4';
+        flashcardElement.className = 'row shadow mb-4 flashcard-element';
         flashcardElement.id = `flashcard-${flashcard.id}`;
         flashcardElement.innerHTML = `
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title">${frontHtml}</h5>
-                    <p class="card-text">${backHtml}</p>
-                    <a href="/edit-flashcard/${flashcard.id}" class="btn btn-primary">Edit</a>
-                    <button class="btn btn-danger delete-flashcard" data-flashcard-id="${flashcard.id}">Delete</button>
-                </div>
+            <div class="col-md-10 col-sm-8">
+                    <h5>${frontHtml}</h5>
+                    <p>${backHtml}</p>
             </div>
+            <div class="col-md-2 col-sm-4">
+            <a href="/edit-flashcard/${flashcard.id}" class="btn btn-primary">Edit</a>
+            <button class="btn btn-danger delete-flashcard" data-flashcard-id="${flashcard.id}">Delete</button>
+            </div>
+            
         `;
         return flashcardElement;
     }
