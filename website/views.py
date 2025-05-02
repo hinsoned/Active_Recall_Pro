@@ -10,6 +10,7 @@ from .models import Flashcard ,Deck, StudyFrequency
 from . import db
 import json
 from datetime import datetime
+#import bleach
 
 # Blueprints are used to define routes, error handlers, and other request-related 
 # functions. It allows the views for the project to be defined in multiple files.
@@ -89,8 +90,15 @@ def view_deck(deck_id):
         if not front or not back:
             return jsonify({'success': False, 'message': 'Both front and back are required'}), 400
 
+        try:
+            # Validate that the content is valid JSON
+            json.loads(front)
+            json.loads(back)
+        except json.JSONDecodeError:
+            return jsonify({'success': False, 'message': 'Invalid content format'}), 400
+
         #create the note with the text and the user id
-        new_flashcard = Flashcard(front=front, back=back,  deck_id=deck_id, user_id=current_user.id)
+        new_flashcard = Flashcard(front=front, back=back, deck_id=deck_id, user_id=current_user.id)
         #add the note do the database
         db.session.add(new_flashcard)
         db.session.commit()
@@ -113,6 +121,13 @@ def edit_flashcard(flashcard_id):
 
         if not front or not back:
             return jsonify({'success': False, 'message': 'Both front and back are required'}), 400
+
+        try:
+            # Validate that the content is valid JSON
+            json.loads(front)
+            json.loads(back)
+        except json.JSONDecodeError:
+            return jsonify({'success': False, 'message': 'Invalid content format'}), 400
 
         flashcard.front = front
         flashcard.back = back
