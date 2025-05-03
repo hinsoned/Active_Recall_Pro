@@ -137,8 +137,6 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create new Flask endpoint
     - [x] Create new HTML and JS files for this Home page
     - [x] Rename all Profile page elements
-23. Allow cards to be moved between decks
-    - Create a "non-deck" for cards that are in no deck but still exist in database
 24. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
     - [x] Create branch
     - [x] Update models with new fields

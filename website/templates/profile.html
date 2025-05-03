@@ -14,6 +14,34 @@ parts of it.-->
 <form id="create-deck">
   <label for="deckName">Deck Name</label>
   <textarea name="deckName" id="deckName" class="form-control"></textarea>
+
+  <!-- Study Mode Selector -->
+  <div class="study-mode-selector mt-3">
+    <label for="study-mode">Study Mode:</label>
+    <div class="btn-group" role="group">
+      <input
+        type="radio"
+        class="btn-check"
+        name="study-mode"
+        id="normal-mode"
+        value="normal"
+        autocomplete="off"
+        checked
+      />
+      <label class="btn btn-outline-primary" for="normal-mode">Normal</label>
+
+      <input
+        type="radio"
+        class="btn-check"
+        name="study-mode"
+        id="sm2-mode"
+        value="sm2"
+        autocomplete="off"
+      />
+      <label class="btn btn-outline-primary" for="sm2-mode">SM-2</label>
+    </div>
+  </div>
+
   <br />
   <div align="center">
     <button type="submit" class="btn btn-primary">Create Deck</button>
@@ -30,6 +58,9 @@ parts of it.-->
         <div class="card-body">
           <h5 class="card-title">{{ deck.name }}</h5>
           <p class="card-text">Cards: {{ deck.flashcards|length }}</p>
+          <p class="card-text">
+            <small class="text-muted">Mode: {{ deck.study_mode|title }}</small>
+          </p>
           <a
             href="{{ url_for('views.view_deck', deck_id=deck.id) }}"
             class="btn btn-primary"
