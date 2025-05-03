@@ -142,8 +142,8 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Update models with new fields
     - [x] Create two deck modes for studying.
 25. Add QOL links to Study and Decks page.
-    - Create branch
-    - Add link back to deck page from study page
+    - [x] Create branch
+    - [x] Add link back to deck page from study page
 26. Add Deck mode switch
     - Create Branch
     - Update UI

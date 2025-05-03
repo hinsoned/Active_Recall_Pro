@@ -1,8 +1,18 @@
 <!--study.html-->
 {%extends "base.html"%} {% block title %}Study: {{ deck.name }}{% endblock %} {%
 block content %}
-<h1 align="center">Study: {{ deck.name }}</h1>
-<p align="center" class="text-muted">Mode: {{ deck.study_mode|title }}</p>
+<div class="row">
+  <div class="col-md-3">
+    <a
+      href="{{ url_for('views.view_deck', deck_id=deck.id) }}"
+      class="btn btn-secondary"
+    >
+      Back to Deck
+    </a>
+  </div>
+  <h1 align="center">Study: {{ deck.name }}</h1>
+  <p align="center" class="text-muted">Mode: {{ deck.study_mode|title }}</p>
+</div>
 
 <div class="card text-center h-100" style="min-height: 50vh">
   <div class="card-header">
