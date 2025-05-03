@@ -2,6 +2,7 @@
 {%extends "base.html"%} {% block title %}Study: {{ deck.name }}{% endblock %} {%
 block content %}
 <h1 align="center">Study: {{ deck.name }}</h1>
+<p align="center" class="text-muted">Mode: {{ deck.study_mode|title }}</p>
 
 <div class="card text-center h-100" style="min-height: 50vh">
   <div class="card-header">
@@ -11,14 +12,49 @@ block content %}
     <p class="card-text" id="flashcard-content"></p>
   </div>
   <div class="card-footer text-muted">
-    <button class="btn btn-primary w-100" id="toggle-button">Show Back</button>
-    <button
-      class="btn btn-primary w-100"
-      id="next-button"
-      style="display: none"
-    >
-      Next Card
-    </button>
+    <!-- Normal mode controls -->
+    <div id="normal-controls">
+      <button class="btn btn-primary w-100" id="toggle-button">
+        Show Back
+      </button>
+      <button
+        class="btn btn-success w-100 mt-2"
+        id="next-button"
+        style="display: none"
+      >
+        Next Card
+      </button>
+    </div>
+
+    <!-- SM-2 mode controls -->
+    <div id="sm2-controls" style="display: none">
+      <button class="btn btn-primary w-100" id="toggle-button-sm2">
+        Show Back
+      </button>
+      <div id="rating-buttons" style="display: none">
+        <p class="mt-2">How well did you know this?</p>
+        <div class="btn-group w-100" role="group">
+          <button type="button" class="btn btn-danger" data-rating="0">
+            0 - Complete Blackout
+          </button>
+          <button type="button" class="btn btn-warning" data-rating="1">
+            1 - Incorrect Response
+          </button>
+          <button type="button" class="btn btn-info" data-rating="2">
+            2 - Incorrect Response (but close)
+          </button>
+          <button type="button" class="btn btn-success" data-rating="3">
+            3 - Correct Response (with difficulty)
+          </button>
+          <button type="button" class="btn btn-success" data-rating="4">
+            4 - Correct Response (after hesitation)
+          </button>
+          <button type="button" class="btn btn-success" data-rating="5">
+            5 - Perfect Response
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %} {% block javascript %}

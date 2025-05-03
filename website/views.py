@@ -110,7 +110,7 @@ def view_deck(deck_id):
             repetitions=0,
             ease_factor=2.5,
             interval=0,
-            next_review_date=datetime.now()
+            next_review_date=datetime.utcnow()
         )
         #add the flashcard to the database
         db.session.add(new_flashcard)

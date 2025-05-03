@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 from . import db
 from .models import Flashcard, Deck
 import json
+from datetime import datetime, timedelta
 
 actions = Blueprint('actions', __name__)
 
@@ -49,10 +50,13 @@ def delete_deck():
 @actions.route('/study/<int:deck_id>/config', methods=['GET'])
 @login_required
 def study_config(deck_id):
-    #print(f"Deck ID: {deck_id}")
     deck = Deck.query.get_or_404(deck_id)
     deck_length = len(deck.flashcards)
-    return jsonify({"deck_id": deck_id, "deck_length": deck_length})
+    return jsonify({
+        "deck_id": deck_id, 
+        "deck_length": deck_length,
+        "study_mode": deck.study_mode
+    })
 
 #returns a dictionary object that is turned in to json by jsonify
 @actions.route('/study/<int:deck_id>/<int:index>', methods=['GET'])
@@ -69,3 +73,86 @@ def get_deck_flashcards(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     flashcards = [f.to_dict() for f in deck.flashcards]
     return jsonify({'success': True, 'flashcards': flashcards})
+
+@actions.route('/study/<int:deck_id>/rate', methods=['POST'])
+@login_required
+def rate_flashcard(deck_id):
+    data = request.get_json()
+    flashcard_id = data.get('flashcard_id')
+    rating = data.get('rating')
+
+    if not flashcard_id or rating is None:
+        return jsonify({'success': False, 'message': 'Missing flashcard_id or rating'}), 400
+
+    flashcard = Flashcard.query.get(flashcard_id)
+    if not flashcard:
+        return jsonify({'success': False, 'message': 'Flashcard not found'}), 404
+
+    # SM-2 Algorithm
+    if rating >= 3:  # Correct response
+        if flashcard.repetitions == 0:
+            flashcard.interval = 1  # 5 minutes
+        elif flashcard.repetitions == 1:
+            flashcard.interval = 6  # 30 minutes
+        else:
+            flashcard.interval = int(flashcard.interval * flashcard.ease_factor)
+        
+        flashcard.repetitions += 1
+        flashcard.ease_factor = max(1.3, flashcard.ease_factor + (0.1 - (5 - rating) * (0.08 + (5 - rating) * 0.02)))
+    else:  # Incorrect response
+        flashcard.repetitions = 0
+        flashcard.interval = 1  # 5 minutes
+        flashcard.ease_factor = max(1.3, flashcard.ease_factor - 0.2)
+
+    # Update next review date using 5-minute intervals
+    flashcard.next_review_date = datetime.utcnow() + timedelta(minutes=flashcard.interval * 5)
+    db.session.commit()
+
+    return jsonify({
+        'success': True,
+        'card': flashcard.to_dict()
+    })
+
+@actions.route("/study/<int:deck_id>/due", methods=["GET"])
+def get_due_cards(deck_id):
+    """Get all cards due for review in a deck"""
+    try:
+        # Get the deck
+        deck = Deck.query.get(deck_id)
+        if not deck:
+            return jsonify({"success": False, "message": "Deck not found"}), 404
+
+        # Get current time in UTC
+        now = datetime.utcnow()
+
+        # Get all cards that are due for review
+        due_cards = Flashcard.query.filter(
+            Flashcard.deck_id == deck_id,
+            Flashcard.next_review_date <= now
+        ).order_by(Flashcard.next_review_date.asc()).all()
+
+        # If no cards are due, get new cards (cards that have never been reviewed)
+        if not due_cards:
+            due_cards = Flashcard.query.filter(
+                Flashcard.deck_id == deck_id,
+                Flashcard.next_review_date == None
+            ).all()
+
+        # Convert cards to dictionary format
+        cards_data = [{
+            "id": card.id,
+            "front": card.front,
+            "back": card.back,
+            "repetitions": card.repetitions,
+            "ease_factor": card.ease_factor,
+            "interval": card.interval,
+            "next_review_date": card.next_review_date.isoformat() if card.next_review_date else None
+        } for card in due_cards]
+
+        return jsonify({
+            "success": True,
+            "cards": cards_data
+        })
+
+    except Exception as e:
+        return jsonify({"success": False, "message": str(e)}), 500

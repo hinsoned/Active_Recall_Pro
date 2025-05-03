@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
           //Get the values from the form based on the id
           let deckName = document.getElementById("deckName").value.trim();
+          let studyMode = document.querySelector('input[name="study-mode"]:checked').value;
   
           const errorDiv = document.getElementById("deck-error");
           errorDiv.textContent = "";
@@ -64,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
   
-          // Send the data to the back end in a fetch POST request.
+      
           //The deck value was passed in when by views.py when the template was rendered so deck.id will pass the
           //id of the deck to the back end
           console.log("deckName:", JSON.stringify(deckName));//check the data
           fetch("/profile", {
             method: "POST",
-            body: JSON.stringify({ deckName: deckName }),
+            body: JSON.stringify({ deckName: deckName, studyMode: studyMode }),
             headers: {
               "Content-Type": "application/json",
             },
@@ -101,6 +102,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 cardTitle.className = "card-title";
                 cardTitle.textContent = data.deck.name;
   
+                // Create the card text for number of cards
+                let cardText = document.createElement("p");
+                cardText.className = "card-text";
+                cardText.textContent = "Cards: 0";
+  
+                // Create the card text for study mode
+                let modeText = document.createElement("p");
+                modeText.className = "card-text";
+                let modeSmall = document.createElement("small");
+                modeSmall.className = "text-muted";
+                modeSmall.textContent = "Mode: " + data.deck.study_mode.charAt(0).toUpperCase() + data.deck.study_mode.slice(1);
+                modeText.appendChild(modeSmall);
+  
                 // Create the "View Deck" link
                 let viewDeckLink = document.createElement("a");
                 viewDeckLink.href = "/deck/" + data.deck.id;
@@ -123,6 +137,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
                 // Append the elements together
                 cardBodyDiv.appendChild(cardTitle);
+                cardBodyDiv.appendChild(cardText);
+                cardBodyDiv.appendChild(modeText);
                 cardBodyDiv.appendChild(viewDeckLink);
                 cardBodyDiv.appendChild(studyLink);
                 cardBodyDiv.appendChild(deleteButton);
