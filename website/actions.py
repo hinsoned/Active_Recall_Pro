@@ -49,7 +49,7 @@ def delete_deck():
 @actions.route('/study/<int:deck_id>/config', methods=['GET'])
 @login_required
 def study_config(deck_id):
-    print(f"Deck ID: {deck_id}")
+    #print(f"Deck ID: {deck_id}")
     deck = Deck.query.get_or_404(deck_id)
     deck_length = len(deck.flashcards)
     return jsonify({"deck_id": deck_id, "deck_length": deck_length})

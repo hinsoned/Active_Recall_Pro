@@ -34,16 +34,17 @@ def profile():
     if request.method == 'POST':
         data = request.get_json()
         deckName = data.get('deckName')
+        studyMode = data.get('studyMode', 'normal')  # Default to normal if not specified
 
         if not deckName or not deckName.strip():
             return jsonify({'success': False, 'message': 'Deck name is required'}), 400
 
-        #create the deck with the name and the user id
-        new_deck = Deck(name=deckName, user_id=current_user.id)
-        #add the deck do the database
+        #create the deck with the name, user id, and study mode
+        new_deck = Deck(name=deckName, user_id=current_user.id, study_mode=studyMode)
+        #add the deck to the database
         db.session.add(new_deck)
         db.session.commit()
-        return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name}}), 200
+        return jsonify({'success': True, 'deck': {'id': new_deck.id, 'name': new_deck.name, 'study_mode': new_deck.study_mode}}), 200
 
     return render_template("profile.html", user=current_user, decks=decks)
 
@@ -76,7 +77,6 @@ def study(deck_id):
         return jsonify({'success': True}), 200
 
     deck = Deck.query.get_or_404(deck_id)
-    flashcards = [flashcard.to_dict() for flashcard in deck.flashcards]
 
     return render_template("study.html", user=current_user, deck=deck)
 
@@ -87,9 +87,7 @@ def view_deck(deck_id):
     deck = Deck.query.get_or_404(deck_id)
     
     if request.method == 'POST':
-        #This converts the json data to a python dictionary
         data = request.get_json()
-        #Now that we have a dictionary we can get the values we need
         front = data.get('front')
         back = data.get('back')
 
@@ -103,9 +101,18 @@ def view_deck(deck_id):
         except json.JSONDecodeError:
             return jsonify({'success': False, 'message': 'Invalid content format'}), 400
 
-        #create the note with the text and the user id
-        new_flashcard = Flashcard(front=front, back=back, deck_id=deck_id, user_id=current_user.id)
-        #add the note do the database
+        #create the flashcard with the text, user id, and SM-2 defaults
+        new_flashcard = Flashcard(
+            front=front, 
+            back=back, 
+            deck_id=deck_id, 
+            user_id=current_user.id,
+            repetitions=0,
+            ease_factor=2.5,
+            interval=0,
+            next_review_date=datetime.now()
+        )
+        #add the flashcard to the database
         db.session.add(new_flashcard)
         db.session.commit()
 
