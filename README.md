@@ -137,16 +137,16 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create new Flask endpoint
     - [x] Create new HTML and JS files for this Home page
     - [x] Rename all Profile page elements
-23. Allow cards to be moved between decks
-    - Create a "non-deck" for cards that are in no deck but still exist in database
 24. Enable spaced repetition algorithm (SM_2?)https://www.youtube.com/watch?v=dF5rY3xQeAQ&t=237s
     - Create branch
     - Update models with new fields
-25. Create card search funtionality
+25. Allow cards to be moved between decks
+    - Create a "non-deck" for cards that are in no deck but still exist in database
+26. Create card search funtionality
     - Create branch
     - Allow users to search through their cards based on the cards text content.
-26. Create an admin area: All users, decks, stats are visible
-27. Improve Bootstrap UI
+27. Create an admin area: All users, decks, stats are visible
+28. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -158,29 +158,29 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-28. Add light mode (assuming dark mode is the default)
+29. Add light mode (assuming dark mode is the default)
     - [x] add dark mode toggle?
-29. Add heat Map feature
+30. Add heat Map feature
     - [x] create branch
     - [x] add heat_map.html
-30. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+31. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-31. Add social media features
+32. Add social media features
     - create branch
     - Creat public user profile
-32. Add collaborative/public decks
+33. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-33. Add Deck copy feature: Cards will be visible before copy and download.
-34. Add AI/LLM integration
+34. Add Deck copy feature: Cards will be visible before copy and download.
+35. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-35. Host on AWS (or some similar could service)
-36. Add deck branch feature
-37. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-38. Monetize with Google ads (AdSense)?
-39. Create desktop app (99designs??)
-40. Create mobile app (99designs??)
+36. Host on AWS (or some similar could service)
+37. Add deck branch feature
+38. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+39. Monetize with Google ads (AdSense)?
+40. Create desktop app (99designs??)
+41. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 

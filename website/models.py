@@ -24,6 +24,7 @@ class Deck(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     flashcards = db.relationship('Flashcard', backref='deck')
     study_frequency = db.relationship('StudyFrequency', backref='deck')
+    study_mode = db.Column(db.String(20), default='normal')  # 'normal' or 'sm2'
 
 #These id value will be automatically set by the database software when a FC object
 #is created.
@@ -38,13 +39,23 @@ class Flashcard(db.Model):
     deck_id = db.Column(db.Integer, db.ForeignKey('deck.id'))
     study_frequency = db.relationship('StudyFrequency', backref='Flashcard')
 
+    # SM-2 specific fields
+    repetitions = db.Column(db.Integer, default=0)  # n in SM-2
+    ease_factor = db.Column(db.Float, default=2.5)  # EF in SM-2
+    interval = db.Column(db.Integer, default=0)      # I in SM-2
+    next_review_date = db.Column(db.DateTime(timezone=True), default=func.now())  # When to show next
+
     #This converts the flashcard object to a dictionary for transmission.
     def to_dict(self):
         return {
             'id': self.id,
             'front': self.front,
             'back': self.back,
-            'date': self.date.isoformat()  # Convert datetime to ISO format string
+            'date': self.date.isoformat(),  # Convert datetime to ISO format string
+            'repetitions': self.repetitions,
+            'ease_factor': self.ease_factor,
+            'interval': self.interval,
+            'next_review_date': self.next_review_date.isoformat() if self.next_review_date else None
         }
 
     # Return the content directly - Quill will handle conversion on frontend
