@@ -140,4 +140,32 @@ document.addEventListener('DOMContentLoaded', function() {
             deleteFlashcard(flashcardId);
         }
     });
+
+    // Handle study mode changes
+    const studyModeRadios = document.querySelectorAll('input[name="study-mode"]');
+    studyModeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            const deckId = document.getElementById("deck-page").dataset.deckId;
+            const studyMode = this.value;
+            
+            fetch(`/update-study-mode/${deckId}`, {
+                method: "POST",
+                body: JSON.stringify({ study_mode: studyMode }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    displaySuccess("Study mode updated successfully");
+                } else {
+                    displayError(data.message || "Failed to update study mode");
+                }
+            })
+            .catch(error => {
+                displayError("Error updating study mode: " + error);
+            });
+        });
+    });
 });

@@ -3,7 +3,7 @@
 #Imports Blueprint class from flask module. render_template allows you to render 
 #templates from the folder templates. Flask is expecting a folder name templates by
 #default.
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, jsonify
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
 from .models import Flashcard ,Deck, StudyFrequency
@@ -121,7 +121,8 @@ def view_deck(deck_id):
 
     return render_template('view_deck.html', 
         deck_id=deck.id,
-        deck_name=deck.name)
+        deck_name=deck.name,
+        study_mode=deck.study_mode)
 
 # the route for editing a flashcard
 @views.route('/edit-flashcard/<int:flashcard_id>', methods=['GET', 'POST'])

@@ -156,3 +156,21 @@ def get_due_cards(deck_id):
 
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
+
+@actions.route('/update-study-mode/<int:deck_id>', methods=['POST'])
+@login_required
+def update_study_mode(deck_id):
+    deck = Deck.query.get_or_404(deck_id)
+    if deck.user_id != current_user.id:
+        return jsonify({'success': False, 'message': 'Unauthorized'}), 403
+    
+    data = request.get_json()
+    study_mode = data.get('study_mode')
+    
+    if study_mode not in ['normal', 'sm2']:
+        return jsonify({'success': False, 'message': 'Invalid study mode'}), 400
+    
+    deck.study_mode = study_mode
+    db.session.commit()
+    
+    return jsonify({'success': True, 'study_mode': study_mode}), 200
