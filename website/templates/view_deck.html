@@ -1,7 +1,31 @@
 {% extends "base.html" %} {% block title %}{{ deck_name }}{% endblock %} {%
 block content %}
-<div id="deck-page" data-deck-id="{{ deck_id }}">
-  <h1>{{ deck_name }}</h1>
+<div
+  id="deck-page"
+  data-deck-id="{{ deck_id }}"
+  data-study-mode="{{ study_mode }}"
+>
+  <div class="row">
+    <div class="col-md-8 col-sm-12"><h1>{{ deck_name }}</h1></div>
+    <div class="col-md-4 col-sm-12 d-flex justify-content-end align-items-center">
+      <div class="d-inline-block mx-3">
+        <label for="study-mode">Change Study Mode:</label>
+        <div class="btn-group" role="group">
+          <input type="radio" class="btn-check" name="study-mode"
+          id="normal-mode" value="normal" autocomplete="off" {% if study_mode ==
+          'normal' %}checked{% endif %} />
+          <label class="btn btn-outline-primary" for="normal-mode"
+            >Normal</label
+          >
+
+          <input type="radio" class="btn-check" name="study-mode" id="sm2-mode"
+          value="sm2" autocomplete="off" {% if study_mode == 'sm2' %}checked{%
+          endif %} />
+          <label class="btn btn-outline-primary" for="sm2-mode">SM-2</label>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div
     id="flashcard-error"
@@ -23,6 +47,7 @@ block content %}
     <br />
     <div align="center">
       <button type="submit" class="btn btn-primary">Add Card</button>
+
       <a
         href="{{ url_for('views.study', deck_id=deck_id) }}"
         class="btn btn-primary"

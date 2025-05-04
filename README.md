@@ -145,9 +145,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create branch
     - [x] Add link back to deck page from study page
 26. Add Deck mode switch
-    - Create Branch
-    - Update UI
-    - Add endpoint in actions to change db information
+    - [x] Create Branch
+    - [x] Update UI
+    - [x] Add endpoint in actions to change db information
 27. Add social media features
     - create branch
     - Create profile template for other users
