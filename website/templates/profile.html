@@ -6,7 +6,8 @@ parts of it.-->
 <!--This will override the base.html content block-->
 {% block content %}
 <!--This is the form that allows a user to create a new deck.-->
-<h1 align="center">Decks</h1>
+
+<h1 class="text-muted" align="center">{{ current_user.username }}</h2>
 
 <div id="deck-error" class="alert alert-danger" style="display: none"></div>
 <div id="deck-success" class="alert alert-info" style="display: none"></div>
@@ -49,6 +50,7 @@ parts of it.-->
 </form>
 
 <br />
+<h1 align="center">Decks</h1>
 <!--This is where the decks will be displayed.-->
 <div class="container">
   <div class="row" id="deck-container">

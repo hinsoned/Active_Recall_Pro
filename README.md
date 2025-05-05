@@ -157,7 +157,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create profile template for other users (view_profile)
     - [x] update route
     - [x] Generate deck List (no study or delete or view options yet)
-    - Make username visible on Home and on all profiles
+    - [x] Make username visible on Home and on all profiles
     - [x] Add username to models
     - [x] ensure that attempting to view your own view_profile page reroutes users to profile
 29. Add ability to view other peoples decks
