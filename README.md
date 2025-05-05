@@ -148,15 +148,27 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Create Branch
     - [x] Update UI
     - [x] Add endpoint in actions to change db information
-27. Add social media features
+27. Add username to signup
+    - Create branch
+    - Update sign_up.html
+    - Update JS handling of signup
+28. Add ability to view other user's profiles
     - create branch
-    - Create profile template for other users
+    - Create profile template for other users (view_profile)
+    - create new route
+    - Generate deck List (no study or delete or view options yet)
+    - Make username visible
+    - Add username to models
+    - ensure that attempting to view your own view_profile page reroutes users to profile
+29. Add ability to view other peoples decks
+    - create branch
+    - Add view deck button to view_profile page
     - Add links from deck view to deck owner profile (include for self)
-28. Create card search funtionality
+30. Create card search funtionality
     - Create branch
     - Allow users to search through their cards based on the cards text content.
-29. Create an admin area: All users, decks, stats are visible
-30. Improve Bootstrap UI
+31. Create an admin area: All users, decks, stats are visible
+32. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -168,26 +180,26 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-31. Add light mode (assuming dark mode is the default)
+33. Add light mode (assuming dark mode is the default)
     - [x] add dark mode toggle?
-32. Add heat Map feature
+34. Add heat Map feature
     - [x] create branch
     - [x] add heat_map.html
-33. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+35. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-34. Add collaborative/public decks
+36. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-35. Add Deck copy feature: Cards will be visible before copy and download.
-36. Add AI/LLM integration
+37. Add Deck copy feature: Cards will be visible before copy and download.
+38. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-37. Host on AWS (or some similar could service)
-38. Add deck branch feature
-39. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-40. Monetize with Google ads (AdSense)?
-41. Create desktop app (99designs??)
-42. Create mobile app (99designs??)
+39. Host on AWS (or some similar could service)
+40. Add deck branch feature
+41. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+42. Monetize with Google ads (AdSense)?
+43. Create desktop app (99designs??)
+44. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 

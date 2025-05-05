@@ -50,6 +50,7 @@ def sign_up():
     if request.method == 'POST':
         #assigns values from form to variables
         email = request.form.get('email')
+        username = request.form.get('username')
         first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
@@ -58,9 +59,15 @@ def sign_up():
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists.', category='error')
+        #check if username exists already
+        user_by_username = User.query.filter_by(username=username).first()
+        if user_by_username:
+            flash('Username already exists.', category='error')
         #These if statements check the inputs for certain parameters
         elif len(email) < 4:
             flash('Email must be greater than three characters.', category='error')
+        elif len(username) < 3:
+            flash('Username must be greater than two characters.', category='error')
         elif len(first_name) < 2:
             flash('First name must be greater than one character.', category='error')
         elif password1 != password2:
@@ -70,7 +77,7 @@ def sign_up():
         else:
             #Add the user to the database. Takes values in variables above and 
             #passes them to a user object in database.
-            new_user = User(email= email, first_name=first_name, password=generate_password_hash(password1, method= 'pbkdf2:sha256'))
+            new_user = User(email=email, username=username, first_name=first_name, password=generate_password_hash(password1, method='pbkdf2:sha256'))
             db.session.add(new_user)
             db.session.commit()
             flash('Account created!', category='success')
