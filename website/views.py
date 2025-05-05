@@ -20,7 +20,8 @@ views = Blueprint('views', __name__)
 @views.route('/', methods=['GET'])
 def home():
     if current_user.is_authenticated:
-        return render_template("home.html", user=current_user)
+        users = User.query.all()
+        return render_template("home.html", user=current_user, users=users)
     else:
         return render_template("landing_page.html")
 

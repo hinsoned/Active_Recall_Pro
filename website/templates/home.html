@@ -1,6 +1,24 @@
-{% extends "base.html" %}
-{% block title %}Active Recall Pro{% endblock %}
+{% extends "base.html" %} {% block title %}Active Recall Pro{% endblock %} {%
+block content %}
+<div class="row mb-4">
+  <div class="col-12">
+    <h1>Welcome {{ current_user.username }}</h1>
+  </div>
+</div>
 
-{% block content %}
-<h1>Welcome {{ current_user.username }}</h1>
+<div class="row mb-4">
+  <div class="col-12">
+    <h2>Users</h2>
+    <div class="list-group">
+      {% for user in users %} {% if user.id != current_user.id %}
+      <a
+        href="{{ url_for('views.view_profile', user_id=user.id) }}"
+        class="list-group-item list-group-item-action"
+      >
+        {{ user.username }}
+      </a>
+      {% endif %} {% endfor %}
+    </div>
+  </div>
+</div>
 {% endblock %}

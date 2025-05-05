@@ -40,8 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to convert Delta to HTML
     function deltaToHtml(delta) {
+        // If delta is already a string (JSON), parse it first
+        const deltaObj = typeof delta === 'string' ? JSON.parse(delta) : delta;
         const tempQuill = new Quill(document.createElement('div'));
-        tempQuill.setContents(JSON.parse(delta));
+        tempQuill.setContents(deltaObj);
         return tempQuill.root.innerHTML;
     }
 

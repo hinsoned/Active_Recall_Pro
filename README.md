@@ -163,8 +163,8 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add username to model
     - [x] ensure that attempting to view your own view_profile page reroutes users to profile
 29. Add ability to view other peoples decks
-    - create branch
-    - Add a user list with links to profile to home.html
+    - [x] create branch
+    - Add a user list with links to profile on home.html
     - Add deck list to view_profile page
     - Add "view deck" button to view_profile page
     - Add links from deck view to deck owner profile (include for self)
