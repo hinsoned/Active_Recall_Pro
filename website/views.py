@@ -3,10 +3,10 @@
 #Imports Blueprint class from flask module. render_template allows you to render 
 #templates from the folder templates. Flask is expecting a folder name templates by
 #default.
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, jsonify, redirect, url_for
 # We use current-user to tell if user is logged in or anonymous
 from flask_login import login_required, current_user
-from .models import Flashcard ,Deck, StudyFrequency
+from .models import Flashcard ,Deck, StudyFrequency, User
 from . import db
 import json
 from datetime import datetime
@@ -85,6 +85,15 @@ def study(deck_id):
 @login_required
 def view_deck(deck_id):
     deck = Deck.query.get_or_404(deck_id)
+    print(f"Deck data: {deck.name}, User: {deck.user.username}, Flashcards: {len(deck.flashcards)}")
+    
+    # If the user is not the owner of the deck, redirect to public view
+    if deck.user_id != current_user.id:
+        return render_template('view_public_deck.html',
+            deck_id=deck.id,
+            deck_name=deck.name,
+            study_mode=deck.study_mode,
+            deck=deck)
     
     if request.method == 'POST':
         data = request.get_json()
@@ -122,7 +131,8 @@ def view_deck(deck_id):
     return render_template('view_deck.html', 
         deck_id=deck.id,
         deck_name=deck.name,
-        study_mode=deck.study_mode)
+        study_mode=deck.study_mode,
+        deck=deck)
 
 # the route for editing a flashcard
 @views.route('/edit-flashcard/<int:flashcard_id>', methods=['GET', 'POST'])
@@ -169,3 +179,15 @@ def heat_map(user_id):
             heat_dict[date] += freq
 
     return render_template("heat_map.html", heat_dict=heat_dict)
+
+@views.route('/profile/<int:user_id>', methods=['GET'])
+@login_required
+def view_profile(user_id):
+    # Get the user whose profile we're viewing
+    viewed_user = User.query.get_or_404(user_id)
+    
+    # Don't allow users to view their own profile through this route
+    if viewed_user.id == current_user.id:
+        return redirect(url_for('views.profile'))
+    
+    return render_template('view_profile.html', viewed_user=viewed_user)
