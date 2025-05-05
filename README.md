@@ -149,17 +149,19 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Update UI
     - [x] Add endpoint in actions to change db information
 27. Add username to signup
-    - Create branch
-    - Update sign_up.html
-    - Update JS handling of signup
+    - [x] Update sign_up.html
+    - [x] Update models.py
+    - [x] Update Auth endpoint
 28. Add ability to view other user's profiles
-    - create branch
-    - Create profile template for other users (view_profile)
-    - create new route
-    - Generate deck List (no study or delete or view options yet)
-    - Make username visible
-    - Add username to models
-    - ensure that attempting to view your own view_profile page reroutes users to profile
+    - [x] create branch
+    - [x] Create profile template for other users (view_profile)
+    - [x] update route
+    - [x] Generate deck List (no study or delete or view options yet)
+    - [x] Make username visible on Home and on all profiles
+    - [x] Make email visible on profile
+    - [x] Remove names from view_profile.html
+    - [x] Add username to model
+    - [x] ensure that attempting to view your own view_profile page reroutes users to profile
 29. Add ability to view other peoples decks
     - create branch
     - Add view deck button to view_profile page

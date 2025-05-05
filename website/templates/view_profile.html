@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block title %}{{ viewed_user.username }}'s
+Profile{% endblock %} {% block content %}
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <a href="{{ url_for('views.profile') }}" class="btn btn-secondary mb-3">
+        <i class="bi bi-arrow-left"></i> Back to My Profile
+      </a>
+      <h1>{{ viewed_user.username }}'s Profile</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Decks</h2>
+      {% if viewed_user.decks %}
+      <div class="row">
+        {% for deck in viewed_user.decks %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">{{ deck.name }}</h5>
+              <p class="card-text">
+                <small class="text-muted">
+                  Created: {{ deck.date.strftime('%Y-%m-%d') }}
+                </small>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">
+                  Study Mode: {{ deck.study_mode|title }}
+                </small>
+              </p>
+            </div>
+            <div class="card-footer">
+              <a
+                href="{{ url_for('views.view_deck', deck_id=deck.id) }}"
+                class="btn btn-primary"
+              >
+                View Deck
+              </a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="alert alert-info">
+        This user hasn't created any decks yet.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

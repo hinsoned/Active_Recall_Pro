@@ -5,12 +5,18 @@ parts of it.-->
 
 <!--This will override the base.html content block-->
 {% block content %}
-<!--This is the form that allows a user to create a new deck.-->
-<h1 align="center">Decks</h1>
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="text-muted">{{ current_user.username }}</h1>
+  </div>
+  <div class="col-md-4 d-flex align-items-end justify-content-end">
+    <h5 class="text-muted">email: {{ current_user.email }}</h5>
+  </div>
+</div>
 
 <div id="deck-error" class="alert alert-danger" style="display: none"></div>
 <div id="deck-success" class="alert alert-info" style="display: none"></div>
-
+<!--This is the form that allows a user to create a new deck.-->
 <form id="create-deck">
   <label for="deckName">Deck Name</label>
   <textarea name="deckName" id="deckName" class="form-control"></textarea>
@@ -49,6 +55,7 @@ parts of it.-->
 </form>
 
 <br />
+<h1 align="center">Decks</h1>
 <!--This is where the decks will be displayed.-->
 <div class="container">
   <div class="row" id="deck-container">
