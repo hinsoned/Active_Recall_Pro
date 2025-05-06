@@ -41,6 +41,48 @@
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
+    <!-- Global Modal Container -->
+    <div
+      class="modal"
+      id="deleteDeckModal"
+      tabindex="-1"
+      aria-labelledby="deleteDeckModalLabel"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteDeckModalLabel">
+              Confirm Deck Deletion
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this deck? This action cannot be
+            undone.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteDeck">
+              Delete Deck
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <header
       class="navbar navbar-expand-lg bg-secondary"
       style="margin-bottom: 20px"
@@ -299,19 +341,20 @@
     </div>
 
     <!--This loads in bootstrap-->
+    <!--
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"
     ></script>
-    <!--This is a javascript library of poppers like dropdowns, tips, etc. Most Bootstrap 
-    poppers use this.-->
+    This is a javascript library of poppers like dropdowns, tips, etc. Most Bootstrap 
+    poppers use this.
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
       crossorigin="anonymous"
     ></script>
-
+  -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
