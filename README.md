@@ -164,15 +164,30 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] ensure that attempting to view your own view_profile page reroutes users to profile
 29. Add ability to view other peoples decks
     - [x] create branch
-    - Add a user list with links to profile on home.html
-    - Add deck list to view_profile page
-    - Add "view deck" button to view_profile page
-    - Add links from deck view to deck owner profile (include for self)
-30. Create card search funtionality
+    - [x] Add a user list with links to profile on home.html
+    - [x] Add deck list to view_profile page
+    - [x] Add "view deck" button to view_profile page
+    - [x] Add links from deck view to deck owner profile
+    - Add card count to view_public_deck pages
+30. Add card movement between decks
+    - Create branch
+    - Add deck options drop down to view_deck page
+    - Update view_deck.js to handle dropdown
+    - Create new moveCard route in actions.py
+31. Add deck copying
+    - Create branch
+    - Add copy button to each deck on view_public_deck page
+    - Handle new button in view_public_deck.js
+    - Add copy deck route to actions.py
+32. Add modal warning on deck delete
+33. Add User avatar to profile creation
+34. Add user stats to home page
+35. Add deck stats to home page
+36. Create card search funtionality
     - Create branch
     - Allow users to search through their cards based on the cards text content.
-31. Create an admin area: All users, decks, stats are visible
-32. Improve Bootstrap UI
+37. Create an admin area: All users, decks, stats are visible
+38. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -184,26 +199,26 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-33. Add light mode (assuming dark mode is the default)
+39. Add light mode (assuming dark mode is the default)
     - [x] add dark mode toggle?
-34. Add heat Map feature
+40. Add heat Map feature
     - [x] create branch
     - [x] add heat_map.html
-35. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+41. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-36. Add collaborative/public decks
+42. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-37. Add Deck copy feature: Cards will be visible before copy and download.
-38. Add AI/LLM integration
+43. Add Deck copy feature: Cards will be visible before copy and download.
+44. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-39. Host on AWS (or some similar could service)
-40. Add deck branch feature
-41. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-42. Monetize with Google ads (AdSense)?
-43. Create desktop app (99designs??)
-44. Create mobile app (99designs??)
+45. Host on AWS (or some similar could service)
+46. Add deck branch feature
+47. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+48. Monetize with Google ads (AdSense)?
+49. Create desktop app (99designs??)
+50. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 

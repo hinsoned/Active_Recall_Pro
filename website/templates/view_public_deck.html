@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %}{{ deck_name }}{% endblock %} {%
+block content %}
+<div
+  id="deck-page"
+  data-deck-id="{{ deck_id }}"
+  data-study-mode="{{ study_mode }}"
+>
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <h1>{{ deck_name }}</h1>
+      <p>
+        Created by:
+        <a href="{{ url_for('views.view_profile', user_id=deck.user.id) }}"
+          >{{ deck.user.username }}</a
+        >
+      </p>
+    </div>
+    <div
+      class="col-md-4 col-sm-12 d-flex justify-content-end align-items-center"
+    >
+      <div class="d-inline-block mx-3">
+        <label for="study-mode">Study Mode:</label>
+        <div class="btn-group" role="group">
+          <input type="radio" class="btn-check" name="study-mode"
+          id="normal-mode" value="normal" autocomplete="off" {% if study_mode ==
+          'normal' %}checked{% endif %} disabled />
+          <label class="btn btn-outline-primary" for="normal-mode"
+            >Normal</label
+          >
+
+          <input type="radio" class="btn-check" name="study-mode" id="sm2-mode"
+          value="sm2" autocomplete="off" {% if study_mode == 'sm2' %}checked{%
+          endif %} disabled />
+          <label class="btn btn-outline-primary" for="sm2-mode">SM-2</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="flashcard-error"
+    class="alert alert-danger"
+    style="display: none"
+  ></div>
+  <div
+    id="flashcard-success"
+    class="alert alert-info"
+    style="display: none"
+  ></div>
+
+  <div class="container">
+    <div class="row" id="flashcard-container">
+      <!-- Flashcards will be populated by JavaScript -->
+    </div>
+  </div>
+</div>
+{% endblock %} {% block javascript %}
+<script src="{{ url_for('static', filename='js/view_public_deck.js') }}"></script>
+{% endblock %}

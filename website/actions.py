@@ -66,13 +66,15 @@ def get_flashcard(deck_id, index):
     flashcard = deck.flashcards[index].to_dict()
     return jsonify({'success': True, 'flashcard': flashcard}), 200
 
-# New endpoint to fetch all flashcards for a deck
-@actions.route('/deck/<int:deck_id>/flashcards', methods=['GET'])
-@login_required
+@actions.route('/api/deck/<int:deck_id>/flashcards', methods=['GET'])
 def get_deck_flashcards(deck_id):
-    deck = Deck.query.get_or_404(deck_id)
-    flashcards = [f.to_dict() for f in deck.flashcards]
-    return jsonify({'success': True, 'flashcards': flashcards})
+    #deck = Deck.query.get_or_404(deck_id)
+    flashcards = Flashcard.query.filter_by(deck_id=deck_id).all()
+    
+    return jsonify({
+        'success': True,
+        'flashcards': [flashcard.to_dict() for flashcard in flashcards]
+    })
 
 @actions.route('/study/<int:deck_id>/rate', methods=['POST'])
 @login_required

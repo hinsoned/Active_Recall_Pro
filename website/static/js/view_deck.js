@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fetch initial flashcards
     const deckId = document.getElementById("deck-page").dataset.deckId;
-    fetch(`/deck/${deckId}/flashcards`)
+    fetch(`/api/deck/${deckId}/flashcards`)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
