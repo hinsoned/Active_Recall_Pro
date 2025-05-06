@@ -176,3 +176,43 @@ def update_study_mode(deck_id):
     db.session.commit()
     
     return jsonify({'success': True, 'study_mode': study_mode}), 200
+
+@actions.route('/api/user/decks', methods=['POST'])
+@login_required
+def get_user_decks():
+    data = request.get_json()
+    current_deck_id = data.get('current_deck_id')
+    
+    query = Deck.query.filter_by(user_id=current_user.id)
+    if current_deck_id:
+        query = query.filter(Deck.id != current_deck_id)
+    
+    decks = query.all()
+    return jsonify({
+        'success': True,
+        'decks': [{'id': deck.id, 'name': deck.name} for deck in decks]
+    })
+
+@actions.route('/api/move-card', methods=['POST'])
+@login_required
+def move_card():
+    data = request.get_json()
+    flashcard_id = data.get('flashcardId')
+    target_deck_id = data.get('targetDeckId')
+    
+    if not flashcard_id or not target_deck_id:
+        return jsonify({'success': False, 'message': 'Missing flashcard ID or target deck ID'}), 400
+    
+    flashcard = Flashcard.query.get(flashcard_id)
+    target_deck = Deck.query.get(target_deck_id)
+    
+    if not flashcard or not target_deck:
+        return jsonify({'success': False, 'message': 'Flashcard or deck not found'}), 404
+    
+    if flashcard.user_id != current_user.id or target_deck.user_id != current_user.id:
+        return jsonify({'success': False, 'message': 'Unauthorized'}), 403
+    
+    flashcard.deck_id = target_deck_id
+    db.session.commit()
+    
+    return jsonify({'success': True})
