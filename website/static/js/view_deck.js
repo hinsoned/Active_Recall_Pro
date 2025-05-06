@@ -57,16 +57,96 @@ document.addEventListener('DOMContentLoaded', function() {
         flashcardElement.id = `flashcard-${flashcard.id}`;
         flashcardElement.innerHTML = `
             <div class="col-md-10 col-sm-8">
-                    <h5>${frontHtml}</h5>
-                    <p>${backHtml}</p>
+                <h5>${frontHtml}</h5>
+                <p>${backHtml}</p>
             </div>
             <div class="col-md-2 col-sm-4">
-            <a href="/edit-flashcard/${flashcard.id}" class="btn btn-primary">Edit</a>
-            <button class="btn btn-danger delete-flashcard" data-flashcard-id="${flashcard.id}">Delete</button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="moveDropdown${flashcard.id}" data-bs-toggle="dropdown" aria-expanded="false">
+                        Move to Deck
+                    </button>
+                    <ul class="dropdown-menu" id="deckList${flashcard.id}" aria-labelledby="moveDropdown${flashcard.id}">
+                        <li><a class="dropdown-item" href="#">Loading decks...</a></li>
+                    </ul>
+                </div>
+                <a href="/edit-flashcard/${flashcard.id}" class="btn btn-primary">Edit</a>
+                <button class="btn btn-danger delete-flashcard" data-flashcard-id="${flashcard.id}">Delete</button>
             </div>
-            
         `;
+
+        // Load decks for this card's dropdown
+        loadDecksForCard(flashcard.id);
+        
         return flashcardElement;
+    }
+
+    // Function to load decks for a card's dropdown
+    function loadDecksForCard(flashcardId) {
+        const deckId = document.getElementById('deck-page').dataset.deckId;
+        fetch('/api/user/decks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                current_deck_id: deckId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const deckList = document.getElementById(`deckList${flashcardId}`);
+                deckList.innerHTML = ''; // Clear loading message
+                
+                if (data.decks.length === 0) {
+                    deckList.innerHTML = '<li><a class="dropdown-item" href="#">No other decks available</a></li>';
+                    return;
+                }
+                
+                data.decks.forEach(deck => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a class="dropdown-item" href="#" data-deck-id="${deck.id}">${deck.name}</a>`;
+                    li.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        moveCard(flashcardId, deck.id);
+                    });
+                    deckList.appendChild(li);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error loading decks:', error);
+            const deckList = document.getElementById(`deckList${flashcardId}`);
+            deckList.innerHTML = '<li><a class="dropdown-item" href="#">Error loading decks</a></li>';
+        });
+    }
+
+    // Function to move a card to a different deck
+    function moveCard(flashcardId, targetDeckId) {
+        fetch('/api/move-card', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                flashcardId: flashcardId,
+                targetDeckId: targetDeckId
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove the card from the current view
+                document.getElementById(`flashcard-${flashcardId}`).remove();
+                displaySuccess('Card moved successfully');
+            } else {
+                displayError(data.message || 'Failed to move card');
+            }
+        })
+        .catch(error => {
+            console.error('Error moving card:', error);
+            displayError('Error moving card');
+        });
     }
 
     // Initialize Quill editors

@@ -170,19 +170,27 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add links from deck view to deck owner profile
     - [x] Add card count to view_public_deck pages
 30. Add card movement between decks
-    - Create branch
-    - Add deck options drop down to view_deck page
-    - Update view_deck.js to handle dropdown
-    - Create new moveCard route in actions.py
+    - [x] Create branch
+    - [x] Add deck options drop down to view_deck page
+    - [x] Update view_deck.js to handle dropdown
+    - [x] Create new moveCard route in actions.py
 31. Add deck copying
     - Create branch
     - Add copy button to each deck on view_public_deck page
     - Handle new button in view_public_deck.js
     - Add copy deck route to actions.py
 32. Add modal warning on deck delete
+    - Create branch
+    - Check for needed imports
+    - Add modal
 33. Add User avatar to profile creation
+    - Create branch
+    - Update model
+    - Select generic avatar
+    - update Profile page
+    - update view_profile page
 34. Add user stats to home page
-35. Add deck stats to home page
+35. Add deck list/stats to home page
 36. Create card search funtionality
     - Create branch
     - Allow users to search through their cards based on the cards text content.
