@@ -174,15 +174,15 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add deck options drop down to view_deck page
     - [x] Update view_deck.js to handle dropdown
     - [x] Create new moveCard route in actions.py
-31. Add deck copying
+31. Add modal warning on deck delete
+    - Create branch
+    - Check for needed imports
+    - Add modal
+32. Add deck copying
     - Create branch
     - Add copy button to each deck on view_public_deck page
     - Handle new button in view_public_deck.js
     - Add copy deck route to actions.py
-32. Add modal warning on deck delete
-    - Create branch
-    - Check for needed imports
-    - Add modal
 33. Add User avatar to profile creation
     - Create branch
     - Update model
