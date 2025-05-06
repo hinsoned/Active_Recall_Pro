@@ -16,6 +16,7 @@ parts of it.-->
 
 <div id="deck-error" class="alert alert-danger" style="display: none"></div>
 <div id="deck-success" class="alert alert-info" style="display: none"></div>
+
 <!--This is the form that allows a user to create a new deck.-->
 <form id="create-deck">
   <label for="deckName">Deck Name</label>
@@ -86,7 +87,7 @@ parts of it.-->
     </div>
     {% endfor%}
   </div>
-  {% endblock %} {% block javascript %}
-  <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
-  {% endblock %}
 </div>
+{% endblock %} {% block javascript %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

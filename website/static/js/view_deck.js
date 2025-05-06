@@ -1,5 +1,4 @@
 //view_deck.js
-
 document.addEventListener('DOMContentLoaded', function() {
     const flashcardContainer = document.getElementById("flashcard-container");
     
