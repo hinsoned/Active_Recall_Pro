@@ -168,7 +168,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add deck list to view_profile page
     - [x] Add "view deck" button to view_profile page
     - [x] Add links from deck view to deck owner profile
-    - Add card count to view_public_deck pages
+    - [x] Add card count to view_public_deck pages
 30. Add card movement between decks
     - Create branch
     - Add deck options drop down to view_deck page
