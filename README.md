@@ -194,7 +194,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add total decks
     - [x] Hover added to home page list
 35. Deck Heritage System
-    - Create branch
+    - [x] Create branch
     - Dev page to see Deck heritage working
 36. Re-enable heatmap
     - Create branch

@@ -12,15 +12,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the quadratic formula?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"x = (-b ± √(b² - 4ac)) / 2a\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"x = (-b ± √(b² - 4ac)) / 2a\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the slope-intercept form of a line?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"y = mx + b\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"y = mx + b\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the Pythagorean theorem?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"a² + b² = c²\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"a² + b² = c²\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         }
                     ]
                 },
@@ -30,15 +36,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the derivative of x²?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"2x\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"2x\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the integral of 1/x?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"ln|x| + C\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"ln|x| + C\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the chain rule?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"d/dx[f(g(x))] = f'(g(x)) * g'(x)\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"d/dx[f(g(x))] = f'(g(x)) * g'(x)\\n\"}]}",
+                            "original_creator_id": 1,
+                            "heritage_chain": [1]
                         }
                     ]
                 }
@@ -56,15 +68,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the atomic number of Carbon?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"6\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"6\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the chemical formula for methane?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"CH4\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"CH4\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is Avogadro's number?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"6.022 × 10²³\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"6.022 × 10²³\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         }
                     ]
                 },
@@ -74,15 +92,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is Newton's First Law?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"An object in motion stays in motion unless acted upon by an external force\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"An object in motion stays in motion unless acted upon by an external force\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the formula for kinetic energy?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"KE = ½mv²\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"KE = ½mv²\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the speed of light?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"299,792,458 m/s\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"299,792,458 m/s\\n\"}]}",
+                            "original_creator_id": 2,
+                            "heritage_chain": [2]
                         }
                     ]
                 }
@@ -100,15 +124,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What was the first known civilization?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Sumerian civilization in Mesopotamia\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Sumerian civilization in Mesopotamia\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What was the Code of Hammurabi?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"One of the earliest known legal codes, created in ancient Babylon\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"One of the earliest known legal codes, created in ancient Babylon\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What was the Rosetta Stone?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A stone slab that helped decipher Egyptian hieroglyphs\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A stone slab that helped decipher Egyptian hieroglyphs\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         }
                     ]
                 },
@@ -118,15 +148,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"When did World War I begin and end?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"1914-1918\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"1914-1918\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What was the main cause of World War II?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"The Treaty of Versailles and rise of fascism\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"The Treaty of Versailles and rise of fascism\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What was the Cold War?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A period of geopolitical tension between the US and USSR (1947-1991)\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A period of geopolitical tension between the US and USSR (1947-1991)\\n\"}]}",
+                            "original_creator_id": 3,
+                            "heritage_chain": [3]
                         }
                     ]
                 }
@@ -144,15 +180,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"How do you say 'hello' in Spanish?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Hola\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Hola\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is 'gracias' in English?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Thank you\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Thank you\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"How do you say 'good morning' in Spanish?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Buenos días\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Buenos días\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         }
                     ]
                 },
@@ -162,15 +204,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"How do you say 'hello' in French?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Bonjour\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Bonjour\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is 'merci' in English?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Thank you\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Thank you\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"How do you say 'good evening' in French?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Bonsoir\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Bonsoir\\n\"}]}",
+                            "original_creator_id": 4,
+                            "heritage_chain": [4]
                         }
                     ]
                 }
@@ -188,15 +236,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the powerhouse of the cell?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Mitochondria\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Mitochondria\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the function of ribosomes?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Protein synthesis\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Protein synthesis\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the cell membrane made of?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Phospholipid bilayer\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Phospholipid bilayer\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         }
                     ]
                 },
@@ -206,15 +260,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is DNA?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Deoxyribonucleic acid, the molecule that carries genetic information\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Deoxyribonucleic acid, the molecule that carries genetic information\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a gene?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A segment of DNA that codes for a specific protein\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A segment of DNA that codes for a specific protein\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is RNA?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Ribonucleic acid, involved in protein synthesis\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Ribonucleic acid, involved in protein synthesis\\n\"}]}",
+                            "original_creator_id": 5,
+                            "heritage_chain": [5]
                         }
                     ]
                 }
@@ -232,15 +292,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who painted the Mona Lisa?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Leonardo da Vinci\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Leonardo da Vinci\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What art movement was Picasso associated with?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Cubism\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Cubism\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the most famous work of Vincent van Gogh?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Starry Night\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Starry Night\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         }
                     ]
                 },
@@ -250,15 +316,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What are the primary colors?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Red, blue, and yellow\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Red, blue, and yellow\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a complementary color?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Colors opposite each other on the color wheel\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Colors opposite each other on the color wheel\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the color wheel?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A circular diagram of colors showing their relationships\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A circular diagram of colors showing their relationships\\n\"}]}",
+                            "original_creator_id": 6,
+                            "heritage_chain": [6]
                         }
                     ]
                 }
@@ -276,15 +348,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"How many notes are in a major scale?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"7\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"7\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a chord?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Three or more notes played simultaneously\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Three or more notes played simultaneously\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the time signature?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A musical notation indicating the number of beats in each measure\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A musical notation indicating the number of beats in each measure\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         }
                     ]
                 },
@@ -294,15 +372,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who composed the Moonlight Sonata?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Ludwig van Beethoven\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Ludwig van Beethoven\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who composed The Four Seasons?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Antonio Vivaldi\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Antonio Vivaldi\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who composed The Magic Flute?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Wolfgang Amadeus Mozart\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Wolfgang Amadeus Mozart\\n\"}]}",
+                            "original_creator_id": 7,
+                            "heritage_chain": [7]
                         }
                     ]
                 }
@@ -320,15 +404,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the capital of Japan?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Tokyo\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Tokyo\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the capital of Brazil?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Brasília\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Brasília\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the capital of Australia?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Canberra\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Canberra\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         }
                     ]
                 },
@@ -338,15 +428,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the longest river in the world?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"The Nile\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"The Nile\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the highest mountain in the world?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Mount Everest\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Mount Everest\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is the largest desert in the world?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"The Sahara\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"The Sahara\\n\"}]}",
+                            "original_creator_id": 8,
+                            "heritage_chain": [8]
                         }
                     ]
                 }
@@ -364,15 +460,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a list in Python?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"An ordered, mutable collection of items\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"An ordered, mutable collection of items\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a dictionary in Python?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"An unordered collection of key-value pairs\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"An unordered collection of key-value pairs\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is a tuple in Python?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"An ordered, immutable collection of items\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"An ordered, immutable collection of items\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         }
                     ]
                 },
@@ -382,15 +484,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"What does HTML stand for?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"HyperText Markup Language\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"HyperText Markup Language\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What does CSS stand for?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Cascading Style Sheets\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Cascading Style Sheets\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is JavaScript?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"A programming language used for web development\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"A programming language used for web development\\n\"}]}",
+                            "original_creator_id": 9,
+                            "heritage_chain": [9]
                         }
                     ]
                 }
@@ -408,15 +516,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who is considered the father of Western philosophy?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Socrates\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Socrates\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is Plato's most famous work?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"The Republic\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"The Republic\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is Aristotle's concept of the 'Golden Mean'?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"The desirable middle between two extremes\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"The desirable middle between two extremes\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         }
                     ]
                 },
@@ -426,15 +540,21 @@
                     "flashcards": [
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who wrote 'Meditations on First Philosophy'?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"René Descartes\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"René Descartes\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"What is Kant's 'Categorical Imperative'?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Act only according to that maxim whereby you can at the same time will that it should become a universal law\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Act only according to that maxim whereby you can at the same time will that it should become a universal law\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         },
                         {
                             "front": "{\"ops\":[{\"insert\":\"Who is known for the concept of 'Übermensch'?\\n\"}]}",
-                            "back": "{\"ops\":[{\"insert\":\"Friedrich Nietzsche\\n\"}]}"
+                            "back": "{\"ops\":[{\"insert\":\"Friedrich Nietzsche\\n\"}]}",
+                            "original_creator_id": 10,
+                            "heritage_chain": [10]
                         }
                     ]
                 }

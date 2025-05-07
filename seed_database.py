@@ -8,9 +8,9 @@ def seed_database():
     app = create_app()
     
     with app.app_context():
-        # Clear existing data (optional - be careful with this in production!)
-        #db.drop_all()
-        #db.create_all()
+        # Clear existing data
+        db.drop_all()
+        db.create_all()
         
         # Load the seed data
         with open('seed_data.json', 'r') as f:
@@ -44,7 +44,9 @@ def seed_database():
                         front=card_data['front'],
                         back=card_data['back'],
                         user_id=user.id,
-                        deck_id=deck.id
+                        deck_id=deck.id,
+                        original_creator_id=card_data.get('original_creator_id', user.id),
+                        heritage_chain=card_data.get('heritage_chain', [user.id])
                     )
                     db.session.add(flashcard)
         
