@@ -15,7 +15,9 @@ block content %}
         href="{{ url_for('views.view_profile', user_id=user.id) }}"
         class="list-group-item list-group-item-action"
       >
-        {{ user.username }}
+        <div class="fw-bold">{{ user.username }}</div>
+        <div class="text-muted">Total Decks: {{ user.decks|length }}</div>
+        <div class="text-muted">Total Cards: {{ user.flashcards|length }}</div>
       </a>
       {% endif %} {% endfor %}
     </div>

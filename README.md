@@ -185,10 +185,9 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add copy deck route to actions.py
     - [x] Add link to profile in success message
 33. Add user stats to home page
-    - Create Branch
-    - Add total cards
-    - Add total decks
-    - Add total studies in last 30 days
+    - [x] Create Branch
+    - [x] Add total cards
+    - [x] Add total decks
 34. Add user stats to profile page
     - Create branch
     - Add total cards
