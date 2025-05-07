@@ -184,8 +184,17 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Handle new button in view_public_deck.js
     - Add copy deck route to actions.py
 33. Add user stats to home page
+    - Create Branch
+    - Add total cards
+    - Add total decks
+    - Add total studies in last 30 days
 34. Add user stats to profile page
+    - Create branch
+    - Add total cards
+    - Add total decks
+    - Add total studies in the last 30 days
 35. Deck Heritage System
+    - Create branch
 36. Dev page to see Deck heritage working
 37. Add deck list/stats to home page
 38. Create card search funtionality
