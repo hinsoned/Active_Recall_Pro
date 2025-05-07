@@ -17,6 +17,26 @@ class User(db.Model, UserMixin):
     decks = db.relationship('Deck', backref='user')
     study_frequency = db.relationship('StudyFrequency', backref='user')
 
+    def get_recent_credits(self):
+        """Calculate total credits earned in the last 30 days."""
+        from datetime import datetime, timedelta
+        from sqlalchemy import func
+        
+        thirty_days_ago = datetime.utcnow() - timedelta(days=30)
+        
+        # Get all study credits from the last 30 days
+        recent_credits = StudyCredit.query.filter(
+            StudyCredit.created_at >= thirty_days_ago
+        ).all()
+        
+        total_credits = 0
+        for credit in recent_credits:
+            # Get the credits for this user from the chain_credits JSON
+            user_credits = credit.chain_credits.get(str(self.id), 0)
+            total_credits += user_credits
+            
+        return round(total_credits, 2)  # Round to 2 decimal places
+
 #This class defines the Deck model for the database
 class Deck(db.Model):
     id = db.Column(db.Integer, primary_key=True)
