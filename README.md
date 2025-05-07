@@ -189,10 +189,10 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add total cards
     - [x] Add total decks
 34. Add user stats to profile page
-    - Create branch
-    - Add total cards
-    - Add total decks
-    - Add total studies in the last 30 days
+    - [x] Create branch
+    - [x] Add total cards
+    - [x] Add total decks
+    - [x] Hover added to home page list
 35. Deck Heritage System
     - Create branch
     - Dev page to see Deck heritage working

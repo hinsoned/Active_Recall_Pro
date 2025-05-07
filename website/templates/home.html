@@ -13,7 +13,7 @@ block content %}
       {% for user in users %} {% if user.id != current_user.id %}
       <a
         href="{{ url_for('views.view_profile', user_id=user.id) }}"
-        class="list-group-item list-group-item-action"
+        class="list-group-item list-group-item-action flashcard-element"
       >
         <div class="fw-bold">{{ user.username }}</div>
         <div class="text-muted">Total Decks: {{ user.decks|length }}</div>
