@@ -179,10 +179,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Check for needed imports
     - [x] Add modal
 32. Add deck copying
-    - Create branch
-    - Add copy button to each deck on view_public_deck page
-    - Handle new button in view_public_deck.js
-    - Add copy deck route to actions.py
+    - [x] Create branch
+    - [x] Add copy button to each deck on view_public_deck page
+    - [x] Handle new button in view_public_deck.js
+    - [x] Add copy deck route to actions.py
+    - [x] Add link to profile in success message
 33. Add user stats to home page
     - Create Branch
     - Add total cards
@@ -195,7 +196,11 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add total studies in the last 30 days
 35. Deck Heritage System
     - Create branch
-36. Dev page to see Deck heritage working
+    - Dev page to see Deck heritage working
+36. Re-enable heatmap
+    - Create branch
+    - Remake heatmap
+    - embed on profile and view_profile pages
 37. Add deck list/stats to home page
 38. Create card search funtionality
     - Create branch
