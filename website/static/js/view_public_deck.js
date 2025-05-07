@@ -67,5 +67,45 @@ function loadFlashcards() {
         });
 }
 
-// Load flashcards when the page loads
-document.addEventListener('DOMContentLoaded', loadFlashcards); 
+// Function to handle deck copying
+function copyDeck() {
+    const deckPage = document.getElementById('deck-page');
+    const deckId = deckPage.dataset.deckId;
+    const errorDiv = document.getElementById('flashcard-error');
+    const successDiv = document.getElementById('flashcard-success');
+
+    fetch(`/api/deck/${deckId}/copy`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to copy deck');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (!data.success) {
+            throw new Error(data.message || 'Failed to copy deck');
+        }
+        //successDiv.textContent = 'Deck copied successfully!' ;
+        successDiv.innerHTML = 'Deck copied successfully! <a class="text-info" href="/profile">View in your profile</a>';
+        successDiv.style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Error copying deck:', error);
+        errorDiv.textContent = 'Failed to copy deck. Please try again later.';
+        errorDiv.style.display = 'block';
+    });
+}
+
+// Add event listener for copy button
+document.addEventListener('DOMContentLoaded', () => {
+    loadFlashcards();
+    const copyButton = document.getElementById('copy-deck-btn');
+    if (copyButton) {
+        copyButton.addEventListener('click', copyDeck);
+    }
+}); 

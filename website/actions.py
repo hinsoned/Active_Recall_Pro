@@ -216,3 +216,35 @@ def move_card():
     db.session.commit()
     
     return jsonify({'success': True})
+
+@actions.route('/api/deck/<int:deck_id>/copy', methods=['POST'])
+@login_required
+def copy_deck(deck_id):
+    # Get the original deck
+    original_deck = Deck.query.get_or_404(deck_id)
+    
+    # Create a new deck for the current user
+    new_deck = Deck(
+        name=original_deck.name,
+        user_id=current_user.id,
+        study_mode=original_deck.study_mode
+    )
+    db.session.add(new_deck)
+    db.session.flush()  # This gets us the new deck's ID
+    
+    # Copy all flashcards from the original deck
+    for flashcard in original_deck.flashcards:
+        new_flashcard = Flashcard(
+            front=flashcard.front,
+            back=flashcard.back,
+            deck_id=new_deck.id,
+            user_id=current_user.id,
+            repetitions=0,
+            ease_factor=2.5,
+            interval=0,
+            next_review_date=datetime.utcnow()
+        )
+        db.session.add(new_flashcard)
+    
+    db.session.commit()
+    return jsonify({'success': True, 'message': 'Deck copied successfully'})

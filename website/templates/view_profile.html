@@ -24,8 +24,10 @@ Profile{% endblock %} {% block content %}
                 <small class="text-muted">
                   Created: {{ deck.date.strftime('%Y-%m-%d') }}
                 </small>
+              </p>
+              <p class="card-text">
                 <small class="text-muted">
-                    Cards: {{ deck.flashcards|length }}
+                  Cards: {{ deck.flashcards|length }}
                 </small>
               </p>
               <p class="card-text">
