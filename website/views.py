@@ -163,8 +163,14 @@ def edit_flashcard(flashcard_id):
         except json.JSONDecodeError:
             return jsonify({'success': False, 'message': 'Invalid content format'}), 400
 
+        # Update card content
         flashcard.front = front
         flashcard.back = back
+        
+        # Reset heritage chain - editor becomes new original creator
+        flashcard.original_creator_id = current_user.id
+        flashcard.heritage_chain = [current_user.id]
+        
         db.session.commit()
 
         return jsonify({'success': True, 'flashcard': {'id': flashcard.id, 'front': flashcard.front, 'back': flashcard.back}})
