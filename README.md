@@ -205,23 +205,28 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] Send only one card from back end in SM-2 study
         - [x] Stop users from getting credit via heritage system for studying their own cards
         - [x] Reset original creator and heritage chain fields upon card edit.
-37. Build dev page front and back end
-38. Re-enable heatmap
+37. Add deck list/stats to home page
+    - Create Branch
+    - Update home.html view for users (make it a list?)
+    - Add deck number to user list
+    - Add card number to user list
+38. Add deck liking (social media aspects)
+39. Build dev page front and back end
+40. Re-enable heatmap
     - Create branch
     - Remake heatmap
     - embed on profile and view_profile pages
-39. Add deck list/stats to home page
-40. Create card search funtionality
+41. Create card search funtionality
     - Create branch
     - Allow users to search through their cards based on the cards text content.
-41. Add User avatar to profile creation
+42. Add User avatar to profile creation
     - Create branch
     - Update model
     - Select generic avatar
     - update Profile page
     - update view_profile page
-42. Create an admin area: All users, decks, stats are visible
-43. Improve Bootstrap UI
+43. Create an admin area: All users, decks, stats are visible
+44. Improve Bootstrap UI
     - Cause card creation error to vanish after some time.
     - Display greeting to user
     - Make Nav bar visible
@@ -233,26 +238,26 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - Add space bar button press for "show back" and "next card" buttons on study.html
     - Make button placement on flash messages uniform
     - Change log in flash message to a greeting with the user's name
-44. Add light mode (assuming dark mode is the default)
+45. Add light mode (assuming dark mode is the default)
     - [x] add dark mode toggle?
-45. Add heat Map feature
+46. Add heat Map feature
     - [x] create branch
     - [x] add heat_map.html
-46. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
+47. Add Google authentication as an option? (https://www.youtube.com/watch?v=n4e3Cy2Tq3Q)
     - Creating a user account without Google must still be an option
-47. Add collaborative/public decks
+48. Add collaborative/public decks
     - Create branch
     - Add private/public toggle for each deck (default to public)
-48. Add Deck copy feature: Cards will be visible before copy and download.
-49. Add AI/LLM integration
+49. Add Deck copy feature: Cards will be visible before copy and download.
+50. Add AI/LLM integration
     - Create branch
     - Select LLM or ChatGPT API
-50. Host on AWS (or some similar could service)
-51. Add deck branch feature
-52. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
-53. Monetize with Google ads (AdSense)?
-54. Create desktop app (99designs??)
-55. Create mobile app (99designs??)
+51. Host on AWS (or some similar could service)
+52. Add deck branch feature
+53. Add school specific feature. Decks can be made for certain classes at specific schools with both topic view and time view for the decks.
+54. Monetize with Google ads (AdSense)?
+55. Create desktop app (99designs??)
+56. Create mobile app (99designs??)
 
 ## CONTRIBUTOR INSTRUCTIONS
 
