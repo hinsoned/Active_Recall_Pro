@@ -1,26 +1,61 @@
-{% extends "base.html" %} {% block title %}Active Recall Pro{% endblock %} {%
-block content %}
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
 <div class="row mb-4">
   <div class="col-12">
-    <h1>Welcome {{ current_user.username }}</h1>
+    <h1>Active Recall Pro</h1>
+    <p class="lead">
+      A platform for creating, sharing, and studying flashcards.
+    </p>
+  </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class="row mb-4">
+  <div class="col-12">
+    <h2>Your Activity</h2>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Credits Earned (Last 30 Days)</h5>
+        <p class="card-text">{{ user.get_recent_credits() }} credits</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="row mb-4">
   <div class="col-12">
-    <h2>Users</h2>
-    <div class="list-group">
-      {% for user in users %} {% if user.id != current_user.id %}
-      <a
-        href="{{ url_for('views.view_profile', user_id=user.id) }}"
-        class="list-group-item list-group-item-action flashcard-element"
-      >
-        <div class="fw-bold">{{ user.username }}</div>
-        <div class="text-muted">Total Decks: {{ user.decks|length }}</div>
-        <div class="text-muted">Total Cards: {{ user.flashcards|length }}</div>
-      </a>
-      {% endif %} {% endfor %}
+    <h2>Community Members</h2>
+    <div class="row">
+      {% for user in users %}
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ user.username }}</h5>
+            <p class="card-text">
+              <small class="text-muted"
+                >Credits (30 days): {{ user.get_recent_credits() }}</small
+              >
+            </p>
+            <a
+              href="{{ url_for('views.view_profile', user_id=user.id) }}"
+              class="btn btn-primary"
+              >View Profile</a
+            >
+          </div>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
-{% endblock %}
+{% else %}
+<div class="row">
+  <div class="col-12">
+    <div class="alert alert-info">
+      Please <a href="{{ url_for('auth.login') }}">login</a> or
+      <a href="{{ url_for('auth.sign_up') }}">sign up</a> to start creating and
+      studying flashcards.
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock %}

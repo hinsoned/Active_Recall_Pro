@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pathParts = window.location.pathname.split("/");
     const deckIdFromUrl = pathParts[2]; // Assumes URL is /study/<deck_id>
   
-    // Fetch cards based on study mode
+    // Helper function to Fetch cards based on study mode
     function fetchCards() {
         let url;
         if (deckMode === 'sm2') {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             normalControls.style.display = "none";
             sm2Controls.style.display = "block";
             
-            // Add SM-2 event listeners
+            // Add SM-2 event listeners for rating buttons and toggle button
             document.getElementById("toggle-button-sm2").addEventListener("click", toggleCard);
             document.querySelectorAll('[data-rating]').forEach(button => {
                 button.addEventListener('click', (e) => {
@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     // Update the initialization to use fetchCards instead of fetchFlashcard
+    // This is the first request to run upon loading the page
     fetch(`/study/${deckIdFromUrl}/config`)
         .then((response) => response.json())
         .then((data) => {
@@ -96,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Deck Length:", deckLength);
             console.log("Study Mode:", deckMode);
 
-            setupStudyMode();
+            setupStudyMode(); // See function above
             fetchCards();  // Use the new fetchCards function
         })
         .catch((error) => {

@@ -13,9 +13,29 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
-    flashcards = db.relationship('Flashcard', backref='user')
+    flashcards = db.relationship('Flashcard', foreign_keys='Flashcard.user_id', backref='user')
     decks = db.relationship('Deck', backref='user')
     study_frequency = db.relationship('StudyFrequency', backref='user')
+
+    def get_recent_credits(self):
+        """Calculate total credits earned in the last 30 days."""
+        from datetime import datetime, timedelta
+        from sqlalchemy import func
+        
+        thirty_days_ago = datetime.utcnow() - timedelta(days=30)
+        
+        # Get all study credits from the last 30 days
+        recent_credits = StudyCredit.query.filter(
+            StudyCredit.created_at >= thirty_days_ago
+        ).all()
+        
+        total_credits = 0
+        for credit in recent_credits:
+            # Get the credits for this user from the chain_credits JSON
+            user_credits = credit.chain_credits.get(str(self.id), 0)
+            total_credits += user_credits
+            
+        return round(total_credits, 2)  # Round to 2 decimal places
 
 #This class defines the Deck model for the database
 class Deck(db.Model):
@@ -33,9 +53,7 @@ class Flashcard(db.Model):
     id = db.Column(db.Integer, primary_key=True) 
     front = db.Column(db.String(10000))  # Will store Delta JSON
     back = db.Column(db.String(10000))   # Will store Delta JSON
-    #This uses func to get the current date and time and save it to this variable
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    #This foreign key references the id from the User class
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     deck_id = db.Column(db.Integer, db.ForeignKey('deck.id'))
     study_frequency = db.relationship('StudyFrequency', backref='Flashcard')
@@ -45,6 +63,13 @@ class Flashcard(db.Model):
     ease_factor = db.Column(db.Float, default=2.5)  # EF in SM-2
     interval = db.Column(db.Integer, default=0)      # I in SM-2
     next_review_date = db.Column(db.DateTime(timezone=True), default=func.now())  # When to show next
+
+    # Heritage system fields
+    original_creator_id = db.Column(db.Integer, db.ForeignKey('user.id', name='fk_original_creator'))
+    heritage_chain = db.Column(db.JSON)  # Array of user IDs in order
+
+    # Add relationship for original creator
+    original_creator = db.relationship('User', foreign_keys=[original_creator_id], backref='created_cards')
 
     #This converts the flashcard object to a dictionary for transmission.
     def to_dict(self):
@@ -56,7 +81,9 @@ class Flashcard(db.Model):
             'repetitions': self.repetitions,
             'ease_factor': self.ease_factor,
             'interval': self.interval,
-            'next_review_date': self.next_review_date.isoformat() if self.next_review_date else None
+            'next_review_date': self.next_review_date.isoformat() if self.next_review_date else None,
+            'original_creator_id': self.original_creator_id,
+            'heritage_chain': self.heritage_chain
         }
 
     # Return the content directly - Quill will handle conversion on frontend
@@ -74,3 +101,11 @@ class StudyFrequency(db.Model):
     flashcard_id = db.Column(db.Integer, db.ForeignKey(Flashcard.id))
     date = db.Column(db.String, default=func.current_date())
     frequency = db.Column(db.Integer)
+
+# New model for tracking study credits
+class StudyCredit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    card_id = db.Column(db.Integer, db.ForeignKey('flashcard.id'))
+    studying_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    chain_credits = db.Column(db.JSON)  # Dictionary mapping user_id to credit amount
+    created_at = db.Column(db.DateTime(timezone=True), default=func.now())

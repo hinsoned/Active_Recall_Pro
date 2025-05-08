@@ -11,6 +11,7 @@ from . import db
 import json
 from datetime import datetime
 #import bleach
+from .actions import distribute_study_credit
 
 # Blueprints are used to define routes, error handlers, and other request-related 
 # functions. It allows the views for the project to be defined in multiple files.
@@ -58,10 +59,10 @@ def study(deck_id):
         flashcard_id = data.get('flashcard_id')
 
         if not flashcard_id:
-            return jsonify({'success': False, 'message': 'Something happened in Front End'}), 400
+            return jsonify({'success': False, 'message': 'Missing flashcard ID'}), 400
         
+        # Update study frequency
         cur_date = datetime.today().strftime('%Y-%m-%d')
-
         study_instance = StudyFrequency.query.filter_by(user_id=current_user.id, deck_id=deck_id, flashcard_id=flashcard_id, date=cur_date)
 
         if (not study_instance.first()):
@@ -73,12 +74,18 @@ def study(deck_id):
                 synchronize_session=False
             )
 
+        # Get flashcard and distribute credits
+        flashcard = Flashcard.query.get(flashcard_id)
+        if not flashcard:
+            return jsonify({'success': False, 'message': 'Flashcard not found'}), 404
+
+        # Distribute study credits
+        distribute_study_credit(flashcard, current_user.id)
         db.session.commit()
 
         return jsonify({'success': True}), 200
 
     deck = Deck.query.get_or_404(deck_id)
-
     return render_template("study.html", user=current_user, deck=deck)
 
 # the route for viewing a deck

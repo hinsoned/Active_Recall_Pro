@@ -4,11 +4,39 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from . import db
-from .models import Flashcard, Deck
+from .models import Flashcard, Deck, StudyCredit
 import json
 from datetime import datetime, timedelta
 
 actions = Blueprint('actions', __name__)
+
+def distribute_study_credit(card, studying_user_id):
+    """Distribute study credits to users in the heritage chain."""
+    # Get the heritage chain, defaulting to just the original creator if none exists
+    heritage_chain = card.heritage_chain or [card.original_creator_id]
+    
+    # Calculate credits for each user in the chain
+    # Original creator gets 50%, last 3 users in chain split remaining 50%
+    chain_credits = {}
+    
+    # Original creator gets 50%
+    chain_credits[card.original_creator_id] = 0.5
+    
+    # Last 3 users in chain split remaining 50%
+    recent_users = heritage_chain[-3:] if len(heritage_chain) > 1 else []
+    if recent_users:
+        remaining_credit = 0.5 / len(recent_users)
+        for user_id in recent_users:
+            if user_id != card.original_creator_id:  # Don't double-count original creator
+                chain_credits[user_id] = remaining_credit
+    
+    # Create study credit record
+    study_credit = StudyCredit(
+        card_id=card.id,
+        studying_user_id=studying_user_id,
+        chain_credits=chain_credits
+    )
+    db.session.add(study_credit)
 
 @actions.route('/delete-flashcard', methods=['POST'])
 @login_required
@@ -108,6 +136,10 @@ def rate_flashcard(deck_id):
 
     # Update next review date using 5-minute intervals
     flashcard.next_review_date = datetime.utcnow() + timedelta(minutes=flashcard.interval * 5)
+    
+    # Distribute study credits
+    distribute_study_credit(flashcard, current_user.id)
+    
     db.session.commit()
 
     return jsonify({
@@ -115,6 +147,7 @@ def rate_flashcard(deck_id):
         'card': flashcard.to_dict()
     })
 
+# SM-2 algorithm: This function gets all the cards due for review in a deck for the SM-2 algorithm
 @actions.route("/study/<int:deck_id>/due", methods=["GET"])
 def get_due_cards(deck_id):
     """Get all cards due for review in a deck"""
@@ -151,6 +184,7 @@ def get_due_cards(deck_id):
             "next_review_date": card.next_review_date.isoformat() if card.next_review_date else None
         } for card in due_cards]
 
+        # Return the cards dictionary as a json object
         return jsonify({
             "success": True,
             "cards": cards_data
@@ -234,11 +268,20 @@ def copy_deck(deck_id):
     
     # Copy all flashcards from the original deck
     for flashcard in original_deck.flashcards:
+        # Get the original heritage chain or create a new one
+        heritage_chain = flashcard.heritage_chain or [flashcard.original_creator_id]
+        
+        # Add current user to the heritage chain if not already present
+        if current_user.id not in heritage_chain:
+            heritage_chain.append(current_user.id)
+        
         new_flashcard = Flashcard(
             front=flashcard.front,
             back=flashcard.back,
             deck_id=new_deck.id,
             user_id=current_user.id,
+            original_creator_id=flashcard.original_creator_id,  # Preserve original creator
+            heritage_chain=heritage_chain,  # Updated heritage chain
             repetitions=0,
             ease_factor=2.5,
             interval=0,
