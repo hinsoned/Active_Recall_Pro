@@ -206,10 +206,10 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
         - [x] Stop users from getting credit via heritage system for studying their own cards
         - [x] Reset original creator and heritage chain fields upon card edit.
 37. Add deck list/stats to home page
-    - Create Branch
-    - Update home.html view for users (make it a list?)
-    - Add deck number to user list
-    - Add card number to user list
+    - [x] Create Branch
+    - [x] Update home.html view for users (make it a list?)
+    - [x] Add deck number to user list
+    - [x] Add card number to user list
 38. Add deck liking (social media aspects)
 39. Build dev page front and back end
 40. Re-enable heatmap
