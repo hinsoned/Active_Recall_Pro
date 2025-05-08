@@ -195,7 +195,14 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Hover added to home page list
 35. Deck Heritage System
     - [x] Create branch
-    - Dev page to see Deck heritage working
+    - [x] Update models to add a studycredit model
+    - [x] Update FlashCard model
+    - [x] Add function to get recent credits to User
+    - [x] Add credit information to home page (temporary)
+36. DH system refinement / Dev page to see Deck heritage working
+    - Create Branch
+    - Review and refine DH system
+    - Build dev page front and back end
 36. Re-enable heatmap
     - Create branch
     - Remake heatmap

@@ -147,6 +147,7 @@ def rate_flashcard(deck_id):
         'card': flashcard.to_dict()
     })
 
+# SM-2 algorithm: This function gets all the cards due for review in a deck for the SM-2 algorithm
 @actions.route("/study/<int:deck_id>/due", methods=["GET"])
 def get_due_cards(deck_id):
     """Get all cards due for review in a deck"""
@@ -183,6 +184,7 @@ def get_due_cards(deck_id):
             "next_review_date": card.next_review_date.isoformat() if card.next_review_date else None
         } for card in due_cards]
 
+        # Return the cards dictionary as a json object
         return jsonify({
             "success": True,
             "cards": cards_data
