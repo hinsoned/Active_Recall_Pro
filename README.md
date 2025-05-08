@@ -200,7 +200,7 @@ Note that this code was HEAVILY commented as I am using it as a learning tool an
     - [x] Add function to get recent credits to User
     - [x] Add credit information to home page (temporary)
 36. DH system refinement / Dev page to see Deck heritage working
-    - Create Branch
+    - [x] Create Branch
     - Review and refine DH system
     - Build dev page front and back end
 36. Re-enable heatmap
