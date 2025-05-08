@@ -12,6 +12,7 @@
 {% if user.is_authenticated %}
 <div class="row mb-4">
   <div class="col-12">
+    <h1>Welcome, {{ user.username }}!</h1>
     <h2>Your Activity</h2>
     <div class="card">
       <div class="card-body">
@@ -27,23 +28,44 @@
     <h2>Community Members</h2>
     <div class="row">
       {% for user in users %}
-      <div class="col-md-4 mb-3">
+      <div class="col-md-12 mb-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">{{ user.username }}</h5>
-            <p class="card-text">
-              <small class="text-muted"
-                >Credits (30 days): {{ user.get_recent_credits() }}</small
-              >
-            </p>
-            <a
-              href="{{ url_for('views.view_profile', user_id=user.id) }}"
-              class="btn btn-primary"
-              >View Profile</a
-            >
+            <div class="row">
+              <div class="col-md-8">
+                <h5 class="card-title">{{ user.username }}</h5>
+                <p class="card-text">
+                  <small class="text-muted"
+                    >Credits (30 days): {{ user.get_recent_credits() }}</small
+                  >
+                </p>
+                <a
+                  href="{{ url_for('views.view_profile', user_id=user.id) }}"
+                  class="btn btn-primary"
+                  >View Profile</a
+                >
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      Deck Count:
+                      <span class="text-muted">{{ user.decks|length }}</span>
+                    </h5>
+                    <h5 class="card-title">
+                      Card Count:
+                      <span class="text-muted"
+                        >{{ user.flashcards|length }}</span
+                      >
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       {% endfor %}
     </div>
   </div>
