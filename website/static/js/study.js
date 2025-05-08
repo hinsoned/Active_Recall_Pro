@@ -34,15 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (deckMode === 'sm2') {
                         // For SM-2, we get an array of due cards
                         if (data.cards && data.cards.length > 0) {
+                            console.log("Due cards:", data.cards);
                             currentFlashcard = data.cards[0];  // Show the first due card
                             displayCard();
                         } else {
+                            console.log("No cards due for review");
                             document.getElementById("flashcard-front").textContent = "No cards due for review";
                             document.getElementById("flashcard-content").textContent = "Come back later!";
                             document.getElementById("sm2-controls").style.display = "none";
                         }
                     } else {
                         // For normal mode, we get a single flashcard
+                        console.log("Normal mode flashcard:", data.flashcard);
                         currentFlashcard = data.flashcard;
                         displayCard();
                     }

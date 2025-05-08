@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 
 actions = Blueprint('actions', __name__)
 
+# Distribute study credits to users in the heritage chain
 def distribute_study_credit(card, studying_user_id):
     """Distribute study credits to users in the heritage chain."""
     # Get the heritage chain, defaulting to just the original creator if none exists
@@ -19,24 +20,29 @@ def distribute_study_credit(card, studying_user_id):
     # Original creator gets 50%, last 3 users in chain split remaining 50%
     chain_credits = {}
     
-    # Original creator gets 50%
-    chain_credits[card.original_creator_id] = 0.5
+    # Original creator gets 50% (if not the studying user)
+    if card.original_creator_id != studying_user_id:
+        chain_credits[card.original_creator_id] = 0.5
     
     # Last 3 users in chain split remaining 50%
-    recent_users = heritage_chain[-3:] if len(heritage_chain) > 1 else []
+    recent_users = heritage_chain[-5:] if len(heritage_chain) > 1 else []
     if recent_users:
-        remaining_credit = 0.5 / len(recent_users)
-        for user_id in recent_users:
-            if user_id != card.original_creator_id:  # Don't double-count original creator
-                chain_credits[user_id] = remaining_credit
+        # Filter out the studying user from recent users
+        eligible_recent_users = [user_id for user_id in recent_users if user_id != studying_user_id]
+        if eligible_recent_users:
+            remaining_credit = 0.5 / len(eligible_recent_users)
+            for user_id in eligible_recent_users:
+                if user_id != card.original_creator_id:  # Don't double-count original creator
+                    chain_credits[user_id] = remaining_credit
     
-    # Create study credit record
-    study_credit = StudyCredit(
-        card_id=card.id,
-        studying_user_id=studying_user_id,
-        chain_credits=chain_credits
-    )
-    db.session.add(study_credit)
+    # Only create study credit record if there are credits to distribute
+    if chain_credits:
+        study_credit = StudyCredit(
+            card_id=card.id,
+            studying_user_id=studying_user_id,
+            chain_credits=chain_credits
+        )
+        db.session.add(study_credit)
 
 @actions.route('/delete-flashcard', methods=['POST'])
 @login_required
@@ -166,28 +172,40 @@ def get_due_cards(deck_id):
             Flashcard.next_review_date <= now
         ).order_by(Flashcard.next_review_date.asc()).all()
 
-        # If no cards are due, get new cards (cards that have never been reviewed)
-        if not due_cards:
-            due_cards = Flashcard.query.filter(
-                Flashcard.deck_id == deck_id,
-                Flashcard.next_review_date == None
-            ).all()
+        # Get new cards (cards that have never been reviewed)
+        new_cards = Flashcard.query.filter(
+            Flashcard.deck_id == deck_id,
+            Flashcard.next_review_date == None
+        ).all()
 
-        # Convert cards to dictionary format
-        cards_data = [{
-            "id": card.id,
-            "front": card.front,
-            "back": card.back,
-            "repetitions": card.repetitions,
-            "ease_factor": card.ease_factor,
-            "interval": card.interval,
-            "next_review_date": card.next_review_date.isoformat() if card.next_review_date else None
-        } for card in due_cards]
+        # Combine the lists with due cards first
+        all_cards = due_cards + new_cards
 
-        # Return the cards dictionary as a json object
+        # If there are no cards, return empty list
+        if not all_cards:
+            return jsonify({
+                "success": True,
+                "cards": []
+            })
+
+        # Get only the first card
+        first_card = all_cards[0]
+        
+        # Convert single card to dictionary format
+        card_data = {
+            "id": first_card.id,
+            "front": first_card.front,
+            "back": first_card.back,
+            "repetitions": first_card.repetitions,
+            "ease_factor": first_card.ease_factor,
+            "interval": first_card.interval,
+            "next_review_date": first_card.next_review_date.isoformat() if first_card.next_review_date else None
+        }
+
+        # Return the single card as a json object
         return jsonify({
             "success": True,
-            "cards": cards_data
+            "cards": [card_data]  # Still return as array to maintain API compatibility
         })
 
     except Exception as e:
